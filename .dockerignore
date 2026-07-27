@@ -1,0 +1,33 @@
+# O que NÃO entra na imagem Docker (quando a API/serviço for containerizado).
+# Nota: excluir do BUILD (imagem) é papel do .dockerignore; esconder do GIT
+# (push) é papel do .gitignore. São coisas diferentes.
+
+.git/
+.gitignore
+.dockerignore
+
+# Contexto interno e docs não vão para o runtime do serviço.
+.contexto/
+docs/
+
+# Segredos e ambientes locais.
+.env
+.env.*
+.venv/
+
+# Dados e artefatos locais.
+data/
+mlruns/
+mlartifacts/
+*.joblib
+*.pkl
+*.parquet
+
+# Notebooks e caches de dev.
+notebooks/
+.ipynb_checkpoints/
+.ruff_cache/
+.mypy_cache/
+.pytest_cache/
+__pycache__/
+*.py[oc]

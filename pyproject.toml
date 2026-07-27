@@ -1,0 +1,45 @@
+[project]
+name = "logistica-otif-mlops"
+version = "0.1.0"
+description = "Ciência de Dados e MLOps end-to-end em logística (dados sintéticos): previsão de atraso (OTIF) e análise de custos de transporte — pipeline medallion, MLflow, testes/CI e monitoramento de drift."
+readme = "README.md"
+authors = [
+    { name = "Tiago Lima", email = "tiago.p.limm@gmail.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "pandas>=3.0.5",
+    "pydantic-settings>=2.14.2",
+]
+
+[project.scripts]
+logistica-otif-mlops = "logistica_otif_mlops:main"
+
+[build-system]
+requires = ["uv_build>=0.11.26,<0.12.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "mypy>=2.3.0",
+    "pandas-stubs>=3.0.3.260530",
+    "pytest>=9.1.1",
+    "ruff>=0.16.0",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+# E/F pycodestyle+pyflakes, I import-sort, N nomes, UP moderniza,
+# B bugbear, SIM simplificações.
+select = ["E", "F", "I", "N", "UP", "B", "SIM"]
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+files = ["src", "tests"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

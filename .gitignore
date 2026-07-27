@@ -1,0 +1,44 @@
+# === Python ===
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# === Ambientes virtuais ===
+.venv
+
+# === Segredos (NUNCA versionar) ===
+# Só o .env.example (sem valores) vai para o git.
+.env
+.env.*
+!.env.example
+
+# === Contexto interno da equipe ===
+# Este é um repo PÚBLICO (portfólio). A "sala de obra" fica LOCAL:
+# não vai ao GitHub. (Em repo privado da Neviah, o .contexto/ é versionado.)
+.contexto/
+
+# === Dados ===
+# Nenhum dado (nem sintético pesado) é versionado; os pipelines o (re)geram.
+# Só o README de cada camada é rastreado (ver regras abaixo).
+data/*
+!data/README.md
+
+# === Artefatos de ML / experimentos ===
+mlruns/
+mlartifacts/
+*.joblib
+*.pkl
+*.parquet
+
+# === Notebooks (saída limpa; versiona-se o código, não o output) ===
+.ipynb_checkpoints/
+
+# === Ferramentas / caches ===
+.ruff_cache/
+.mypy_cache/
+.pytest_cache/
+.coverage
+htmlcov/
