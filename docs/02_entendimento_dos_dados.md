@@ -316,7 +316,8 @@ O financeiro enxerga o mundo por **operações** e **competências**, ligado ao 
 erDiagram
     CATEGORIA_CUSTO {
         bigint id PK
-        varchar nome "RODOVIARIO | AEREO | BASE | MONTADOR | INSUMOS | IMPOSTO_DIFAL | OUTROS"
+        varchar codigo UK "RODOVIARIO | AEREO | BASE | MONTADOR | INSUMOS | IMPOSTO_DIFAL | OUTROS"
+        varchar descricao "rotulo humano da categoria"
     }
     FATURAMENTO_OPERACAO {
         bigint id PK

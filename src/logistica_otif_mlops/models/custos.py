@@ -29,20 +29,24 @@ SCHEMA_CUSTOS = "custos"
 
 
 class CategoriaCusto(Base):
-    """Classificação do custo variável (dado de domínio)."""
+    """Classificação do custo variável (dado de domínio).
+
+    Convenção da casa (decisão 14): `codigo` p/ máquina, `descricao` p/ humano.
+    """
 
     __tablename__ = "categoria_custo"
     __table_args__ = (
         CheckConstraint(
-            "nome IN ('RODOVIARIO', 'AEREO', 'BASE', 'MONTADOR', "
+            "codigo IN ('RODOVIARIO', 'AEREO', 'BASE', 'MONTADOR', "
             "'INSUMOS', 'IMPOSTO_DIFAL', 'OUTROS')",
-            name="nome_valido",
+            name="codigo_valido",
         ),
         {"schema": SCHEMA_CUSTOS},
     )
 
     id: Mapped[int] = mapped_column(BigInteger, Identity(), primary_key=True)
-    nome: Mapped[str] = mapped_column(String(15), unique=True)
+    codigo: Mapped[str] = mapped_column(String(15), unique=True)
+    descricao: Mapped[str] = mapped_column(String(60))
 
 
 class FaturamentoOperacao(Base):

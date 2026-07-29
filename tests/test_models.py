@@ -71,6 +71,20 @@ def test_schema_custos_fechado_em_5_e_sem_fk_para_operacao() -> None:
             assert fk.column.table.schema == "custos"
 
 
+def test_tabelas_de_dominio_seguem_convencao_codigo_x_rotulo() -> None:
+    """Decisão 14: codigo p/ máquina + rótulo humano. Regressão dos 2 flagrantes do Tiago."""
+    dominios = {
+        "operacao.modalidade": "descricao",
+        "operacao.fase": "nome",
+        "operacao.tipo_ocorrencia": "descricao",
+        "custos.categoria_custo": "descricao",
+    }
+    for tabela, rotulo in dominios.items():
+        colunas = set(Base.metadata.tables[tabela].columns.keys())
+        assert "codigo" in colunas, f"{tabela} sem coluna codigo"
+        assert rotulo in colunas, f"{tabela} sem rotulo humano ({rotulo})"
+
+
 def test_pedido_nao_armazena_flag_de_atraso() -> None:
     """Doutrina: derivado se calcula. O alvo do OTIF nasce do cruzamento, nunca de coluna."""
     pedido = Base.metadata.tables["operacao.pedido"]
