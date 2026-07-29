@@ -30,16 +30,21 @@ SCHEMA_OPERACAO = "operacao"
 
 
 class Modalidade(Base):
-    """Modal de transporte prometido no pedido."""
+    """Modal de transporte prometido no pedido.
+
+    Convenção da casa: `codigo` = chave estável p/ máquina (CAIXA_ALTA);
+    `descricao` = rótulo humano (com acento, vai p/ tela e relatório).
+    """
 
     __tablename__ = "modalidade"
     __table_args__ = (
-        CheckConstraint("nome IN ('RODOVIARIO', 'AEREO')", name="nome_valido"),
+        CheckConstraint("codigo IN ('RODOVIARIO', 'AEREO')", name="codigo_valido"),
         {"schema": SCHEMA_OPERACAO},
     )
 
     id: Mapped[int] = mapped_column(BigInteger, Identity(), primary_key=True)
-    nome: Mapped[str] = mapped_column(String(15), unique=True)
+    codigo: Mapped[str] = mapped_column(String(15), unique=True)
+    descricao: Mapped[str] = mapped_column(String(30))
     ativo: Mapped[bool] = mapped_column(Boolean, default=True)
 
 

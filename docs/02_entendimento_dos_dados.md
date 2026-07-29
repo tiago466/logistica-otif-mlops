@@ -107,7 +107,8 @@ erDiagram
     %% ============ CONFIGURACAO (reguas) ============
     MODALIDADE {
         bigint id PK
-        varchar nome "RODOVIARIO | AEREO"
+        varchar codigo UK "RODOVIARIO | AEREO"
+        varchar descricao "rotulo humano: Rodoviário, Aéreo"
         boolean ativo
     }
     LEAD_TIME {
@@ -392,7 +393,8 @@ O **Sr. Abraão** e o **Sr. Elias** não escrevem dado nenhum: consomem indicado
 11. **Financeiro guarda lançamentos, não MC.** A margem é cálculo da análise (o Discovery reconstrói o relatório da Sarah).
 12. **KPIs são derivados, não colunas** (% OTIF, DSM, vencidos, danificados, cobertura fiscal, tempos, % ocorrência/reentrega/devolução). Cobrança de armazenagem: `max(m3 × valor_m3 + valor_material × aliquota, valor_minimo_mensal)` por competência.
 13. **O financeiro cobre o universo do relatório de MC** (decisão do Tiago: mundo fechado e consistente): COLETA e POSITIVACAO ganharam entidades operacionais **simbólicas e enxutas** (sem fluxo de fases próprio); DIFAL e INSUMOS são só lançamentos de custo com regra. As regras das derivadas (MC, cubagem, DIFAL, cobrança de armazenagem, dev/reentrega) estão catalogadas no cofre interno de regras e migram para a doc pública junto do Discovery.
-14. **Extensões futuras registradas:** subsistema de cotas (DC, incl. `qtd_cota`/`qtd_reservado`), metas comerciais (R$/kg por base), modalidade ESPECIAL, fluxo de fases para coleta/positivação, estoque por lote e classe regulatória (ANVISA), **endereçamento físico de armazém** (posições `ÁREA.RUA.NÍVEL.POSIÇÃO`), documentos por fase.
+14. **Convenção de caixa e acento (detectada em revisão do Tiago).** `codigo` = chave estável para máquina: CAIXA_ALTA, sem acento, sem espaço (entra em CHECK, join e código). `nome`/`descricao` = rótulo para humano: português com acento e capitalização normal (vai para tela e relatório). Dados **digitados por usuário** (razões sociais, endereços) não têm caixa forçada no OLTP: o gerador imprime caixa mista de propósito e a **padronização é responsabilidade do silver** (como no mundo real).
+15. **Extensões futuras registradas:** subsistema de cotas (DC, incl. `qtd_cota`/`qtd_reservado`), metas comerciais (R$/kg por base), modalidade ESPECIAL, fluxo de fases para coleta/positivação, estoque por lote e classe regulatória (ANVISA), **endereçamento físico de armazém** (posições `ÁREA.RUA.NÍVEL.POSIÇÃO`), documentos por fase.
 
 ## 7. Como visualizar o MER (draw.io)
 
