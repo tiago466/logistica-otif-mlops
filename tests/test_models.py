@@ -21,6 +21,21 @@ CONFIGURACAO_ESPERADO = {
     "tipo_ocorrencia",
 }
 
+MOVIMENTO_ESPERADO = {
+    "pedido",
+    "pedido_item",
+    "pedido_fase",
+    "ordem_coleta",
+    "minuta",
+    "entrega",
+    "retirada_base",
+    "ocorrencia",
+    "recebimento",
+    "estoque_snapshot",
+    "coleta",
+    "positivacao",
+}
+
 
 def test_grupo_cadastro_completo_no_schema_operacao() -> None:
     operacao = {t.name for t in Base.metadata.tables.values() if t.schema == "operacao"}
@@ -30,6 +45,19 @@ def test_grupo_cadastro_completo_no_schema_operacao() -> None:
 def test_grupo_configuracao_completo_no_schema_operacao() -> None:
     operacao = {t.name for t in Base.metadata.tables.values() if t.schema == "operacao"}
     assert operacao >= CONFIGURACAO_ESPERADO
+
+
+def test_grupo_movimento_completo_e_operacao_fechado_em_24() -> None:
+    operacao = {t.name for t in Base.metadata.tables.values() if t.schema == "operacao"}
+    assert operacao >= MOVIMENTO_ESPERADO
+    assert len(operacao) == 24  # o MER congelado: nada a mais, nada a menos
+
+
+def test_pedido_nao_armazena_flag_de_atraso() -> None:
+    """Doutrina: derivado se calcula. O alvo do OTIF nasce do cruzamento, nunca de coluna."""
+    pedido = Base.metadata.tables["operacao.pedido"]
+    colunas = set(pedido.columns.keys())
+    assert not {c for c in colunas if "atraso" in c}
 
 
 def test_lead_time_e_regua_sem_referencia_a_pedido() -> None:
