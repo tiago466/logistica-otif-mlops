@@ -14,13 +14,25 @@ from logistica_otif_mlops.models.cadastro import (
     Transportador,
     Veiculo,
 )
+from logistica_otif_mlops.models.configuracao import (
+    Campanha,
+    Fase,
+    LeadTime,
+    Modalidade,
+    TipoOcorrencia,
+)
 
 __all__ = [
+    "Campanha",
     "Endereco",
+    "Fase",
     "Item",
+    "LeadTime",
     "LocalEstoque",
+    "Modalidade",
     "Organizacao",
     "Rota",
+    "TipoOcorrencia",
     "Transportador",
     "Veiculo",
 ]

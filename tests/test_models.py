@@ -13,10 +13,29 @@ CADASTRO_ESPERADO = {
     "rota",
 }
 
+CONFIGURACAO_ESPERADO = {
+    "modalidade",
+    "lead_time",
+    "campanha",
+    "fase",
+    "tipo_ocorrencia",
+}
+
 
 def test_grupo_cadastro_completo_no_schema_operacao() -> None:
     operacao = {t.name for t in Base.metadata.tables.values() if t.schema == "operacao"}
     assert operacao >= CADASTRO_ESPERADO
+
+
+def test_grupo_configuracao_completo_no_schema_operacao() -> None:
+    operacao = {t.name for t in Base.metadata.tables.values() if t.schema == "operacao"}
+    assert operacao >= CONFIGURACAO_ESPERADO
+
+
+def test_lead_time_e_regua_sem_referencia_a_pedido() -> None:
+    """A regua parametriza; pedido carimba. Regressao da 'recaida' de modelagem."""
+    lead_time = Base.metadata.tables["operacao.lead_time"]
+    assert "pedido_id" not in lead_time.columns
 
 
 def test_constraints_nomeadas_pela_convencao() -> None:
