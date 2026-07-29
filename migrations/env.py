@@ -5,6 +5,7 @@ from logging.config import fileConfig
 from alembic import context
 from sqlalchemy import create_engine, pool
 
+import logistica_otif_mlops.models  # noqa: F401  # registra as tabelas na metadata
 from logistica_otif_mlops.config import obter_settings
 from logistica_otif_mlops.db import Base
 

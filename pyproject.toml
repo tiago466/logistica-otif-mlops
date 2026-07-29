@@ -39,6 +39,10 @@ target-version = "py312"
 # B bugbear, SIM simplificações.
 select = ["E", "F", "I", "N", "UP", "B", "SIM"]
 
+[tool.ruff.lint.per-file-ignores]
+# migrations sao codigo GERADO pelo alembic: estilo do template dele nao nos bloqueia
+"migrations/versions/*" = ["E501", "I001", "UP007", "UP035"]
+
 [tool.mypy]
 python_version = "3.12"
 strict = true
