@@ -33,9 +33,14 @@ class Settings(BaseSettings):
 
     ambiente: Ambiente = "dev"
 
+    # Banco relacional da TransBrasil (schemas operacao + custos).
+    # dev: Postgres do docker-compose; hmlg: Neon.
+    database_url: str | None = None
+
     # --- Conectores (adicionados sob demanda; ver connectors/registry.py) ---
-    # Ex., quando nascer o conector do Postgres sintético:
-    #   logistica_db_url: str | None = None
+    # Ex., quando nascer o conector da API de custos:
+    #   custos_api_url: str | None = None
+    #   custos_api_key: str | None = None
 
 
 @lru_cache
