@@ -21,6 +21,13 @@ from logistica_otif_mlops.models.configuracao import (
     Modalidade,
     TipoOcorrencia,
 )
+from logistica_otif_mlops.models.custos import (
+    CategoriaCusto,
+    CustoOperacao,
+    FaturamentoOperacao,
+    ParametroFinanceiro,
+    TarifaArmazenagem,
+)
 from logistica_otif_mlops.models.movimento import (
     Coleta,
     Entrega,
@@ -38,8 +45,13 @@ from logistica_otif_mlops.models.movimento import (
 
 __all__ = [
     "Campanha",
+    "CategoriaCusto",
     "Coleta",
+    "CustoOperacao",
     "Endereco",
+    "FaturamentoOperacao",
+    "ParametroFinanceiro",
+    "TarifaArmazenagem",
     "Entrega",
     "EstoqueSnapshot",
     "Fase",

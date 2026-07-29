@@ -53,6 +53,24 @@ def test_grupo_movimento_completo_e_operacao_fechado_em_24() -> None:
     assert len(operacao) == 24  # o MER congelado: nada a mais, nada a menos
 
 
+CUSTOS_ESPERADO = {
+    "categoria_custo",
+    "faturamento_operacao",
+    "custo_operacao",
+    "tarifa_armazenagem",
+    "parametro_financeiro",
+}
+
+
+def test_schema_custos_fechado_em_5_e_sem_fk_para_operacao() -> None:
+    custos = [t for t in Base.metadata.tables.values() if t.schema == "custos"]
+    assert {t.name for t in custos} == CUSTOS_ESPERADO
+    # doutrina: sistemas separados se falam por chave de negocio, nunca por FK
+    for t in custos:
+        for fk in t.foreign_keys:
+            assert fk.column.table.schema == "custos"
+
+
 def test_pedido_nao_armazena_flag_de_atraso() -> None:
     """Doutrina: derivado se calcula. O alvo do OTIF nasce do cruzamento, nunca de coluna."""
     pedido = Base.metadata.tables["operacao.pedido"]

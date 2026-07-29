@@ -195,6 +195,7 @@ erDiagram
         bigint endereco_destino_id FK "destino DESTA perna (base ou destino final)"
         date dt_prevista
         timestamp dt_chegada "nullable; chegada real"
+        timestamp dt_entrada_base "nullable; quando a BASE efetiva a entrada (disponivel p/ retirada ou ultima milha)"
         varchar recebedor "nullable; quem assinou"
         boolean fl_sucesso
         boolean fl_canhoto
@@ -385,7 +386,7 @@ O **Sr. Abraão** e o **Sr. Elias** não escrevem dado nenhum: consomem indicado
 3. **`MINUTA` modela a consolidação.** Vários pedidos (e pernas) viajam no mesmo embarque; transportador, veículo e rota são do embarque, não da entrega. Resolve o aéreo (minuta sem veículo) e expõe um driver real de atraso: prazos heterogêneos dentro da mesma minuta (futura *feature*: dispersão de prazos).
 4. **`ORDEM_COLETA` (DOC).** Itens de um pedido espalhados em N locais geram N ordens de coleta; volume de DOCs por pedido é sinal preditivo de atraso (achado real do domínio). A *feature* leak-free equivalente no PL: "em quantos locais os itens estão alocados".
 5. **Histórico de fases em formato longo (`PEDIDO_FASE`).** Cada passagem é um evento; a versão larga é derivação silver. Fases esporádicas (DC, EX) cabem sem mudança.
-6. **`ENTREGA` = perna × tentativa; alvo por `tipo_atendimento`.** DIRETA/VIA_BASE medem na chegada ao destino final; RETIRA_BASE mede na **chegada à Base** (demora do cliente em retirar vira *aging*, não atraso). Nenhum `fl_atraso` armazenado: **derivado se calcula** (mesma razão de não existir `fase_atual_id`, decisão do Tiago).
+6. **`ENTREGA` = perna × tentativa; alvo por `tipo_atendimento`.** DIRETA/VIA_BASE medem na chegada ao destino final; RETIRA_BASE mede na **chegada à Base** (demora do cliente em retirar vira *aging*, não atraso). Nenhum `fl_atraso` armazenado: **derivado se calcula** (mesma razão de não existir `fase_atual_id`, decisão do Tiago). **Atribuição de responsabilidade na Base:** chegar à Base e a Base **efetivar a entrada** são fatos distintos (`dt_chegada` × `dt_entrada_base`); o atraso entre eles é **da Base** (indicador derivado que fundamenta repasse de multa ao parceiro e mede a performance de cada base).
 7. **Chave técnica × chave de negócio.** `id` é interno e não sai; `numero` (SS) e `sigla` viajam para outros sistemas. Chave de negócio é `varchar`: aceita formato, zero à esquerda e nunca sofre aritmética.
 8. **Sem FK entre sistemas.** O financeiro referencia por chave de negócio; reconciliação vira teste de qualidade no silver.
 9. **Região não é coluna: deriva da UF.** `LEAD_TIME` é **tabela-régua** (parametrização por modalidade × UF × cidade), consultada na criação e carimbada no pedido.

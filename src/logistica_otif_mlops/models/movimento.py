@@ -186,6 +186,9 @@ class Entrega(Base):
     )
     dt_prevista: Mapped[date] = mapped_column(Date)
     dt_chegada: Mapped[datetime | None] = mapped_column(DateTime)
+    # pernas com Base: quando a base EFETIVOU a entrada (material disponivel p/
+    # retirada/ultima milha). Atraso entre chegada e entrada e da BASE (repasse).
+    dt_entrada_base: Mapped[datetime | None] = mapped_column(DateTime)
     recebedor: Mapped[str | None] = mapped_column(String(100))  # quem assinou
     fl_sucesso: Mapped[bool] = mapped_column(Boolean, default=False)
     fl_canhoto: Mapped[bool] = mapped_column(Boolean, default=False)
