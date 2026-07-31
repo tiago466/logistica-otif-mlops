@@ -56,6 +56,9 @@ class Organizacao(Base):
     fl_entrega_agendada: Mapped[bool | None] = mapped_column(Boolean)  # regra de cliente
     dt_inicio_contrato: Mapped[date] = mapped_column(Date)
     dt_cancelamento: Mapped[date | None] = mapped_column(Date)  # onda de 2025 no seed
+    # % de OTIF prometido em contrato (só clientes); abaixo dele = multa.
+    # 0.90 MPM · 0.95-0.97 G/M · 0.98 = retenção desesperada (anamnese 31/07)
+    otif_contratual: Mapped[Decimal | None] = mapped_column(Numeric(4, 2))
     ativo: Mapped[bool] = mapped_column(Boolean, default=True)
 
 

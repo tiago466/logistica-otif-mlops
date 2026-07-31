@@ -9,14 +9,32 @@ def _ler(nome: str) -> list[dict[str, str]]:
         return list(csv.DictReader(f))
 
 
-def test_carteira_de_clientes_confere() -> None:
+def test_carteira_de_clientes_confere_com_a_anamnese() -> None:
     clientes = _ler("organizacoes_clientes.csv")
     assert len(clientes) == 203
-    assert sum(1 for c in clientes if c["ativo"] == "True") == 163
+    ativos = [c for c in clientes if c["ativo"] == "True"]
+    assert len(ativos) == 98  # anamnese: carteira atual
+    assert sum(1 for c in ativos if c["porte"] == "MEGA") == 7
+    assert sum(1 for c in ativos if c["porte"] == "GRANDE") == 20
     siglas = [c["sigla"] for c in clientes]
     assert all(len(s) == 3 and s.isalpha() for s in siglas)
     assert len(set(siglas)) == 203
-    assert all(c["dt_inicio_contrato"][:4] <= "2019" for c in clientes)
+
+
+def test_narrativa_da_anamnese_esta_plantada() -> None:
+    clientes = _ler("organizacoes_clientes.csv")
+    nomes = {c["nome_fantasia"] for c in clientes}
+    assert {"Woonka Chocolates", "Derma Health", "Stark Technologi"} <= nomes  # top 5
+    assert sum(1 for c in clientes if c["perfil"] == "FIEL") == 10  # os amigos do dono
+    anos_cancel = [c["dt_cancelamento"][:4] for c in clientes if c["dt_cancelamento"]]
+    assert len(anos_cancel) == 105
+    assert anos_cancel.count("2025") == 50  # a onda
+    assert "2026" not in anos_cancel  # zero em 2026 (anamnese)
+    assert all(c["dt_inicio_contrato"] < c["dt_cancelamento"]
+               for c in clientes if c["dt_cancelamento"])
+    # retenção desesperada: existem G/M cancelados em 2025 com contrato de 98%
+    assert any(c["otif_contratual"] == "0.98" and c["dt_cancelamento"][:4] == "2025"
+               for c in clientes)
 
 
 def test_matriz_e_bases_conferem() -> None:

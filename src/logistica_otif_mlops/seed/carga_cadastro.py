@@ -14,6 +14,7 @@ from __future__ import annotations
 import csv
 import random
 from datetime import date
+from decimal import Decimal
 from importlib.resources import files
 
 from sqlalchemy import func, select
@@ -129,6 +130,10 @@ def _carregar(sessao: Session, rng: random.Random) -> None:
             fl_entrega_agendada=_bool(linha["fl_entrega_agendada"]),
             dt_inicio_contrato=_data(linha["dt_inicio_contrato"]) or date(2019, 1, 1),
             dt_cancelamento=_data(linha["dt_cancelamento"]),
+            # coluna "perfil" do CSV é gabarito do gerador, NÃO vai ao banco
+            otif_contratual=(
+                Decimal(linha["otif_contratual"]) if linha.get("otif_contratual") else None
+            ),
             ativo=linha["ativo"] == "True",
         )
         sessao.add(org)
