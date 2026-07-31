@@ -48,6 +48,21 @@ def test_matriz_e_bases_conferem() -> None:
     assert len(vilas) == 5
 
 
+def test_cidades_e_gabarito_conferem() -> None:
+    cidades = _ler("cidades.csv")
+    assert len(cidades) >= 60
+    assert all(len(c["uf"]) == 2 and int(c["peso"]) > 0 for c in cidades)
+    sudeste = sum(int(c["peso"]) for c in cidades if c["uf"] in ("SP", "MG", "RJ", "ES"))
+    total = sum(int(c["peso"]) for c in cidades)
+    assert sudeste / total > 0.5  # anamnese: concentração Sudeste
+
+    gabarito = _ler("gabarito_clientes.csv")
+    clientes = {c["sigla"] for c in _ler("organizacoes_clientes.csv")}
+    assert {g["sigla"] for g in gabarito} == clientes  # 1:1 com a carteira
+    stark = next(g for g in gabarito if g["sigla"] == "STK")
+    assert float(stark["pct_exclusivo"]) > 0.05  # anamnese: Stark abusa do exclusivo
+
+
 def test_siglas_nao_colidem_entre_carteira_e_bases() -> None:
     clientes = {c["sigla"] for c in _ler("organizacoes_clientes.csv")}
     mb = {r["sigla"] for r in _ler("organizacoes_matriz_bases.csv")}

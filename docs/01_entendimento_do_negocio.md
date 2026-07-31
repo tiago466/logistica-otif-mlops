@@ -6,31 +6,42 @@
 [← Índice CRISP-DM](README.md) | [Entendimento dos Dados »](02_entendimento_dos_dados.md)
 <!-- nav:end -->
 
-> A primeira etapa do método CRISP-DM: entender o **negócio** antes dos dados. Quem é a empresa, como o trabalho flui, qual é a dor e como ela se traduz num problema de dados. Empresa e personagens são **fictícios**; os dados usados no projeto são **100% sintéticos**.
+> A primeira etapa do método CRISP-DM: entender o **negócio** antes dos dados. Este documento consolida as **entrevistas de discovery** com os stakeholders da TransBrasil: a história da empresa, as pessoas, as dores e as perguntas que este projeto responde. Empresa, pessoas e dados são **100% fictícios**; declarações divergentes dos entrevistados foram **mantidas de propósito** (validá-las contra os dados é parte do trabalho).
 
-## 1. A empresa e as pessoas
+## 1. A história da empresa
 
-A **TransBrasil** é uma transportadora de médio-grande porte, com operação rodoviária e aérea, atendendo grandes contas em todo o país. Como em qualquer operação real, as decisões passam por um grupo de pessoas, os *stakeholders* que descreveram as dores:
+A **TransBrasil** nasceu em **2010**, em Joinville/SC, como uma transportadora familiar: os primeiros clientes eram parentes e amigos do fundador, com fábricas, lojas e produção agrícola. Quando esses parceiros passaram a precisar guardar mercadoria antes de entregar, a empresa descobriu a **armazenagem**, e o alcance cresceu: da região para o Sul, do Sul para o Sudeste.
 
-| Pessoa | Papel | O que traz ao projeto |
-|---|---|---|
-| **Sr. Abraão** | Dono | Visão do negócio; quer crescer sem perder a margem. |
-| **Sr. Elias** | Diretor de Operações | Sente na pele os atrasos e os "modos de emergência". |
-| **Dna. Sarah** | Diretora Financeira | Desconfia que **clientes grandes podem estar sendo subsidiados** e quer o raio-x. |
-| **Samuel** | Gerente de Coordenação | Conhece o fluxo do pedido ponta a ponta. |
-| **Joel** | Gerente Operacional | Vive as ocorrências, coletas e prazos no dia a dia. |
-| **João** | Diretor de TI | **Nosso ponto de acesso aos dados** (define como cada fonte é servida). |
+Até 2015, tudo era controlado em **planilhas e drive** ("um milagre", nas palavras do dono). Em **2016**, dois eventos mudaram a empresa: ela tornou-se **base regional de uma grande transportadora de São Paulo** (absorvendo, na prática, um treinamento completo do modelo de operação logística que replicaria depois com bases parceiras pelo país) e implantou o **TBW (TransBrasil Warehouse)**, o WMS próprio construído pelo novo departamento de TI. É por isso que o histórico de dados começa em 2016.
 
-## 2. O processo: o ciclo de vida de um pedido
+Em **2017** chegaram os dois primeiros clientes MEGA: **Woonka Chocolates** e **Derma Health**, multinacionais com distribuição nacional. A credibilidade disparou, e entre **2018 e 2020** a carteira viveu seu boom (impulsionada também pelo salto logístico da pandemia). No auge, a TransBrasil atendeu **~105 clientes ativos**, chegando a **45 GRANDES e 15 MEGA** simultâneos.
 
-A operação segue um pipeline padronizado de **fases sequenciais**, cada uma uma etapa crítica com seu próprio SLA, do pedido à confirmação da entrega. Entender esse fluxo é o que permite decidir **quando** faz sentido prever o atraso (e evitar _leakage_).
+O sonho azedou: os grandes clientes passaram a **consumir a operação inteira**, os custos explodiram (horas extras, folha, freelancers), o nível de serviço derreteu e a reputação junto (avaliação no Google de 4.8 para 3.0). A partir de **2023** a saída de clientes acelerou; **2025 foi o ano do êxodo**, em todos os portes, com vários grandes migrando para a concorrência, mesmo depois de renegociações agressivas de contrato. Hoje (**2026**) a carteira tem **98 clientes ativos (20 GRANDES, 7 MEGA)**, nenhum cancelamento no ano e três entradas novas: os problemas continuam, em menor intensidade.
 
-**Entrada do pedido**, por dois canais:
+Foi o CEO de TI quem convenceu o dono a contratar um trabalho de dados: a empresa tem dois sistemas e nenhuma visão gerencial. Nas palavras dele, o BI mostra o passado e o presente; **"ver o futuro é com a gente"**.
 
-- **Importação de grade:** o cliente envia uma planilha em lote (destinatários, endereços, itens e quantidades); usada em campanhas e alto volume.
-- **Pedido web:** self-service por login; gera a solicitação automaticamente, com previsão de entrega pelo _lead time_.
+## 2. As pessoas (o alto escalão é 100% familiar)
 
-**As fases** (códigos de duas letras, nomenclatura própria da TransBrasil):
+| Pessoa | Vínculo | Papel | O que traz ao projeto |
+|---|---|---|---|
+| **Sr. Abraão** | fundador, 83 anos | Presidência + operacional | visão, memória viva e as perguntas que ninguém responde |
+| **Dna. Sarah** | esposa | Financeiro | fecha o relatório de margem à mão todo mês; quer saber quem sangra |
+| **Sr. Elias** | cunhado | Dir. de Operações | **decide a priorização** quando a produção não dá conta |
+| **João** | sobrinho | CEO de TI (criador do TBW) | patrocinador do projeto; quer IA e predição após o diagnóstico |
+| **Samuel** | sobrinho | Coordenação (contas ativas) | o fluxo do pedido ponta a ponta |
+| **Joel** | filho do Elias | Operacional | ocorrências, coletas e prazos no dia a dia |
+| **Isaque** | filho | Dir. Comercial | prospecção ("trago clientes por uma porta...") |
+| **Ismael** | filho | Marketing/relacionamento | "...e eles saem pela outra"; monitora a reputação digital |
+| **Sr. José** | irmão | Compras | _(módulo futuro)_ |
+| **Raquel** | cunhada | Contábil | _(módulo futuro)_ |
+
+Governança por confiança e laço familiar, não por dado: um traço central da cultura, e parte do problema.
+
+## 3. O processo: o ciclo de vida de um pedido
+
+A operação segue um pipeline padronizado de **fases sequenciais**, cada uma com seu SLA interno (a régua `SLA_FASE`), do pedido à confirmação da entrega.
+
+**Entrada do pedido**, por dois canais: **grade** (planilha em lote com centenas de destinatários; o canal das campanhas, e o que satura a esteira) e **pedido web** (self-service, item a item). No momento da criação o sistema promete os prazos pela régua de lead time, e o cliente escolhe o **nível de serviço**: PADRÃO (aguarda consolidação de carga) ou **EXCLUSIVO** (veículo dedicado imediato, ~3× o preço).
 
 | Fase | Nome | O que acontece |
 |---|---|---|
@@ -38,78 +49,68 @@ A operação segue um pipeline padronizado de **fases sequenciais**, cada uma um
 | PC | Pré-Conferência | confere produtos, quantidades e endereço |
 | DC | Distribuição de Cotas | controle por canal de atendimento (esporádica) |
 | **PL** | **Planejamento** | **alocação em janelas de produção e rotas** |
-| EX | Em Análise | análise manual de urgências extremas (esporádica) |
-| CF | Coleta Física | liberação para coleta física |
+| EX | Em Análise | urgências extremas (esporádica) |
+| CF | Coleta Física | itens localizados; uma ordem de coleta por local |
 | ME | Manuseio | etiquetagem, pesagem, embalagem |
-| EN | Emissão | **emissão da NF-e** contra o destinatário do ponto de entrega |
-| EC | Expedição | consolidação no embarque (**gera a minuta**/romaneio), conferência de etiquetas, carregamento |
-| CE | Confirmação de Entrega | confirmação e encerramento definitivo |
+| EN | Emissão | emissão da NF-e |
+| EC | Expedição | consolidação em minutas; o caminhão sai |
+| CE | Confirmação de Entrega | chegada confirmada (direta, via base ou retirada) |
 
-> **Nota de escopo (DC):** o subsistema de cotas é complexo e **fica fora da v1**; a fase existe no domínio (pedidos de grade podem passar por ela), mas sem regras próprias implementadas. Extensão futura registrada.
+> **Documentos por fase:** a NF-e nasce na EN; a minuta (romaneio do embarque) nasce na EC; as ordens de coleta nascem na CF. Início e fim de cada etapa ficam no histórico de fases, é dele que se mede onde o pedido gargala.
 
-> **Documentos por fase:** cada etapa deixa rastro documental no lugar certo. As **ordens de coleta (DOC)** nascem na **CF**; a **NF-e** nasce na **EN** (carimba o pedido); a **minuta** (o romaneio do embarque consolidado) nasce na **EC**. O início e o fim de cada etapa ficam no histórico de fases do pedido, e é desse histórico que se mede **onde o pedido gargala**.
+> **Por que isso importa para o modelo:** a previsão de atraso é feita logo **após o Planejamento (PL)**, etapa ainda controlável, com dados suficientes e ação possível. Usar informação de fases posteriores seria _leakage_.
 
-> **Por que isso importa para o modelo:** a previsão de atraso é feita logo **após o Planejamento (fase PL)**, quando o pedido ainda tem as fases CF, ME, EN, EC e CE pela frente (ainda dá para agir) e já há dados suficientes. Usar informação das fases posteriores como *feature* seria _leakage_, prever com dados que só existem depois.
+## 4. Sistemas e acesso aos dados (definido com o João)
 
-## 3. As duas dores
+- **TBW**: o WMS próprio, ponta a ponta (pedido → entrega), servido por acesso direto ao **PostgreSQL**.
+- **Financeiro**: sistema **terceiro** que lê o TBW; servido por **API REST** com chave. É dele que a Dna. Sarah extrai, manualmente, o relatório mensal de margem de contribuição (`MC_por_SS_OS`).
+- **A dor de dados**: dois sistemas, TI própria e **nenhum relatório gerencial**. O dado existe; a informação, não.
 
-### 3.1. Atrasos corroem o nível de serviço (OTIF)
+## 5. As dores, na voz de quem as sente
 
-**OTIF (_On Time, In Full_)** é o principal KPI logístico: mede se a entrega ocorreu **no prazo** e **completa**. _(Neste projeto, focamos o "On Time".)_ Quando o OTIF cai, a TransBrasil sofre:
+- **Operação**: "não sei quantas linhas/dia minha produção aguenta, nem quanto estou estressando a esteira"; pedidos de grandes clientes chegam em grades que consomem a produção; quando não dá para todos, o Sr. Elias prioriza os maiores, e o chão da fábrica executa o sacrifício.
+- **Estoque**: o físico não bate com o sistema; itens somem e só aparecem em inventário (4 a 5 por ano); parte do galpão está tomada por material parado há mais de um ano, o que motivou uma **política de cobrança progressiva por aging** (sobretaxa de +30% a +180% conforme o tempo parado).
+- **Financeiro (Dna. Sarah)**: "quem me dá lucro? quem me dá prejuízo? onde vaza margem: transporte, armazenagem, coleta, positivação, impostos? qual meu ponto de equilíbrio? quais foram meus anos de ouro e de escassez?"
+- **Comercial/relacionamento**: "meus filhos trazem clientes por uma porta e eles saem pela outra". A frase ouvida na saída, que doeu no dono: *"você só dá atenção para as suas empresas grandes e nos trata como lixo"*. Os ~10 clientes mais antigos (amigos pessoais do fundador) permanecem, mas já cotam concorrência.
+- **Bases**: 36 parceiras pelo país, nenhuma nunca trocada, **nenhum indicador de performance** sobre elas.
+- **Contratos**: OTIF contratual de 90% (micro/pequeno/médio) a 95-97% (grandes/mega); houve renegociações desesperadas a 98% que não seguraram os clientes. Abaixo do contratado, multa.
 
-- **Prejuízo contratual:** multas, glosas e cláusulas de OTIF mínimo (90 a 95%).
-- **Prejuízo operacional:** troca não planejada de modalidade (rodoviário para aéreo), hora extra, reprocesso de documentação, contratação emergencial de transportadora.
-- **Prejuízo reputacional:** desgaste com clientes-chave.
-- **Perda de produtividade:** a operação "apaga incêndio" em vez de agir antes.
-- **Falta de visibilidade:** hoje o risco de atraso só é percebido **quando já é tarde**.
+## 6. Números declarados (a validar contra os dados)
 
-### 3.2. A hipótese da Dna. Sarah: clientes que a empresa sustenta
+As entrevistas produziram números **parcialmente divergentes**, mantidos aqui como declarados, porque reconciliá-los é tarefa do diagnóstico:
 
-Todo mês a Diretora Financeira fecha, à mão, o relatório de **margem de contribuição por operação**: `MC = receita - (custo variável + impostos)`, cruzando o que cada cliente **gera** (frete + armazenagem) com o que cada cliente **custa** (custo operacional das pernas, das bases, do galpão). E nesse fechamento ela percebeu algo incômodo: **alguns clientes grandes**, apesar do peso do nome na carteira, parecem **custar mais do que rendem**, como se a TransBrasil pagasse para mantê-los. Ela quer **certeza**, não intuição: um **raio-x completo do perfil operacional e das margens**, cliente a cliente, rota a rota. É um trabalho de **Data Discovery** pesado (estatística descritiva e inferencial), terminando com uma **recomendação** do que vale a pena prever adiante.
+- Painéis operacionais (2025): **221 mil pedidos**, **983 mil linhas**, forte concentração (7 clientes ≈ 79% do volume) e **queda de volume ao longo do ano**.
+- Financeiro (jun/2026): transporte ~R$ 1,3 Mi/mês + armazenagem ~R$ 175 mil/mês.
+- Dono: "receita média de 670 mil por cliente"; top 5 declarado: Woonka (3,7 Mi/ano), Derma Health (3,6), Stark Technologi (3,6), Lux Acessórios & Moda (2,0), Green Chemmical (1,5).
+- Capacidade de produção: o dono estima "~600 linhas/dia, operando além"; os painéis registram ~2.950 linhas/dia.
 
-## 4. Como acessaremos os dados (definido com o João)
+## 7. Traduzindo para problema de dados
 
-O Diretor de TI define **como cada fonte é servida**, e elas são diferentes de propósito, para o projeto exercitar cenários reais:
+### 7.1. Predição de atraso (OTIF)
 
-- **Operação (acompanhamento operacional):** acesso **direto ao banco de dados**, um **PostgreSQL** na nuvem (Neon).
-- **Custos de transporte:** servidos por uma **API REST** (com chave de acesso), um sistema à parte, como costuma ser o financeiro.
+- Classificação **binária** (`1 = atrasado`), alvo `atraso = data_entrega > prazo_limite`, medida no ponto correto por forma de atendimento (na retirada em base, o prazo é a chegada à base).
+- Momento da previsão: **pós-PL**. Evento raro, custo assimétrico, recall como métrica-guia, threshold por custo, mesma família do churn.
+- Baseline honesto primeiro; candidatos comparados por **validação temporal**; sem modelo eleito a priori.
 
-> Consequência de engenharia: o projeto precisa ingerir de **duas fontes de natureza diferente** (banco + API) para uma camada única (bronze). É o que justifica a nossa **camada de conectores**, cada fonte entra por um conector nomeado, sem o pipeline saber "de onde". _(O detalhe das fontes e o modelo de dados ficam na Etapa 2, Entendimento dos Dados.)_
+### 7.2. Raio-x de margens (Data Discovery)
 
-## 5. Traduzindo para problema de dados
+- Reconstruir o relatório de MC da Dna. Sarah por pipeline (receita × custos × impostos por operação) e responder com evidência: **quem sustenta a TransBrasil e quem é sustentado por ela**, por cliente, porte, stream e período, incluindo os efeitos do serviço exclusivo, do aging de estoque e das multas contratuais.
 
-### 5.1. Predição de atraso (OTIF)
+## 8. Restrições e riscos
 
-- **Tipo:** classificação **binária** onde: `1 = atrasado`, `0 = no prazo`.
-- **Alvo:** `atraso = data_entrega > prazo_limite_cliente`.
-- **Momento da previsão:** logo após o **planejamento (fase PL)**, etapa ainda **controlável**, com dados suficientes e ação ainda possível (prever tarde demais não gera valor).
-- **Natureza:** evento **raro** e de **custo assimétrico** (deixar passar um atraso dói mais que um falso alarme), a mesma classe de problema de **churn**. A métrica-guia é o **recall da classe "atraso"**, com _threshold_ definido por **custo de negócio**.
-- **Modelagem:** sem modelo "eleito" de antemão. Começa por um **baseline honesto**, depois **compara candidatos** (regressão logística, árvores, _gradient boosting_ como XGBoost/LightGBM) e escolhe o vencedor por **validação temporal** e custo. Não existe um modelo melhor para todo problema (teorema do _No Free Lunch_).
+- Campos nulos, heterogeneidade entre clientes, desbalanceamento do alvo.
+- **Risco de leakage** (fases posteriores ao PL).
+- **Qualidade de dados imperfeita por natureza** (dois sistemas sem FK entre si, cadastros digitados por humanos): o tratamento bronze → silver e o relatório de qualidade fazem parte da entrega.
+- Dados sintéticos: estrutura fiel ao domínio, números fabricados.
 
-### 5.2. Raio-x de margens (Data Discovery financeiro)
+## 9. Critério de sucesso
 
-- **Natureza:** análise **descritiva e inferencial** do perfil de **margem de contribuição** por cliente, rota, modalidade e região (receita de frete + armazenagem × custo operacional), para **testar a hipótese da Dna. Sarah** com evidência.
-- **Entregável:** a reconstrução **automatizada** do relatório mensal de MC + um relatório de diagnóstico, fechando com uma **recomendação** do que modelar/prever a seguir.
+O projeto percorre os quatro níveis da analítica: **descritiva** (o que aconteceu), **diagnóstica** (por que), **preditiva** (o que vai acontecer) e **prescritiva** (o que fazer). Sucesso é:
 
-## 6. Restrições e riscos (conhecidos desde já)
-
-- Muitos campos **nulos** e forte **heterogeneidade entre clientes** (SLAs variam por região, modalidade e operação).
-- **Qualidade imperfeita de propósito:** dado sintético "limpinho" seria irreal. O gerador **planta sujeira realista** (nulos, duplicatas, chaves órfãs entre sistemas, formatos inconsistentes, itens sem valor fiscal), que chega **crua ao bronze**; o EDA de qualidade descobre os problemas e o tratamento **bronze → silver** os corrige com regras explícitas e testadas.
-- **Risco de _leakage_:** não usar etapas/informações que só existem **depois** do momento da previsão.
-- **Desbalanceamento** acentuado da classe "atraso".
-- **Dados sintéticos:** representam a *estrutura* do domínio, não uma empresa real; todo número aqui é fabricado.
-
-## 7. Critério de sucesso
-
-O projeto percorre os quatro níveis da analítica: **descritiva** (o que aconteceu), **diagnóstica** (por que aconteceu), **preditiva** (o que vai acontecer) e **prescritiva** (o que fazer a respeito). Sucesso é:
-
-1. Um modelo que **antecipe** o risco de atraso no momento certo, avaliado com honestidade (validação temporal, recall e custo).
-2. Um diagnóstico de margens que **responda com evidência** à pergunta da Dna. Sarah.
-3. Tudo **reprodutível** e **rastreável**: engenharia à altura da ciência.
-4. **Comunicação à altura dos achados**, porque análise sem entrega não muda decisão:
-   - **relatório executivo** dos achados (para a Dna. Sarah e a diretoria);
-   - **relatório técnico** do modelo em produção (para o João/TI operar);
-   - **apresentação** (slides) dos resultados.
+1. Modelo que antecipe o risco de atraso no momento certo, avaliado com honestidade.
+2. Diagnóstico de margens que responda às perguntas da Dna. Sarah com evidência.
+3. Tudo reprodutível e rastreável.
+4. **Comunicação à altura**: relatório executivo (diretoria), relatório técnico do modelo (TI) e apresentação dos achados, incluindo a seção de **qualidade dos dados**.
 
 ---
 
