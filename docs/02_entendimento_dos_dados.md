@@ -31,7 +31,7 @@ A TransBrasil opera a partir da **Matriz** (Santa Catarina), cujo estoque se dis
 
 ## 3. MER · sistema Operacional (schema `operacao`)
 
-Vinte e quatro entidades em três grupos. O desenho segue o **padrão Party**: clientes, bases e a própria matriz são **`ORGANIZACAO`** (mesmos atributos, papéis diferentes via `tipo_parceria`); endereços pertencem a organizações; locais físicos de estoque são **`LOCAL_ESTOQUE`**. Além do fluxo de distribuição (o pedido), a operação presta dois serviços paralelos: **coleta reversa** (`COLETA`) e **montagem em eventos** (`POSITIVACAO`).
+Vinte e cinco entidades em três grupos. O desenho segue o **padrão Party**: clientes, bases e a própria matriz são **`ORGANIZACAO`** (mesmos atributos, papéis diferentes via `tipo_parceria`); endereços pertencem a organizações; locais físicos de estoque são **`LOCAL_ESTOQUE`**. Além do fluxo de distribuição (o pedido), a operação presta dois serviços paralelos: **coleta reversa** (`COLETA`) e **montagem em eventos** (`POSITIVACAO`).
 
 ```mermaid
 erDiagram
@@ -117,6 +117,12 @@ erDiagram
         varchar uf
         varchar cidade
         int dias_uteis "regua consultada na criacao; resultado carimba o pedido"
+    }
+    SLA_FASE {
+        bigint id PK
+        bigint fase_id FK "UK; regua INTERNA da etapa"
+        int horas_uteis_meta
+        int horas_uteis_limite "dias derivam na exibicao (horas / 8)"
     }
     CAMPANHA {
         bigint id PK
@@ -285,6 +291,7 @@ erDiagram
     ITEM ||--o{ RECEBIMENTO : "entra via"
     PEDIDO ||--|{ PEDIDO_FASE : "percorre"
     FASE ||--o{ PEDIDO_FASE : "classifica"
+    FASE ||--o| SLA_FASE : "regua interna"
     PEDIDO ||--o{ ORDEM_COLETA : "separa em DOCs"
     LOCAL_ESTOQUE ||--o{ ORDEM_COLETA : "coleta em"
     LOCAL_ESTOQUE ||--o{ RECEBIMENTO : "recebe em"
@@ -390,7 +397,7 @@ O **Sr. Abraão** e o **Sr. Elias** não escrevem dado nenhum: consomem indicado
 6. **`ENTREGA` = perna × tentativa; alvo por `tipo_atendimento`.** DIRETA/VIA_BASE medem na chegada ao destino final; RETIRA_BASE mede na **chegada à Base** (demora do cliente em retirar vira *aging*, não atraso). Nenhum `fl_atraso` armazenado: **derivado se calcula** (mesma razão de não existir `fase_atual_id`, decisão do Tiago). **Atribuição de responsabilidade na Base:** chegar à Base e a Base **efetivar a entrada** são fatos distintos (`dt_chegada` × `dt_entrada_base`); o atraso entre eles é **da Base** (indicador derivado que fundamenta repasse de multa ao parceiro e mede a performance de cada base).
 7. **Chave técnica × chave de negócio.** `id` é interno e não sai; `numero` (SS) e `sigla` viajam para outros sistemas. Chave de negócio é `varchar`: aceita formato, zero à esquerda e nunca sofre aritmética.
 8. **Sem FK entre sistemas.** O financeiro referencia por chave de negócio; reconciliação vira teste de qualidade no silver.
-9. **Região não é coluna: deriva da UF.** `LEAD_TIME` é **tabela-régua** (parametrização por modalidade × UF × cidade), consultada na criação e carimbada no pedido.
+9. **Região não é coluna: deriva da UF.** `LEAD_TIME` é **tabela-régua** (parametrização por modalidade × UF × cidade), consultada na criação e carimbada no pedido. **`SLA_FASE`** (2026-07-30, pedido do Tiago) é a régua **interna** irmã: horas úteis meta/limite por fase, base da análise de gargalo (real × régua) e insumo do gerador. Dias não se armazenam: derivam na exibição (horas ÷ 8), para o gestor bater o olho sem calcular.
 10. **Estoque como foto por item com retenção inteligente** (`data × item × local`, decisão do Tiago): o grão por item mantém o cliente derivável (via `ITEM`) e as análises por item nativas (DSM, vencidos, danificados). O volume é controlado pela **política de retenção**: histórico guarda a **foto de fechamento mensal**; o **mês corrente** tem foto diária. A cobrança de armazenagem usa o fechamento; movimentações finas seguem deriváveis de `RECEBIMENTO` × `PEDIDO_ITEM`.
 11. **Financeiro guarda lançamentos, não MC.** A margem é cálculo da análise (o Discovery reconstrói o relatório da Sarah).
 12. **KPIs são derivados, não colunas** (% OTIF, DSM, vencidos, danificados, cobertura fiscal, tempos, % ocorrência/reentrega/devolução). Cobrança de armazenagem: `max(m3 × valor_m3 + valor_material × aliquota, valor_minimo_mensal)` por competência.

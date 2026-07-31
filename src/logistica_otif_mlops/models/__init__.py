@@ -19,6 +19,7 @@ from logistica_otif_mlops.models.configuracao import (
     Fase,
     LeadTime,
     Modalidade,
+    SlaFase,
     TipoOcorrencia,
 )
 from logistica_otif_mlops.models.custos import (
@@ -70,6 +71,7 @@ __all__ = [
     "Recebimento",
     "RetiradaBase",
     "Rota",
+    "SlaFase",
     "TipoOcorrencia",
     "Transportador",
     "Veiculo",

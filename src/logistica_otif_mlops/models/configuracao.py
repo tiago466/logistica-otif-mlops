@@ -95,6 +95,27 @@ class Fase(Base):
     fl_esporadica: Mapped[bool] = mapped_column(Boolean, default=False)  # DC e EX
 
 
+class SlaFase(Base):
+    """Régua INTERNA de duração de cada fase, em horas úteis.
+
+    `LEAD_TIME` promete para fora (entrega ao cliente); `SLA_FASE` cobra por
+    dentro (quanto cada etapa pode durar). Serve dobrado: o gerador sorteia
+    durações realistas a partir dela, e a análise de gargalo compara real ×
+    régua. 'Dias' NÃO se armazena: deriva (horas ÷ 8) na exibição, decisão do
+    Tiago (2026-07-30), coerente com "derivado se calcula".
+    """
+
+    __tablename__ = "sla_fase"
+    __table_args__ = ({"schema": SCHEMA_OPERACAO},)
+
+    id: Mapped[int] = mapped_column(BigInteger, Identity(), primary_key=True)
+    fase_id: Mapped[int] = mapped_column(
+        ForeignKey(f"{SCHEMA_OPERACAO}.fase.id", ondelete="RESTRICT"), unique=True
+    )
+    horas_uteis_meta: Mapped[int] = mapped_column(Integer)
+    horas_uteis_limite: Mapped[int] = mapped_column(Integer)
+
+
 class TipoOcorrencia(Base):
     """Vocabulário curado das ocorrências (reentrega, devolução, avaria...)."""
 

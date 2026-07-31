@@ -19,6 +19,7 @@ CONFIGURACAO_ESPERADO = {
     "campanha",
     "fase",
     "tipo_ocorrencia",
+    "sla_fase",
 }
 
 MOVIMENTO_ESPERADO = {
@@ -47,10 +48,11 @@ def test_grupo_configuracao_completo_no_schema_operacao() -> None:
     assert operacao >= CONFIGURACAO_ESPERADO
 
 
-def test_grupo_movimento_completo_e_operacao_fechado_em_24() -> None:
+def test_grupo_movimento_completo_e_operacao_fechado_no_mer() -> None:
     operacao = {t.name for t in Base.metadata.tables.values() if t.schema == "operacao"}
     assert operacao >= MOVIMENTO_ESPERADO
-    assert len(operacao) == 24  # o MER congelado: nada a mais, nada a menos
+    # o MER congelado + SLA_FASE (régua interna, 2026-07-30): nada a mais, nada a menos
+    assert len(operacao) == 25
 
 
 CUSTOS_ESPERADO = {
