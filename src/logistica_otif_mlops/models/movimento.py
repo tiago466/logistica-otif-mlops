@@ -42,6 +42,9 @@ class Pedido(Base):
             "('ENTREGA_DIRETA', 'RETIRA_BASE', 'ENTREGA_VIA_BASE')",
             name="tipo_atendimento_valido",
         ),
+        CheckConstraint(
+            "nivel_servico IN ('PADRAO', 'EXCLUSIVO')", name="nivel_servico_valido"
+        ),
         {"schema": SCHEMA_OPERACAO},
     )
 
@@ -60,6 +63,12 @@ class Pedido(Base):
         ForeignKey(f"{SCHEMA_OPERACAO}.campanha.id", ondelete="RESTRICT")
     )
     canal: Mapped[str] = mapped_column(String(5))
+    # pedido do CLIENTE na criação: EXCLUSIVO = veículo dedicado imediato, 3x o preço
+    # (Zenatur guardava isso dentro de "modalidade"; aqui é eixo próprio).
+    # Consistência: pedido EXCLUSIVO => minutas dele com tipo_carga EXCLUSIVA (silver).
+    nivel_servico: Mapped[str] = mapped_column(
+        String(10), default="PADRAO", server_default="PADRAO"
+    )
     # nullable de propósito: a forma de atendimento é DECIDIDA no planejamento (PL)
     tipo_atendimento: Mapped[str | None] = mapped_column(String(20))
     dt_solicitacao: Mapped[datetime] = mapped_column(DateTime)
@@ -148,6 +157,11 @@ class Minuta(Base):
 
     id: Mapped[int] = mapped_column(BigInteger, Identity(), primary_key=True)
     numero: Mapped[str] = mapped_column(String(20), unique=True)
+    # modal DESTA perna/embarque: um pedido multimodal (rodov ate a base, aereo
+    # depois) tem minutas de modais diferentes. PEDIDO.modalidade = o contratado.
+    modalidade_id: Mapped[int] = mapped_column(
+        ForeignKey(f"{SCHEMA_OPERACAO}.modalidade.id", ondelete="RESTRICT")
+    )
     transportador_id: Mapped[int] = mapped_column(
         ForeignKey(f"{SCHEMA_OPERACAO}.transportador.id", ondelete="RESTRICT")
     )

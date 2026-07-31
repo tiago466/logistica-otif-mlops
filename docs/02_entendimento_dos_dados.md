@@ -153,6 +153,7 @@ erDiagram
         bigint modalidade_id FK
         bigint campanha_id FK "nullable"
         varchar canal "GRADE | WEB"
+        varchar nivel_servico "PADRAO | EXCLUSIVO (veiculo dedicado imediato, preco 3x)"
         varchar tipo_atendimento "ENTREGA_DIRETA | RETIRA_BASE | ENTREGA_VIA_BASE; definido no PL"
         timestamp dt_solicitacao
         date dt_prazo_saida_expedicao "prazo interno de expedicao"
@@ -187,6 +188,7 @@ erDiagram
     MINUTA {
         bigint id PK
         varchar numero UK "o embarque/romaneio"
+        bigint modalidade_id FK "modal DESTA perna (pedido pode ser multimodal)"
         bigint transportador_id FK "quem executa a viagem"
         bigint veiculo_id FK "nullable no aereo"
         bigint rota_id FK
@@ -284,6 +286,7 @@ erDiagram
     ENDERECO ||--o{ PEDIDO : "destino final de"
     ENDERECO ||--o{ ENTREGA : "destino da perna"
     MODALIDADE ||--o{ PEDIDO : "define prazo"
+    MODALIDADE ||--o{ MINUTA : "modal do embarque"
     MODALIDADE ||--o{ LEAD_TIME : "parametriza"
     CAMPANHA |o--o{ PEDIDO : "origina"
     PEDIDO ||--|{ PEDIDO_ITEM : "contem"
@@ -391,7 +394,7 @@ O **Sr. Abraão** e o **Sr. Elias** não escrevem dado nenhum: consomem indicado
 
 1. **Padrão Party (`ORGANIZACAO`).** Clientes, bases e matriz compartilham atributos e diferem no papel (`tipo_parceria`). Decisão do Tiago, referências: Fowler (*Analysis Patterns*, cap. 2), Hay (*Data Model Patterns*). A entidade `DESTINATARIO` foi absorvida: a identidade de quem recebe vive no ponto (`ENDERECO.nome_local`/`documento`, contra quem a NF é emitida); quem **assinou** cada entrega segue na `ENTREGA.recebedor`.
 2. **`LOCAL_ESTOQUE` em vez de "filial".** Os galpões G1..G4 são locais físicos da Matriz (não pessoas jurídicas, mono-empresa preservada); cada Base tem seu depósito. É o alicerce da DOC e do estoque.
-3. **`MINUTA` modela a consolidação.** Vários pedidos (e pernas) viajam no mesmo embarque; transportador, veículo e rota são do embarque, não da entrega. Resolve o aéreo (minuta sem veículo) e expõe um driver real de atraso: prazos heterogêneos dentro da mesma minuta (futura *feature*: dispersão de prazos).
+3. **`MINUTA` modela a consolidação.** Vários pedidos (e pernas) viajam no mesmo embarque; transportador, veículo e rota são do embarque, não da entrega. Resolve o aéreo (minuta sem veículo) e expõe um driver real de atraso: prazos heterogêneos dentro da mesma minuta (futura *feature*: dispersão de prazos). **O "modalidade-baú" do sistema de referência foi desmontado em eixos ortogonais**: meio físico (`MODALIDADE`), nível de serviço (`PEDIDO.nivel_servico` PADRAO|EXCLUSIVO, contratado na criação, preço 3×), forma de atendimento (`tipo_atendimento`), tipo de carga do embarque (`MINUTA.tipo_carga`) e tipo de veículo (`VEICULO`). Consistência pedido-EXCLUSIVO ⇒ minuta-EXCLUSIVA é teste de qualidade no silver.
 4. **`ORDEM_COLETA` (DOC).** Itens de um pedido espalhados em N locais geram N ordens de coleta; volume de DOCs por pedido é sinal preditivo de atraso (achado real do domínio). A *feature* leak-free equivalente no PL: "em quantos locais os itens estão alocados".
 5. **Histórico de fases em formato longo (`PEDIDO_FASE`).** Cada passagem é um evento; a versão larga é derivação silver. Fases esporádicas (DC, EX) cabem sem mudança.
 6. **`ENTREGA` = perna × tentativa; alvo por `tipo_atendimento`.** DIRETA/VIA_BASE medem na chegada ao destino final; RETIRA_BASE mede na **chegada à Base** (demora do cliente em retirar vira *aging*, não atraso). Nenhum `fl_atraso` armazenado: **derivado se calcula** (mesma razão de não existir `fase_atual_id`, decisão do Tiago). **Atribuição de responsabilidade na Base:** chegar à Base e a Base **efetivar a entrada** são fatos distintos (`dt_chegada` × `dt_entrada_base`); o atraso entre eles é **da Base** (indicador derivado que fundamenta repasse de multa ao parceiro e mede a performance de cada base).
