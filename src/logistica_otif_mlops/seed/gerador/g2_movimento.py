@@ -371,11 +371,17 @@ def _agendar_fases(mundo: Mundo, rng: random.Random, ano: int,
         peso_real = None if rng.random() < 0.03 else round(p["peso"] * rng.uniform(0.9, 1.18), 3)
         vol_real = None if peso_real is None else round(p["vol"] * rng.uniform(0.88, 1.2), 4)
         tipo_atend = _tipo_atendimento(rng, p["uf"])
+        prazo_entrega = p["prazo_entrega"]
+        if p["exclusivo"]:
+            tipo_atend = "ENTREGA_DIRETA"  # veículo dedicado não passa em base
+        elif tipo_atend != "ENTREGA_DIRETA":
+            # praça atendida via base tem prazo maior na tabela (elo do parceiro)
+            prazo_entrega = somar_dias_uteis(prazo_entrega, 3)
         lote["pedido"].append((
             p["id"], p["numero"], org.id, p["endereco"], p["modal"],
             "GRADE" if p["grade"] else "WEB",
             "EXCLUSIVO" if p["exclusivo"] else "PADRAO", tipo_atend, p["sol"],
-            p["prazo_saida"], p["prazo_entrega"], round(p["peso"], 3), round(p["vol"], 4),
+            p["prazo_saida"], prazo_entrega, round(p["peso"], 3), round(p["vol"], 4),
             peso_real, vol_real, f"NF{p['id']:08d}",
         ))
         for iid, _, _ in p["itens"]:
