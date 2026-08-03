@@ -12,6 +12,7 @@ from __future__ import annotations
 
 import csv
 import random
+from datetime import date
 from decimal import Decimal
 from importlib.resources import files
 
@@ -20,6 +21,7 @@ from sqlalchemy.orm import Session
 
 from logistica_otif_mlops.db import criar_engine, criar_fabrica_de_sessoes
 from logistica_otif_mlops.models import (
+    Campanha,
     Endereco,
     Item,
     LeadTime,
@@ -83,6 +85,7 @@ def executar() -> None:
         _lead_times(sessao)
         _catalogo_e_destinatarios(sessao, rng)
         _tarifas(sessao, rng)
+        _campanhas(sessao)
         sessao.commit()
         _relatorio(sessao)
 
@@ -205,12 +208,34 @@ def _tarifas(sessao: Session, rng: random.Random) -> None:
         if g["estoca"] != "True":
             continue
         fator = float(g["fator_preco"])  # o desconto oculto também morde a armazenagem
+        # faixa calibrada pela régua da Sarah (armazenagem ~R$175k/mês em jun/2026,
+        # já com a política de aging vigente multiplicando o estoque parado)
         sessao.add(TarifaArmazenagem(
             cliente_sigla=org.sigla,
-            valor_m3=Decimal(f"{rng.uniform(28, 45) * fator:.2f}"),
+            valor_m3=Decimal(f"{rng.uniform(8.7, 14.2) * fator:.2f}"),
             aliquota_ad_valorem=Decimal(f"{rng.uniform(0.001, 0.005):.4f}"),
             valor_minimo_mensal=Decimal(minimo_por_porte[org.porte or "MEDIA"]),
         ))
+
+
+def _campanhas(sessao: Session) -> None:
+    """Calendário comercial: as ondas que já movem os volumes ganham nome.
+
+    As mesmas datas alimentam o BOOST_SEGMENTO da G2 (anamnese Q10): Páscoa é
+    do alimentício, Dia das Mães de moda/beleza, Black Friday da eletrônica.
+    """
+    janelas = [
+        ("Páscoa", (2, 20), (4, 10)),
+        ("Dia das Mães", (4, 5), (5, 12)),
+        ("Dia dos Namorados", (5, 15), (6, 12)),
+        ("Dia das Crianças", (9, 5), (10, 12)),
+        ("Black Friday", (10, 25), (11, 30)),
+        ("Natal", (11, 20), (12, 24)),
+    ]
+    for ano in range(2016, 2027):
+        for nome, (mi, di), (mf, df) in janelas:
+            sessao.add(Campanha(descricao=f"{nome} {ano}",
+                                dt_inicio=date(ano, mi, di), dt_fim=date(ano, mf, df)))
 
 
 def _relatorio(sessao: Session) -> None:
