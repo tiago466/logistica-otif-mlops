@@ -63,6 +63,11 @@ BOOST_SEGMENTO = {  # campanhas por segmento: mês -> multiplicador
 }
 PRIORIDADE = {"MEGA": 0.15, "GRANDE": 0.5}  # fator de espera na fila (Elias); resto 1.0
 TOP5 = {"WKA", "DRH", "STK", "LXM", "GCH"}
+# assinatura de densidade por cliente (painel Q4: o nº 2 em veículos é o nº 1 em
+# m³, porque chega em carreta cheia). O porte dita o tamanho da remessa; a escala
+# está normalizada para o m³ expedido no ano bater o painel (~340-360k m³).
+TAMANHO_POR_PORTE = {"MEGA": 1.05, "GRANDE": 0.78, "MEDIA": 0.52,
+                     "PEQUENA": 0.39, "MICRO": 0.31}
 
 
 # ----------------------------- tempo útil -----------------------------
@@ -264,6 +269,7 @@ def _gerar_pedidos_cliente(mundo: Mundo, rng: random.Random, sigla: str, ano: in
     g = mundo.gabarito[sigla]
     destinos = mundo.destinos[org.id]
     itens = mundo.itens[org.id]
+    tamanho = TAMANHO_POR_PORTE.get(org.porte or "MEDIA", 1.0)
     pct_grade = float(g["pct_grade"])
     pct_excl = float(g["pct_exclusivo"])
     dias = [dia_util(date(ano, mes, d)) for d in range(1, 29)]
@@ -284,8 +290,10 @@ def _gerar_pedidos_cliente(mundo: Mundo, rng: random.Random, sigla: str, ano: in
                               mundo.lead.get((modal, uf, "São Paulo"), 5))
         n_linhas = rng.randint(2, 6) if em_grade else max(1, round(rng.gauss(5, 3)))
         escolha = rng.sample(itens, k=min(n_linhas, len(itens)))
-        peso = sum(p for _, p, _ in escolha) * rng.randint(1, 4)
-        vol = sum(v for _, _, v in escolha) * rng.randint(1, 4)
+        # a remessa escala com o porte: MEGA embarca carreta, micro embarca caixa
+        multiplo = rng.randint(1, 4) * tamanho
+        peso = sum(p for _, p, _ in escolha) * multiplo
+        vol = sum(v for _, _, v in escolha) * multiplo
         if exclusivo:
             prazo_saida = somar_dias_uteis(d, 2)
             prazo_entrega = somar_dias_uteis(prazo_saida, max(1, lead // 2))
@@ -384,8 +392,11 @@ def _agendar_fases(mundo: Mundo, rng: random.Random, ano: int,
             p["prazo_saida"], prazo_entrega, round(p["peso"], 3), round(p["vol"], 4),
             peso_real, vol_real, f"NF{p['id']:08d}",
         ))
+        # a quantidade acompanha o tamanho da remessa (coerência com o m³ do pedido)
+        escala = TAMANHO_POR_PORTE.get(org.porte or "MEDIA", 1.0)
         for iid, _, _ in p["itens"]:
-            lote["pedido_item"].append((p["id"], iid, rng.randint(1, 60)))
+            lote["pedido_item"].append(
+                (p["id"], iid, max(1, round(rng.randint(1, 60) * escala))))
         for codigo, ini, fim in registros:
             lote["pedido_fase"].append((p["id"], f[codigo], ini, fim))
 

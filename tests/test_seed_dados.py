@@ -63,6 +63,29 @@ def test_cidades_e_gabarito_conferem() -> None:
     assert float(stark["pct_exclusivo"]) > 0.05  # anamnese: Stark abusa do exclusivo
 
 
+def test_gabarito_preserva_a_economia_da_anamnese() -> None:
+    """Guarda da narrativa: o topo compra barato e custa caro; a cauda, o inverso.
+
+    A resposta da Dna. Sarah nasce dessa assimetria (`fator_preco` × `fator_custo`).
+    Se uma regeração acidental achatar os fatores, o case perde o enredo, e é
+    melhor o teste avisar antes de o dado virar relatório.
+    """
+    gabarito = {g["sigla"]: g for g in _ler("gabarito_clientes.csv")}
+    porte = {c["sigla"]: c["porte"] for c in _ler("organizacoes_clientes.csv")
+             if c["ativo"] == "True"}
+
+    def margem(sigla: str) -> float:
+        g = gabarito[sigla]
+        return float(g["fator_preco"]) / float(g["fator_custo"])
+
+    topo = [margem(s) for s, p in porte.items() if p in ("MEGA", "GRANDE")]
+    cauda = [margem(s) for s, p in porte.items() if p in ("MICRO", "PEQUENA", "MEDIA")]
+    assert topo and cauda
+    assert sum(topo) / len(topo) < 0.7 * (sum(cauda) / len(cauda))
+    assert all(float(g["fator_preco"]) > 0 and float(g["fator_custo"]) > 0
+               for g in gabarito.values())
+
+
 def test_siglas_nao_colidem_entre_carteira_e_bases() -> None:
     clientes = {c["sigla"] for c in _ler("organizacoes_clientes.csv")}
     mb = {r["sigla"] for r in _ler("organizacoes_matriz_bases.csv")}
