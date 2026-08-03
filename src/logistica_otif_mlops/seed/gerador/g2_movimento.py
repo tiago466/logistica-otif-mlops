@@ -68,6 +68,15 @@ TOP5 = {"WKA", "DRH", "STK", "LXM", "GCH"}
 # está normalizada para o m³ expedido no ano bater o painel (~340-360k m³).
 TAMANHO_POR_PORTE = {"MEGA": 1.05, "GRANDE": 0.78, "MEDIA": 0.52,
                      "PEQUENA": 0.39, "MICRO": 0.31}
+# o inchaço: mais clientes, mais SKUs, mais exceções, mesma casa. A esteira
+# inteira foi ficando mais lenta ano a ano, e é isso que corrói a reputação.
+FATOR_INCHACO = {2016: 1.0, 2017: 1.0, 2018: 1.02, 2019: 1.05, 2020: 1.08,
+                 2021: 1.12, 2022: 1.16, 2023: 1.20, 2024: 1.22, 2025: 1.24,
+                 2026: 1.22}
+# recebimento tem calendário próprio (painel Q4): veículos picam em ago-set
+# (reabastecimento pré-temporada) e o volume entra forte em jan-fev
+FATOR_RECEB_MES = {1: 1.25, 2: 1.20, 3: 1.0, 4: 0.95, 5: 0.95, 6: 0.95,
+                   7: 1.05, 8: 1.35, 9: 1.30, 10: 1.0, 11: 0.75, 12: 0.70}
 
 
 # ----------------------------- tempo útil -----------------------------
@@ -290,10 +299,15 @@ def _gerar_pedidos_cliente(mundo: Mundo, rng: random.Random, sigla: str, ano: in
                               mundo.lead.get((modal, uf, "São Paulo"), 5))
         n_linhas = rng.randint(2, 6) if em_grade else max(1, round(rng.gauss(5, 3)))
         escolha = rng.sample(itens, k=min(n_linhas, len(itens)))
-        # a remessa escala com o porte: MEGA embarca carreta, micro embarca caixa
-        multiplo = rng.randint(1, 4) * tamanho
-        peso = sum(p for _, p, _ in escolha) * multiplo
-        vol = sum(v for _, _, v in escolha) * multiplo
+        # a quantidade de cada linha nasce aqui, e o peso/volume do pedido é a
+        # SOMA das linhas: o mesmo número que o sistema calcularia (a remessa
+        # escala com o porte, MEGA embarca carreta e micro embarca caixa).
+        # `quantidade` conta VOLUMES (caixas), que é como o painel de
+        # recebimento conta: ~2,15 Mi volumes/ano entrando no galpão.
+        linhas = [(iid, pu, vu, max(1, round(rng.randint(1, 4) * tamanho)))
+                  for iid, pu, vu in escolha]
+        peso = sum(pu * q for _, pu, _, q in linhas)
+        vol = sum(vu * q for _, _, vu, q in linhas)
         if exclusivo:
             prazo_saida = somar_dias_uteis(d, 2)
             prazo_entrega = somar_dias_uteis(prazo_saida, max(1, lead // 2))
@@ -306,7 +320,7 @@ def _gerar_pedidos_cliente(mundo: Mundo, rng: random.Random, sigla: str, ano: in
             "id": seq, "numero": f"SS{seq:07d}", "org": org, "sigla": sigla,
             "endereco": eid, "uf": uf, "modal": modal, "sol": sol, "grade": em_grade,
             "exclusivo": exclusivo, "prazo_saida": prazo_saida,
-            "prazo_entrega": prazo_entrega, "itens": escolha, "linhas": len(escolha),
+            "prazo_entrega": prazo_entrega, "itens": linhas, "linhas": len(linhas),
             "peso": peso, "vol": vol,
         })
         demanda_dia[dia_util(d + timedelta(days=2))] += len(escolha)
@@ -338,9 +352,12 @@ def _agendar_fases(mundo: Mundo, rng: random.Random, ano: int,
         prio = 0.15 if p["sigla"] in TOP5 else PRIORIDADE.get(org.porte or "", 1.0)
         stress = backlog.get(dia_util(p["sol"].date() + timedelta(days=2)), 0.0)
         excl = bool(p["exclusivo"])
+        # o inchaço não cai igual para todos: a conta da casa cheia é paga por
+        # quem não tem padrinho (quem é prioridade absorve pouco do atraso)
+        inchaco = 1.0 + (FATOR_INCHACO[ano] - 1.0) * (0.25 + 0.75 * prio)
         # exclusivo é tratamento-relâmpago: comprime tudo e fura a fila
-        fator_adm = 0.3 if excl else 1.0
-        fator_prod = 0.3 if excl else 1.0 + min(stress, 4.0) * 0.2 * prio
+        fator_adm = 0.3 if excl else inchaco
+        fator_prod = 0.3 if excl else inchaco * (1.0 + min(stress, 4.0) * 0.2 * prio)
         t = p["sol"]
         registros: list[tuple[str, datetime, datetime]] = []
 
@@ -369,9 +386,19 @@ def _agendar_fases(mundo: Mundo, rng: random.Random, ano: int,
                        1 + int(rng.random() * min(p["linhas"], 4) * 0.9))
         locais = rng.sample(mundo.locais_matriz, k=n_locais)
         ini_cf = t
-        t = fase("CF", dur("CF", fator_prod) + (n_locais - 1) * 2.5, t)
+        # cada local coleta no seu próprio ritmo (equipes e estoques diferentes);
+        # o pedido só anda quando o ÚLTIMO fecha, mais a consolidação no dock.
+        # É daqui que nasce "mais divisões de DOC = mais risco de atraso".
+        fim_locais = []
         for loc in locais:
-            lote["ordem_coleta"].append((p["id"], loc, ini_cf, t, "COLETADA"))
+            horas = dur("CF", fator_prod) * rng.uniform(0.7, 1.3)
+            if rng.random() < 0.12:
+                horas *= rng.uniform(1.4, 2.2)  # local travado: falta saldo, conferência
+            fim_loc = somar_horas_uteis(ini_cf, horas)
+            fim_locais.append(fim_loc)
+            lote["ordem_coleta"].append((p["id"], loc, ini_cf, fim_loc, "COLETADA"))
+        t = somar_horas_uteis(max(fim_locais), (n_locais - 1) * 0.8)
+        registros.append(("CF", ini_cf, t))
         t = fase("ME", dur("ME", fator_prod) * (1 + p["linhas"] / 40), t)
         t = fase("EN", dur("EN", fator_adm), t)
         t = fase("EC", dur("EC", fator_prod), t)
@@ -392,11 +419,8 @@ def _agendar_fases(mundo: Mundo, rng: random.Random, ano: int,
             p["prazo_saida"], prazo_entrega, round(p["peso"], 3), round(p["vol"], 4),
             peso_real, vol_real, f"NF{p['id']:08d}",
         ))
-        # a quantidade acompanha o tamanho da remessa (coerência com o m³ do pedido)
-        escala = TAMANHO_POR_PORTE.get(org.porte or "MEDIA", 1.0)
-        for iid, _, _ in p["itens"]:
-            lote["pedido_item"].append(
-                (p["id"], iid, max(1, round(rng.randint(1, 60) * escala))))
+        for iid, _, _, qtd in p["itens"]:
+            lote["pedido_item"].append((p["id"], iid, qtd))
         for codigo, ini, fim in registros:
             lote["pedido_fase"].append((p["id"], f[codigo], ini, fim))
 
@@ -423,8 +447,9 @@ def _gerar_recebimentos(mundo: Mundo, rng: random.Random, ano: int, mes: int,
             continue
         org = mundo.clientes[sigla]
         itens = mundo.itens[org.id]
-        n_receb = {"MEGA": rng.randint(14, 30), "GRANDE": rng.randint(6, 14)}.get(
-            org.porte or "", rng.randint(1, 5))
+        sazonal = FATOR_RECEB_MES[mes]
+        n_receb = round({"MEGA": rng.randint(14, 30), "GRANDE": rng.randint(6, 14)}.get(
+            org.porte or "", rng.randint(1, 5)) * sazonal)
         deposito = float(g["deposito"])
         for _ in range(n_receb):
             seq += 1
@@ -436,7 +461,8 @@ def _gerar_recebimentos(mundo: Mundo, rng: random.Random, ano: int, mes: int,
                 d + timedelta(days=rng.randint(1, 5) if atraso else 0),
                 time(rng.randint(8, 17), rng.randint(0, 59)))
             status = "DIVERGENTE" if rng.random() < 0.03 else "RECEBIDO"
-            qtd = rng.randint(50, 4000)
+            # a carga por veículo também é sazonal: jan-fev chega carreta cheia
+            qtd = round(rng.randint(50, 4000) * (1.35 if mes in (1, 2) else 1.0))
             if deposito > 0.4 and rng.random() < deposito * 0.5:
                 qtd = int(qtd * rng.uniform(2.0, 4.0))  # lote-depósito (entra e não sai)
             validade = None

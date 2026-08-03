@@ -323,9 +323,9 @@ def _chegada(rng: random.Random, saida: date, dias: int, excl: bool) -> datetime
 # o galpão é cross-dock: quase tudo que entra embarca no próprio mês; a foto
 # de fim de mês captura a sobra de giro e os lotes-depósito (sobra de campanha
 # que o cliente deixa parada no galpão; é daqui que nasce o aging da cobrança)
-GIRO_SOBRA = (0.00203, 0.00762)  # fração do lote ainda no galpão na foto do mês
+GIRO_SOBRA = (0.00168, 0.0063)  # fração do lote ainda no galpão na foto do mês
 PARADO_PROB_FATOR = 0.15        # prob. de lote-depósito = fator × (0.25 + 0.75×deposito)
-PARADO_SOBRA = (0.0055, 0.0164)  # fração do lote que fica parada
+PARADO_SOBRA = (0.0045, 0.0135)  # fração do lote que fica parada
 PARADO_VIDA_MESES = (16, 56)    # até devolução/descarte
 # Pareto do galpão (painel Q3): 5 âncoras + 3 médios; a cauda decai rápido e
 # micro/pequeno quase não estoca
