@@ -6,7 +6,7 @@ from alembic import context
 from sqlalchemy import create_engine, pool
 
 import logistica_otif_mlops.models  # noqa: F401  # registra as tabelas na metadata
-from logistica_otif_mlops.config import obter_settings
+from logistica_otif_mlops.config import obter_settings, url_sqlalchemy
 from logistica_otif_mlops.db import Base
 
 config = context.config
@@ -23,7 +23,7 @@ def _url() -> str:
     url = obter_settings().database_url
     if not url:
         raise RuntimeError("DATABASE_URL não configurada (copie .env.example para .env).")
-    return url
+    return url_sqlalchemy(url)  # aceita a string crua do provedor de nuvem
 
 
 def run_migrations_offline() -> None:

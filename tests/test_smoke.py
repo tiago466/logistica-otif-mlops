@@ -29,6 +29,6 @@ def test_conector_desconhecido_da_erro_autoexplicativo() -> None:
         raise AssertionError("esperava KeyError para conector inexistente")
 
 
-def test_registro_comeca_vazio() -> None:
-    # Nenhum adaptador concreto ainda — nascem sob demanda.
-    assert nomes_registrados() == []
+def test_registro_expoe_o_conector_da_operacao() -> None:
+    # Adaptadores nascem sob demanda; o primeiro é o banco operacional.
+    assert "operacao_db" in nomes_registrados()

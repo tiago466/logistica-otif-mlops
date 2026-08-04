@@ -1,0 +1,30 @@
+# Blueprint de deploy da API financeira no Render.
+#
+# O que este arquivo garante (e por que importa mais que o deploy em si):
+#   * nenhum segredo aqui dentro. `sync: false` faz o Render PERGUNTAR o valor
+#     no painel, em vez de guardá-lo no repositório público;
+#   * a API sobe apontando para um usuário SOMENTE LEITURA do banco;
+#   * o serviço tem sonda de saúde, então o provedor sabe se subiu de verdade.
+#
+# Deploy: no painel do Render, New > Blueprint, apontando para este repositório.
+services:
+  - type: web
+    name: transbrasil-api-financeira
+    runtime: python
+    plan: free
+    region: oregon
+    buildCommand: pip install uv && uv sync --frozen --no-dev
+    startCommand: >-
+      uv run uvicorn logistica_otif_mlops.api_custos.main:app
+      --host 0.0.0.0 --port $PORT
+    healthCheckPath: /saude
+    envVars:
+      - key: AMBIENTE
+        value: hmlg
+      - key: PYTHON_VERSION
+        value: "3.12"
+      # Segredos: preenchidos no painel do Render, nunca no git.
+      - key: CUSTOS_API_KEY
+        sync: false
+      - key: CUSTOS_API_DATABASE_URL
+        sync: false

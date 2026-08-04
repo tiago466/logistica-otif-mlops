@@ -11,7 +11,7 @@ from sqlalchemy import MetaData, create_engine
 from sqlalchemy.engine import Engine
 from sqlalchemy.orm import DeclarativeBase, Session, sessionmaker
 
-from logistica_otif_mlops.config import obter_settings
+from logistica_otif_mlops.config import obter_settings, url_sqlalchemy
 
 # Nomes determinísticos para constraints/índices: migrations reprodutíveis
 # e ALTERs futuros sem adivinhação (padrão da casa).
@@ -42,7 +42,8 @@ def criar_engine(url: str | None = None) -> Engine:
             "DATABASE_URL não configurada. Copie o .env.example para .env "
             "e suba o Postgres local (docker compose up -d)."
         )
-    return create_engine(url, pool_pre_ping=True)
+    # aceita a string como o provedor de nuvem entrega (sem o driver explícito)
+    return create_engine(url_sqlalchemy(url), pool_pre_ping=True)
 
 
 def criar_fabrica_de_sessoes(engine: Engine) -> sessionmaker[Session]:
