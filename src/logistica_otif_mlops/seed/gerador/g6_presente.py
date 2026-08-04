@@ -44,6 +44,8 @@ def executar(corte: date) -> None:
             _servicos_pendentes(cur, corte)
             _financeiro(cur, corte)
             _estoque(cur, corte)
+            _coerencia_documental(cur)
+            _vincular_campanhas(cur)
         conn.commit()
         with conn.cursor() as cur:
             _relatorio(cur)
@@ -123,6 +125,50 @@ def _estoque(cur: psycopg.Cursor[Any], corte: date) -> None:
     """Foto de fechamento de mês que ainda não chegou."""
     cur.execute("delete from operacao.estoque_snapshot where data > %s", (corte,))
     print(f"  fotos de estoque futuras, removidas:      {cur.rowcount:,}")
+
+
+def _coerencia_documental(cur: psycopg.Cursor[Any]) -> None:
+    """A nota fiscal nasce na fase EN: antes dela, o campo tem de estar vazio.
+
+    Isto é **anti-vazamento**, não estética. Se todo pedido em voo já tivesse
+    número de NF, o modelo aprenderia que "ter NF" prevê entrega — quando na
+    verdade ter NF significa que o pedido já andou quase até o fim. Em produção,
+    a NF chega DEPOIS do instante da previsão, e o modelo desabaria.
+    """
+    cur.execute("""
+        update operacao.pedido p set nf_numero = null
+        where not exists (
+            select 1 from operacao.pedido_fase pf
+            join operacao.fase f on f.id = pf.fase_id and f.codigo = 'EN'
+            where pf.pedido_id = p.id and pf.dt_saida is not null)""")
+    print(f"  pedidos sem NF (ainda não emitida):       {cur.rowcount:,}")
+
+
+def _vincular_campanhas(cur: psycopg.Cursor[Any]) -> None:
+    """Liga o pedido à campanha vigente do segmento do cliente.
+
+    O calendário comercial já movia os volumes (a sazonalidade está nos dados),
+    mas o vínculo ficava implícito e `campanha_id` nascia nulo — uma feature
+    forte jogada fora, já que campanha é justamente quando a operação estoura.
+    """
+    # espelha o BOOST_SEGMENTO da G2: o vínculo tem de contar a mesma história
+    # que moveu os volumes, senão a feature contradiz a sazonalidade observada
+    cur.execute("""
+        update operacao.pedido p set campanha_id = c.id
+        from operacao.campanha c, operacao.organizacao o
+        where o.id = p.cliente_id
+          and p.dt_solicitacao::date between c.dt_inicio and c.dt_fim
+          and (
+            (c.descricao like 'Páscoa%' and o.segmento = 'ALIMENTICIO') or
+            (c.descricao like 'Dia das Mães%' and o.segmento in
+                ('COSMETICOS_DERMATOLOGICOS', 'MODA_ACESSORIOS', 'JOALHERIA')) or
+            (c.descricao like 'Dia dos Namorados%' and o.segmento = 'JOALHERIA') or
+            (c.descricao like 'Black Friday%' and o.segmento = 'ELETRONICOS') or
+            (c.descricao like 'Natal%' and o.segmento in
+                ('ALIMENTICIO', 'COSMETICOS_DERMATOLOGICOS', 'MODA_ACESSORIOS',
+                 'JOALHERIA', 'ELETRONICOS'))
+          )""")
+    print(f"  pedidos vinculados a campanha:            {cur.rowcount:,}")
 
 
 def _relatorio(cur: psycopg.Cursor[Any]) -> None:
