@@ -204,7 +204,11 @@ class Entrega(Base):
     # retirada/ultima milha). Atraso entre chegada e entrada e da BASE (repasse).
     dt_entrada_base: Mapped[datetime | None] = mapped_column(DateTime)
     recebedor: Mapped[str | None] = mapped_column(String(100))  # quem assinou
-    fl_sucesso: Mapped[bool] = mapped_column(Boolean, default=False)
+    # tri-estado, e o nulo é essencial: NULL = ainda em trânsito (desfecho
+    # desconhecido), true = entregue, false = tentativa falhou. Marcar `false`
+    # numa carga que ainda está na estrada seria registrar um fracasso que não
+    # aconteceu, e contaminaria todo indicador de OTIF.
+    fl_sucesso: Mapped[bool | None] = mapped_column(Boolean)
     fl_canhoto: Mapped[bool] = mapped_column(Boolean, default=False)
 
 
