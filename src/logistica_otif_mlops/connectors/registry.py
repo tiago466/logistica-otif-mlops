@@ -17,12 +17,14 @@ from __future__ import annotations
 from collections.abc import Callable
 
 from logistica_otif_mlops.connectors.base import Conector
+from logistica_otif_mlops.connectors.postgres import PostgresConector
 
 # nome lógico -> fábrica que constrói o conector (lê sua config do ambiente).
-# Ex. (quando o conector do Postgres existir):
-#   from logistica_otif_mlops.connectors.postgres import PostgresConector
-#   _REGISTRO = {"logistica_db": PostgresConector.a_partir_do_ambiente}
-_REGISTRO: dict[str, Callable[[], Conector]] = {}
+# O consumidor pede "operacao_db" e recebe um objeto com `.ler()`: trocar o
+# Postgres local pelo Neon é trocar a variável de ambiente, não o código.
+_REGISTRO: dict[str, Callable[[], Conector]] = {
+    "operacao_db": PostgresConector.a_partir_do_ambiente,
+}
 
 
 def obter(nome: str) -> Conector:
