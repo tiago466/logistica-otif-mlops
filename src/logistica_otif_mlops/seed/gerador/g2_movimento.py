@@ -248,6 +248,9 @@ RECEB_COLS = ("id", "item_id", "local_estoque_id", "numero_agendamento", "fornec
 
 
 def _ativos(mundo: Mundo, ano: int, mes: int) -> list[str]:
+    """Quem está em contrato no mês. A vigência exata é aplicada por DIA em
+    `_gerar_pedidos_cliente`: aqui o mês entra inteiro se houver qualquer
+    sobreposição, e lá os dias fora do contrato são descartados."""
     ref = date(ano, mes, 15)
     out = []
     for sigla, org in mundo.clientes.items():
@@ -281,7 +284,15 @@ def _gerar_pedidos_cliente(mundo: Mundo, rng: random.Random, sigla: str, ano: in
     tamanho = TAMANHO_POR_PORTE.get(org.porte or "MEDIA", 1.0)
     pct_grade = float(g["pct_grade"])
     pct_excl = float(g["pct_exclusivo"])
+    # a vigência do contrato vale por DIA, não por mês: cliente que cancelou no
+    # dia 17 não faz pedido no dia 20. Sem este corte, o mês inteiro ficava
+    # elegível e o cadastro contradizia o movimento.
     dias = [dia_util(date(ano, mes, d)) for d in range(1, 29)]
+    dias = [d for d in dias
+            if d >= org.dt_inicio_contrato
+            and (org.dt_cancelamento is None or d <= org.dt_cancelamento)]
+    if not dias:
+        return seq
     n_grade = round(n * pct_grade)
     # grades saem em rajadas: poucos dias concentram muitos pedidos
     dias_grade = rng.sample(dias, k=min(len(dias), max(1, n_grade // 120 + 1)))

@@ -44,6 +44,7 @@ def executar(corte: date) -> None:
             _servicos_pendentes(cur, corte)
             _financeiro(cur, corte)
             _estoque(cur, corte)
+            _expurgar_pos_cancelamento(cur)
             _coerencia_documental(cur)
             _vincular_campanhas(cur)
         conn.commit()
@@ -125,6 +126,49 @@ def _estoque(cur: psycopg.Cursor[Any], corte: date) -> None:
     """Foto de fechamento de mês que ainda não chegou."""
     cur.execute("delete from operacao.estoque_snapshot where data > %s", (corte,))
     print(f"  fotos de estoque futuras, removidas:      {cur.rowcount:,}")
+
+
+def _expurgar_pos_cancelamento(cur: psycopg.Cursor[Any]) -> None:
+    """Remove pedido feito depois de o cliente ter cancelado o contrato.
+
+    Achado do Tiago explorando o banco: a G2 decidia quem estava ativo olhando
+    o **mês** (referência no dia 15), então quem cancelava no dia 17 seguia
+    recebendo pedidos até o fim do mês. A causa já está corrigida na origem
+    (a vigência agora vale por dia); esta rede de segurança limpa o que ficou e
+    protege contra qualquer regressão futura da mesma natureza.
+
+    Cadastro que contradiz movimento é veneno para o modelo: a feature "cliente
+    ativo" deixaria de significar o que diz.
+    """
+    cur.execute("""
+        create temp table pedido_expurgo as
+        select p.id, p.numero from operacao.pedido p
+        join operacao.organizacao o on o.id = p.cliente_id
+        where o.dt_cancelamento is not null
+          and p.dt_solicitacao::date > o.dt_cancelamento""")
+    cur.execute("select count(*) from pedido_expurgo")
+    linha = cur.fetchone()
+    total = linha[0] if linha else 0
+    if not total:
+        print("  pedidos após o cancelamento:              0")
+        cur.execute("drop table pedido_expurgo")
+        return
+
+    for tabela in ("operacao.ocorrencia", "operacao.retirada_base", "operacao.entrega",
+                   "operacao.ordem_coleta", "operacao.pedido_item",
+                   "operacao.pedido_fase", "operacao.positivacao"):
+        cur.execute(
+            f"delete from {tabela} where pedido_id in (select id from pedido_expurgo)")
+    for tabela in ("custos.faturamento_operacao", "custos.custo_operacao"):
+        cur.execute(f"delete from {tabela}"
+                    " where referencia_numero in (select numero from pedido_expurgo)")
+    cur.execute("delete from operacao.pedido where id in (select id from pedido_expurgo)")
+    print(f"  pedidos após o cancelamento, removidos:   {total:,}")
+    cur.execute("""
+        delete from operacao.minuta m
+        where not exists (select 1 from operacao.entrega e where e.minuta_id = m.id)""")
+    print(f"  minutas que ficaram sem carga, removidas: {cur.rowcount:,}")
+    cur.execute("drop table pedido_expurgo")
 
 
 def _coerencia_documental(cur: psycopg.Cursor[Any]) -> None:
