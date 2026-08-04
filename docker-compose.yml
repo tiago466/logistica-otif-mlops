@@ -10,6 +10,10 @@ services:
       POSTGRES_DB: ${POSTGRES_DB:-transbrasil}
     ports:
       - "5432:5432"
+    # o padrão do Docker é 64 MB de /dev/shm, e o Postgres usa memória
+    # compartilhada para consultas paralelas: com as tabelas deste projeto
+    # (milhões de linhas), agregações paralelas estouram esse limite
+    shm_size: 1gb
     volumes:
       - pgdata:/var/lib/postgresql/data
     healthcheck:
