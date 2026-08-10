@@ -43,19 +43,37 @@ Fluxo de dados em camadas (**medallion**): fonte → **bronze** (cru) → **silv
 logistica-otif-mlops/
 ├── src/logistica_otif_mlops/    # o pacote instalável
 │   ├── config.py                # configuração 12-factor (via ambiente)
-│   └── connectors/              # camada de conectores de dados (base + registro)
-├── notebooks/                   # exploração (consumidores finos do pacote)
+│   ├── connectors/              # camada de conectores de dados (base + registro)
+│   ├── api_custos/              # a API do sistema financeiro (a segunda fonte)
+│   ├── seed/                    # geração e publicação da base sintética
+│   └── dicionario.py            # gera o dicionário de dados a partir do banco
+├── sql/                         # relatórios de referência reproduzidos
+├── notebooks/                   # exploração, por domínio (operacional/financeiro)
 ├── data/                        # camadas medallion (não versionadas)
+├── migrations/                  # evolução do schema (Alembic)
 ├── tests/                       # testes automatizados
 ├── docs/                        # documentação (CRISP-DM)
+├── render.yaml                  # blueprint de deploy da API
 ├── .env.example                 # modelo de configuração (sem segredos)
 └── pyproject.toml               # projeto e dependências (uv)
 ```
 
+## As duas fontes
+
+O projeto conversa com **dois sistemas diferentes**, de propósito, porque é assim na empresa real:
+
+| Fonte | Conteúdo | Acesso |
+|---|---|---|
+| Banco relacional (sistema operacional) | pedidos, fases, entregas, estoque, cadastro | SQL |
+| API do sistema financeiro (de terceiro) | faturamento, custos, parâmetros, tarifas | HTTP com chave |
+
+Um pipeline que assume "está tudo num banco só" quebra no primeiro cliente de verdade. Por isso as duas entram por **conectores** intercambiáveis: quem consome pede um DataFrame e não precisa saber de onde veio.
+
 ## Documentação
 
 - **[CRISP-DM · hub da documentação](docs/README.md)**, o roteiro do projeto de dados, etapa por etapa
-- Rotinas e manuais de operação: entram aqui conforme nascerem (setup do ambiente, runbooks)
+- **[Acesso aos dados](docs/03_acesso_aos_dados.md)**: conectar no banco (DBeaver) e na API (Power BI, Python)
+- **[Dicionário de dados](docs/04_dicionario_de_dados.md)**: as 30 tabelas, coluna a coluna (gerado do banco)
 
 ## Como rodar
 
@@ -76,8 +94,12 @@ uv run pytest           # roda os testes
 Construído em público, um passo por vez. Transparência sobre o que já está de pé:
 
 - [x] Esqueleto do pacote + camada de conectores + configuração 12-factor
-- [ ] Modelagem do domínio (MER) + base relacional sintética
+- [x] Modelagem do domínio (MER, 30 tabelas em duas fontes) + dicionário de dados
+- [x] Base relacional sintética de 11 anos, validada contra 21 indicadores de referência
+- [x] Publicação em nuvem + API do sistema financeiro (chave, paginação, menor privilégio)
+- [x] Relatórios de referência reproduzidos e aprovados pelos donos
 - [ ] Pipeline medallion (bronze/silver/gold)
+- [ ] EDA de qualidade + relatório de saúde dos dados
 - [ ] Data Discovery financeiro: margem de contribuição por cliente (relatório executivo + slides)
 - [ ] Modelo de predição OTIF (baseline + comparação) + MLflow
 - [ ] Testes, CI e monitoramento de drift

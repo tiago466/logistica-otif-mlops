@@ -1,17 +1,41 @@
-# notebooks/ — exploração (consumidores finos do pacote)
+# notebooks/ — o laboratório da análise
 
-Os notebooks servem para **explorar e comunicar** (EDA, Data Discovery, análises).
-Eles são **consumidores finos**: importam o pacote `logistica_otif_mlops` e
-chamam suas funções e conectores — **nunca** reimplementam regra de negócio nem
-abrem caminho de arquivo/credencial direto.
+Notebook é onde o dado é **interrogado** e onde a conclusão fica registrada **ao
+lado da evidência que a sustenta**. É o laudo do exame: o achado e a imagem que o
+comprova, no mesmo lugar. Quem abrir daqui a seis meses precisa entender não só o
+que foi concluído, mas por quê.
 
-Padrão de acesso a dados (sempre pelo conector, nunca pelo caminho cru):
+O que **não** é: lugar de código de produção. Assim que uma transformação vira
+rotina, ela sai do notebook e vira módulo em `src/`, com teste. O notebook então
+passa a chamar o módulo. Regra prática: se roda mais de uma vez, sai do notebook.
 
-```python
-from logistica_otif_mlops.connectors import obter
+## Organização
 
-df = obter("logistica_db").ler("SELECT * FROM pedidos LIMIT 1000")
+```
+notebooks/
+├── operacional/    # domínio 1 (vai primeiro: abre o trilho)
+└── financeiro/     # domínio 2 (reaproveita o caminho já aberto)
 ```
 
-Assim a mesma análise roda na máquina de qualquer pessoa que tenha o `.env`
-preenchido — sem editar uma linha do notebook.
+Nomeie na ordem em que devem ser lidos: `00_eda_qualidade`, `01_eda_descritiva`,
+`02_eda_inferencial`, `03_features`. A numeração conta a história do projeto.
+
+## Acesso a dados: sempre pelo conector
+
+```python
+from logistica_otif_mlops.connectors.registry import obter
+
+df = obter("operacao_db").ler("select * from operacao.pedido limit 1000")
+```
+
+Nunca escreva credencial, host ou caminho de arquivo dentro do notebook. A mesma
+análise precisa rodar na máquina de qualquer pessoa que tenha o `.env`
+preenchido, sem editar uma linha — e o notebook vai para um repositório público.
+
+## Higiene antes de commitar
+
+- **Limpe as saídas** de células que imprimam dado sensível ou volumoso.
+- **Rode do começo ao fim** antes de fechar: notebook que só funciona na ordem em
+  que você foi executando não é reprodutível, é um bilhete para si mesmo.
+- **Escreva as conclusões em markdown**, não em comentário de código. O leitor do
+  relatório não lê `#`.

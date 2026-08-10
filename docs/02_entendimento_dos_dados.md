@@ -412,6 +412,62 @@ O **Sr. Abraão** e o **Sr. Elias** não escrevem dado nenhum: consomem indicado
 
 O Mermaid acima é a verdade versionada. Para ver o desenho: abra o [draw.io](https://app.diagrams.net) → novo diagrama em branco → botão **"+" (Inserir)** na barra → **Avançado** → **Mermaid...** → cole o bloco `erDiagram` (sem a cerca ```` ```mermaid ````) → **Inserir**. Repita em outra página para o diagrama de custos.
 
+> O detalhamento coluna a coluna das 30 tabelas está no **[Dicionário de Dados](04_dicionario_de_dados.md)**, gerado a partir do banco (`uv run python -m logistica_otif_mlops.dicionario`) para nunca divergir do schema real.
+
+## 8. Relatórios de referência (o ponto de partida acordado)
+
+Antes de propor qualquer indicador novo, o projeto **reproduz os relatórios que a empresa já usa**. Isso prova que entendemos o dado, valida a fonte e dá ao time um número conhecido de onde partir. Os dois foram apresentados e **aprovados pelos donos em 04/08/2026**.
+
+| Relatório | Dono | Query | O que entrega |
+|---|---|---|---|
+| **Prazos por Etapa** | Sr. Elias (operação) | [`sql/relatorio_prazo_etapas.sql`](../sql/relatorio_prazo_etapas.sql) | Uma linha por pedido, fases em colunas, duração de cada etapa e o veredicto de prazo em produção, expedição e transporte |
+| **MC por Operação** | Dna. Sarah (financeiro) | [`sql/relatorio_mc_operacao.sql`](../sql/relatorio_mc_operacao.sql) | Receita, custo variável, impostos e margem por operação, **com as dimensões da operação junto** (porte, modal, praça, tipo de atendimento) |
+
+### 8.1 A régua de prazo (definida pelo Sr. Elias)
+
+A pergunta "o pedido atrasou?" não tem uma resposta só: depende de quem tem a responsabilidade na ponta. O princípio acordado é que **a TransBrasil responde até deixar o material disponível**; o tempo que o cliente leva para buscar não conta contra a operação.
+
+| Tipo de atendimento | Marco que define o cumprimento |
+|---|---|
+| Entrega (direta ou via base) | chegada da entrega efetiva ≤ `dt_prazo_entrega` |
+| Retira em galpão da TransBrasil | fim da fase **ME** (material pronto) ≤ `dt_prazo_entrega` |
+| Retira em base parceira | `dt_entrada_base` ≤ `dt_prazo_entrega` |
+
+Essa régua é a **definição do alvo** do modelo preditivo: entregue no prazo (0) ou em atraso (1).
+
+### 8.2 Convenções de tempo do relatório de origem
+
+Conferidas contra o arquivo de referência da operação: **horas** são a diferença corrida entre etapas, arredondada (não são horas úteis); **dias** são a diferença de datas de calendário, não `horas / 24`. Por isso, no relatório original, a razão entre horas e dias varia de 9 a 34.
+
+### 8.3 Um achado de modelagem na origem
+
+O campo `Modalidade` do relatório operacional empilha **três perguntas diferentes**: como o cliente recebe (RETIRA/ENTREGA), qual o modal (RODOVIARIO/AEREO) e qual o nível de serviço (EXCLUSIVO/EXPRESSO). Enquanto estiverem no mesmo campo, perguntas simples ficam impossíveis: não dá para medir o OTIF do aéreo sem separar antes o que é modal do que é nível de serviço.
+
+Aqui as três dimensões existem separadas (`modalidade`, `tipo_atendimento`, `nivel_servico`) e são **recombinadas** na query para bater com o layout. Isso é dívida de modelagem da origem, não erro de digitação: a distinção importa, e está detalhada na seção 9.2.
+
+## 9. Fontes de carga (o que vai para o Bronze)
+
+### 9.1 As duas origens e seus acessos
+
+| Domínio | Origem | Acesso | Destino |
+|---|---|---|---|
+| **Operação** | Postgres do TBW (servidor Linux) | conexão direta, conector `operacao_db` | `bronze/operacao/` |
+| **Financeiro** | Sistema de terceiro | API REST com `X-API-Key` | `bronze/financeiro/` |
+
+**Tabelas que alimentam o relatório operacional:** `pedido`, `pedido_item`, `pedido_fase`, `fase`, `sla_fase`, `ordem_coleta`, `local_estoque`, `minuta`, `entrega`, `ocorrencia`, `tipo_ocorrencia`, `retirada_base`, `organizacao`, `endereco`, `item`, `transportador`, `veiculo`, `rota`, `modalidade`, `lead_time`, `campanha`, `recebimento`, `estoque_snapshot`.
+
+**Endpoints que alimentam o relatório financeiro:** `/v1/faturamentos`, `/v1/custos`, `/v1/parametros`, `/v1/tarifas-armazenagem` (ver [Acesso aos dados](03_acesso_aos_dados.md)).
+
+### 9.2 Por que o Bronze recebe as TABELAS, e não o relatório pronto
+
+O Bronze é **cópia fiel da origem**. Toda regra de negócio aplicada antes dele vira uma decisão que não se consegue mais revisitar. Carregar apenas o relatório traria três problemas: congelaria a lógica atual (e a régua de prazo pode evoluir), descartaria campos que ainda não usamos mas que viram features, e impediria auditar a diferença entre **o dado** e **a interpretação do dado**.
+
+A reprodução do relatório é, portanto, uma transformação de **Silver/Gold** — derivada, não fonte.
+
+### 9.3 Consumo pelo BI
+
+O painel de acompanhamento da operação (atualizações ao longo do dia) deve ler a **camada preparada**, nunca o banco de produção. Duas razões: não competir por recurso com o sistema que a operação usa em tempo real, e não recalcular dezenas de colunas a cada atualização.
+
 ---
 
 [Início](#topo)
