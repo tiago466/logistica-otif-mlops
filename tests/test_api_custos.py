@@ -70,6 +70,26 @@ def test_competencia_em_formato_invalido_e_rejeitada(cliente: TestClient) -> Non
     assert resposta.status_code == 422
 
 
+def test_conector_converte_dinheiro_que_veio_como_texto() -> None:
+    """A API manda decimal como STRING (JSON não tem esse tipo).
+
+    Sem conversão, `sum()` concatena texto em vez de somar — e o pior é que
+    não levanta erro: só produz um número absurdo lá adiante, num relatório.
+    """
+    import pandas as pd
+
+    from logistica_otif_mlops.connectors.api_rest import ApiRestConector
+
+    bruto = pd.DataFrame([
+        {"cliente_sigla": "WKA", "valor": "24.34", "cep": "88010100"},
+        {"cliente_sigla": "WKA", "valor": "8.54", "cep": "01001000"},
+    ])
+    tipado = ApiRestConector._tipar(bruto)
+    assert tipado["valor"].sum() == pytest.approx(32.88)
+    # e o CEP continua texto: converter "tudo que parece número" comeria o zero
+    assert tipado["cep"].iloc[1] == "01001000"
+
+
 @pytest.mark.skipif(not obter_settings().database_url,
                     reason="precisa de banco carregado")
 def test_pagina_devolve_envelope_completo(monkeypatch: pytest.MonkeyPatch) -> None:

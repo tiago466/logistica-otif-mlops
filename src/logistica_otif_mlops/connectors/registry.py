@@ -16,14 +16,18 @@ from __future__ import annotations
 
 from collections.abc import Callable
 
+from logistica_otif_mlops.connectors.api_rest import ApiRestConector
 from logistica_otif_mlops.connectors.base import Conector
 from logistica_otif_mlops.connectors.postgres import PostgresConector
 
 # nome lógico -> fábrica que constrói o conector (lê sua config do ambiente).
 # O consumidor pede "operacao_db" e recebe um objeto com `.ler()`: trocar o
-# Postgres local pelo Neon é trocar a variável de ambiente, não o código.
+# Postgres local pelo Neon é trocar a variável de ambiente, não o código. E
+# "financeiro_api" atende ao MESMO contrato, embora do outro lado haja HTTP,
+# chave de acesso e paginação — é esse o ponto da camada de conectores.
 _REGISTRO: dict[str, Callable[[], Conector]] = {
     "operacao_db": PostgresConector.a_partir_do_ambiente,
+    "financeiro_api": ApiRestConector.a_partir_do_ambiente,
 }
 
 

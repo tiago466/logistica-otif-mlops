@@ -47,12 +47,14 @@ logistica-otif-mlops/
 │   ├── api_custos/              # a API do sistema financeiro (a segunda fonte)
 │   ├── seed/                    # geração e publicação da base sintética
 │   └── dicionario.py            # gera o dicionário de dados a partir do banco
+├── infra/                       # o ambiente do CLIENTE (containers das fontes)
 ├── sql/                         # relatórios de referência reproduzidos
 ├── notebooks/                   # exploração, por domínio (operacional/financeiro)
 ├── data/                        # camadas medallion (não versionadas)
 ├── migrations/                  # evolução do schema (Alembic)
 ├── tests/                       # testes automatizados
 ├── docs/                        # documentação (CRISP-DM)
+├── docker-compose.yml           # sobe as duas fontes (banco + API)
 ├── render.yaml                  # blueprint de deploy da API
 ├── .env.example                 # modelo de configuração (sem segredos)
 └── pyproject.toml               # projeto e dependências (uv)
@@ -68,6 +70,12 @@ O projeto conversa com **dois sistemas diferentes**, de propósito, porque é as
 | API do sistema financeiro (de terceiro) | faturamento, custos, parâmetros, tarifas | HTTP com chave |
 
 Um pipeline que assume "está tudo num banco só" quebra no primeiro cliente de verdade. Por isso as duas entram por **conectores** intercambiáveis: quem consome pede um DataFrame e não precisa saber de onde veio.
+
+As duas rodam em **containers separados**, como estariam em servidores diferentes na empresa. O projeto roda fora deles e as conhece só pelo `.env`:
+
+```bash
+docker compose up -d    # sobe o ambiente do cliente: banco + API financeira
+```
 
 ## Documentação
 

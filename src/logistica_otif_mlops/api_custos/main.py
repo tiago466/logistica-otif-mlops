@@ -14,8 +14,12 @@ Regras de segurança que valem para qualquer API, não só esta:
   * erro de autenticação não diz se a chave existe, só que não foi aceita;
   * a resposta nunca inclui dados de outro schema (a API serve só `custos`).
 
-Rodar em dev:
-    uv run uvicorn logistica_otif_mlops.api_custos.main:app --reload
+Onde este código roda: **num container próprio** (`infra/api_financeira/`), junto
+com o banco do cliente, e não dentro do processo do projeto de dados. A fronteira
+é física de propósito — ver o cabeçalho do `docker-compose.yml`.
+
+    docker compose up -d api-financeira          # como o cliente a expõe
+    uv run uvicorn logistica_otif_mlops.api_custos.main:app --reload   # só p/ depurar
 """
 
 from __future__ import annotations

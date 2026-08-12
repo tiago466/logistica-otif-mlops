@@ -17,6 +17,21 @@
 
 Não é capricho de arquitetura: é o cenário real da empresa. O ERP operacional é da casa, o financeiro é de outro fornecedor e só entrega dados por API. Um pipeline que assume "está tudo num banco só" quebra no primeiro cliente de verdade. Por isso o projeto trata as duas como **conectores** intercambiáveis: quem consome pede um DataFrame e não sabe de onde veio.
 
+### A fronteira é física
+
+Os dois sistemas rodam em **containers separados**, como estariam em servidores diferentes na empresa. O projeto de dados roda fora deles e os conhece apenas pelo `.env`:
+
+```
+docker compose up -d      # sobe o AMBIENTE DO CLIENTE (banco + API financeira)
+```
+
+| Container | Papel | Porta |
+|---|---|---|
+| `transbrasil-postgres` | banco do sistema operacional (TBW) | 5432 |
+| `transbrasil-api-financeira` | sistema financeiro de terceiro | 8100 |
+
+Manter essa separação evita uma armadilha silenciosa: com tudo no mesmo processo, é fácil o pipeline "espiar" o banco do financeiro em vez de consumir a API. Funcionaria na máquina do analista e quebraria no cliente, onde esse banco simplesmente não é acessível. Fronteira que existe só na disciplina de quem escreve não é fronteira.
+
 ## 2. Ambientes
 
 | Ambiente | Onde | Período | Para que |

@@ -1,5 +1,18 @@
-# Fonte de dados LOCAL de desenvolvimento: o "sistema da TransBrasil".
-# Postgres 16 (paridade com o Neon). Suba com: docker compose up -d
+# O AMBIENTE DO CLIENTE, não o projeto de dados.
+#
+# Aqui sobem os dois sistemas que a TransBrasil disponibilizou, cada um no seu
+# container, como estariam em servidores diferentes na vida real:
+#
+#   postgres        → o banco do sistema operacional (TBW), acesso direto
+#   api-financeira  → o sistema financeiro de terceiro, acesso só por HTTP+chave
+#
+# O projeto de DS roda FORA daqui e conhece essas fontes apenas pelo `.env`.
+# Essa fronteira não é enfeite: é o que impede o pipeline de "espiar" o banco do
+# financeiro em vez de consumir a API — atalho que funcionaria na máquina do
+# analista e quebraria no cliente, onde esse banco não é acessível.
+#
+# Subir tudo:        docker compose up -d
+# Só o banco:        docker compose up -d postgres
 services:
   postgres:
     image: postgres:16-alpine
@@ -21,6 +34,24 @@ services:
       interval: 5s
       timeout: 3s
       retries: 10
+
+  api-financeira:
+    build:
+      context: .
+      dockerfile: infra/api_financeira/Dockerfile
+    container_name: transbrasil-api-financeira
+    environment:
+      AMBIENTE: hmlg
+      # A chave e a origem dos dados vêm do `.env` (nunca ficam escritas aqui).
+      # Em produção a API lê o Neon; localmente, o container do Postgres — e é
+      # por isso que o host é `postgres`, o nome do serviço na rede do compose.
+      CUSTOS_API_KEY: ${CUSTOS_API_KEY:?defina CUSTOS_API_KEY no .env}
+      CUSTOS_API_DATABASE_URL: ${CUSTOS_API_DATABASE_URL:-postgresql://${POSTGRES_USER:-transbrasil}:${POSTGRES_PASSWORD:-transbrasil}@postgres:5432/${POSTGRES_DB:-transbrasil}}
+    ports:
+      - "8100:8100"
+    depends_on:
+      postgres:
+        condition: service_healthy
 
 volumes:
   pgdata:
