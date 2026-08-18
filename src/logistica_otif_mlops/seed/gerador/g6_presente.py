@@ -172,12 +172,19 @@ def _expurgar_pos_cancelamento(cur: psycopg.Cursor[Any]) -> None:
 
 
 def _coerencia_documental(cur: psycopg.Cursor[Any]) -> None:
-    """A nota fiscal nasce na fase EN: antes dela, o campo tem de estar vazio.
+    """Cada dado nasce na etapa que o produz, e antes dela o campo fica vazio.
 
-    Isto é **anti-vazamento**, não estética. Se todo pedido em voo já tivesse
-    número de NF, o modelo aprenderia que "ter NF" prevê entrega — quando na
-    verdade ter NF significa que o pedido já andou quase até o fim. Em produção,
-    a NF chega DEPOIS do instante da previsão, e o modelo desabaria.
+    Isto é **anti-vazamento**, não estética. Um campo preenchido antes da hora
+    ensina o modelo a prever com informação que, em produção, ainda não existe:
+    ele acerta no teste e desaba no ar, sem que nada quebre.
+
+    Dois casos, com a mesma causa e o mesmo remédio:
+      * a **nota fiscal** é emitida na fase EN;
+      * o **peso e o volume aferidos** saem da balança no manuseio (ME).
+
+    O peso teórico continua preenchido desde a abertura do pedido, porque é
+    calculado do catálogo. São duas colunas parecidas com disponibilidade
+    completamente diferente, e é justamente aí que o erro se esconde.
     """
     cur.execute("""
         update operacao.pedido p set nf_numero = null
@@ -186,6 +193,15 @@ def _coerencia_documental(cur: psycopg.Cursor[Any]) -> None:
             join operacao.fase f on f.id = pf.fase_id and f.codigo = 'EN'
             where pf.pedido_id = p.id and pf.dt_saida is not null)""")
     print(f"  pedidos sem NF (ainda não emitida):       {cur.rowcount:,}")
+
+    cur.execute("""
+        update operacao.pedido p
+           set peso_real_kg = null, volume_real_m3 = null
+        where not exists (
+            select 1 from operacao.pedido_fase pf
+            join operacao.fase f on f.id = pf.fase_id and f.codigo = 'ME'
+            where pf.pedido_id = p.id and pf.dt_saida is not null)""")
+    print(f"  pedidos sem aferição (não passaram no ME):{cur.rowcount:,}")
 
 
 def _vincular_campanhas(cur: psycopg.Cursor[Any]) -> None:

@@ -3,7 +3,7 @@
 # Logística OTIF · Ciência de Dados & MLOps ponta a ponta
 
 <!-- nav:start -->
-[Problema](#o-problema-de-negócio) | [Dados](#os-dados) | [Arquitetura](#arquitetura--stack) | [Estrutura](#estrutura-do-repositório) | [Documentação](#documentação) | [Como rodar](#como-rodar) | [Status](#status-do-projeto) | [Autor](#autor)
+ [Problema](#o-problema-de-negócio) | [Acesso aos dados](#sobre-o-cenário-de-acesso-aos-dados) | [Dados](#os-dados) | [Arquitetura](#arquitetura--stack) | [Estrutura](#estrutura-do-repositório) | [Documentação](#documentação) | [Como rodar](#como-rodar) | [Status](#status-do-projeto) | [Autor](#autor)
 <!-- nav:end -->
 
 > Projeto **end-to-end** de Ciência de Dados e MLOps no domínio **logístico**, com dados **100% sintéticos**. Duas entregas sobre a mesma base: **(1)** previsão de **atraso em entregas (OTIF)**, um problema de classificação desbalanceada com custo assimétrico, e **(2)** **raio-x de margem de contribuição por cliente** (Data Discovery financeiro). O foco é a **engenharia** em volta da ciência: pipeline reprodutível, rastreamento de experimentos, testes, CI e monitoramento, não só um notebook com um bom AUC.
@@ -14,6 +14,23 @@ Uma transportadora fictícia, a **TransBrasil**, tem duas dores clássicas do se
 
 1. **Atrasos de entrega corroem o nível de serviço (OTIF: _On Time, In Full_).** Prever, no momento certo, quais pedidos têm alto risco de atrasar permite agir antes (priorizar, realocar, avisar o cliente). É a mesma classe de problema de _churn_: evento raro, custo de errar assimétrico (deixar passar um atraso dói mais que um falso alarme).
 2. **Falta visão da margem por cliente.** A empresa fatura frete e armazenagem, e paga custos operacionais (pernas de transporte, bases parceiras, galpão). Quais clientes sustentam a operação, e quais são sustentados por ela? Um diagnóstico de **margem de contribuição** (receita × custo operacional × impostos) revela o que o dia a dia não enxerga.
+
+## Sobre o cenário de acesso aos dados
+
+Este projeto parte de uma condição favorável e **deliberada**: o cliente concedeu acesso de leitura ao banco relacional da operação e aos endpoints da API do sistema financeiro. Foi isso que permitiu reproduzir os relatórios de referência, escolher com precisão as tabelas necessárias e carregar o Bronze diretamente das fontes.
+
+**Na prática, esse não é o cenário mais comum.** Dependendo do porte da empresa, da maturidade da TI e da política de segurança, o que se recebe costuma ser bem diferente:
+
+| O que o cliente entrega | O que muda no projeto |
+|---|---|
+| Acesso ao banco e à API (este projeto) | consultas sob medida, contrato de ingestão preciso, recarga a qualquer momento |
+| Um extrato em CSV ou Excel | trabalha-se com o recorte que veio; qualquer coluna a mais exige novo pedido e nova espera |
+| Uma tabela única consolidada, com carga diária | o relacionamento entre entidades já vem resolvido por outra pessoa, e as decisões dela ficam invisíveis |
+| Um dump ou área de staging isolada | acesso amplo, porém sem contexto do sistema de origem |
+
+**O que não muda:** as etapas do método. Conectar na fonte, copiar para o Bronze sem transformar, diagnosticar a qualidade, tratar no Silver e só então analisar. Muda o **conector** e o **grau de liberdade** para pedir mais dado, não o rito.
+
+Por isso a camada de conectores existe desde o primeiro commit: trocar um banco por um CSV é trocar o adaptador, não reescrever o pipeline. E é por isso também que a fonte é sempre tratada como **somente leitura**: em boa parte dos casos reais não se tem permissão de escrita, e mesmo quando se tem, alterar a origem é o caminho mais curto para perder a reprodutibilidade e a confiança do cliente.
 
 ## Os dados
 
