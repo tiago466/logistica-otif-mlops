@@ -39,7 +39,7 @@ def test_narrativa_da_anamnese_esta_plantada() -> None:
 
 def test_matriz_e_bases_conferem() -> None:
     rows = _ler("organizacoes_matriz_bases.csv")
-    assert rows[0]["sigla"] == "TBR" and rows[0]["tipo_parceria"] == "MATRIZ"
+    assert rows[0]["sigla"] == "TFB" and rows[0]["tipo_parceria"] == "MATRIZ"
     bases = [r for r in rows if r["tipo_parceria"] == "BASE"]
     assert len(bases) == 36
     sudeste = [b for b in bases if b["uf_sede"] in ("SP", "MG", "RJ", "ES")]

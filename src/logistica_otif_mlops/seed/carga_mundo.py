@@ -1,4 +1,4 @@
-"""Seed módulo 2 (G1): o MUNDO ESTÁTICO da TransBrasil.
+"""Seed módulo 2 (G1): o MUNDO ESTÁTICO da Trans Fictício BR.
 
 Cria tudo que existe antes do tempo correr: transportadores e frota, rotas,
 a régua de LEAD_TIME (modalidade × UF × cidade), catálogo de itens por cliente,
@@ -91,14 +91,14 @@ def executar() -> None:
 
 
 def _transportadores(sessao: Session, rng: random.Random) -> None:
-    frota = Transportador(nome="TransBrasil Frota Própria", cnpj=None, tipo="FROTA_PROPRIA")
+    frota = Transportador(nome="Trans Fictício BR Frota Própria", cnpj=None, tipo="FROTA_PROPRIA")
     sessao.add(frota)
     sessao.flush()
     tipos_veic = ["fiorino", "vuc", "truck", "carreta"]
     caps = {"fiorino": 600, "vuc": 3000, "truck": 12000, "carreta": 27000}
     for i in range(26):
         tv = rng.choice(tipos_veic)
-        sessao.add(Veiculo(transportador_id=frota.id, placa=f"TBR{i:02d}{rng.randint(10, 99)}",
+        sessao.add(Veiculo(transportador_id=frota.id, placa=f"TFB{i:02d}{rng.randint(10, 99)}",
                            tipo_veiculo=tv, capacidade_kg=Decimal(caps[tv])))
     empresas = [
         ("TransLancer Cargas", 12), ("Rota Sul Express", 8), ("Aliança Rodoviária", 9),

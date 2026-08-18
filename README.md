@@ -1,5 +1,9 @@
 <a id="topo"></a>
 
+<p align="center">
+  <img src="assets/logo_tfb.png" alt="Trans Fictício BR" width="300">
+</p>
+
 # Logística OTIF · Ciência de Dados & MLOps ponta a ponta
 
 <!-- nav:start -->
@@ -8,9 +12,25 @@
 
 > Projeto **end-to-end** de Ciência de Dados e MLOps no domínio **logístico**, com dados **100% sintéticos**. Duas entregas sobre a mesma base: **(1)** previsão de **atraso em entregas (OTIF)**, um problema de classificação desbalanceada com custo assimétrico, e **(2)** **raio-x de margem de contribuição por cliente** (Data Discovery financeiro). O foco é a **engenharia** em volta da ciência: pipeline reprodutível, rastreamento de experimentos, testes, CI e monitoramento, não só um notebook com um bom AUC.
 
+> ⚠️ **Aviso sobre a empresa retratada.** A **Trans Fictício BR (TFB)** é uma
+> empresa **inteiramente fictícia**, criada para este portfólio, e **todos os
+> dados são sintéticos**, gerados por código a partir de uma semente fixa.
+> Clientes, transportadores, endereços, valores, indicadores e o enredo de
+> negócio (incluindo dificuldades operacionais e financeiras) foram inventados
+> para exercitar o método. **Qualquer semelhança com empresas reais, inclusive
+> homônimas ou de nome parecido, é mera coincidência, e não existe qualquer
+> afiliação, parceria ou relação com elas.** Nenhum dado de cliente real é
+> usado, versionado ou publicado neste repositório.
+>
+> O nome fictício adotado no início do desenvolvimento foi trocado ao
+> constatarmos que coincidia com o de uma empresa real do mesmo setor. A troca
+> foi feita por precaução e sem qualquer relação com aquela empresa; o nome
+> anterior permanece no histórico de commits apenas porque este projeto é
+> construído em público, com cada passo registrado.
+
 ## O problema de negócio
 
-Uma transportadora fictícia, a **TransBrasil**, tem duas dores clássicas do setor:
+Uma transportadora fictícia, a **Trans Fictício BR**, tem duas dores clássicas do setor:
 
 1. **Atrasos de entrega corroem o nível de serviço (OTIF: _On Time, In Full_).** Prever, no momento certo, quais pedidos têm alto risco de atrasar permite agir antes (priorizar, realocar, avisar o cliente). É a mesma classe de problema de _churn_: evento raro, custo de errar assimétrico (deixar passar um atraso dói mais que um falso alarme).
 2. **Falta visão da margem por cliente.** A empresa fatura frete e armazenagem, e paga custos operacionais (pernas de transporte, bases parceiras, galpão). Quais clientes sustentam a operação, e quais são sustentados por ela? Um diagnóstico de **margem de contribuição** (receita × custo operacional × impostos) revela o que o dia a dia não enxerga.
@@ -34,7 +54,7 @@ Por isso a camada de conectores existe desde o primeiro commit: trocar um banco 
 
 ## Os dados
 
-- **Sintéticos e determinísticos.** Uma empresa fictícia (**TransBrasil**), com dados gerados por semente fixa cobrindo **vários anos** (histórico com sazonalidade e um período de _drift_ proposital, para o monitor detectar). **Nenhum dado real de cliente** é usado ou versionado; a modelagem apenas se inspira na *estrutura* típica do domínio.
+- **Sintéticos e determinísticos.** Uma empresa fictícia (**Trans Fictício BR**), com dados gerados por semente fixa cobrindo **vários anos** (histórico com sazonalidade e um período de _drift_ proposital, para o monitor detectar). **Nenhum dado real de cliente** é usado ou versionado; a modelagem apenas se inspira na *estrutura* típica do domínio.
 - **Imperfeitos de propósito.** Dado real vem sujo, então o gerador planta imperfeições realistas (nulos, duplicatas, chaves órfãs entre sistemas, itens sem valor fiscal). O bronze recebe tudo cru; o tratamento **bronze → silver** corrige com regras explícitas e testadas, guiado por EDA de qualidade.
 - **Reprodutível:** quem clona o repositório e preenche o `.env` regenera a base do zero, sem depender de arquivos externos.
 
@@ -64,6 +84,7 @@ logistica-otif-mlops/
 │   ├── api_custos/              # a API do sistema financeiro (a segunda fonte)
 │   ├── seed/                    # geração e publicação da base sintética
 │   └── dicionario.py            # gera o dicionário de dados a partir do banco
+├── assets/                      # identidade visual (logos)
 ├── infra/                       # o ambiente do CLIENTE (containers das fontes)
 ├── sql/                         # relatórios de referência reproduzidos
 ├── notebooks/                   # exploração, por domínio (operacional/financeiro)

@@ -1,4 +1,4 @@
-"""Models do banco da TransBrasil, espelho 1:1 do MER congelado (docs/02).
+"""Models do banco da Trans Fictício BR, espelho 1:1 do MER congelado (docs/02).
 
 Organizados pelos grupos do MER: cadastro, configuração, movimento (schema
 `operacao`) e financeiro (schema `custos`). Importar todos aqui registra as

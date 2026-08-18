@@ -116,7 +116,7 @@ As dez etapas do ciclo de vida do pedido (EA → CE).
 
 ### `operacao.item`  ·  6.804 linhas
 
-Catálogo por cliente (SKU). O material é do cliente; a TransBrasil apenas guarda e movimenta.
+Catálogo por cliente (SKU). O material é do cliente; a Trans Fictício BR apenas guarda e movimenta.
 
 | Coluna | Tipo | Obrig. | Significado |
 |---|---|---|---|

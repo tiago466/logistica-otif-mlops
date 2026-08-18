@@ -1,7 +1,7 @@
 """Seed módulo 1: organizações, endereços-sede e locais de estoque.
 
 Lê os CSVs versionados em `seed/dados/` e carrega, NESTA ordem (o id 1 é a
-matriz, decisão do Tiago): TransBrasil → 36 bases → 203 clientes. Cria o
+matriz, decisão do Tiago): Trans Fictício BR → 36 bases → 203 clientes. Cria o
 endereço-sede de cada organização e os locais de estoque (4 galpões da matriz
 + 1 depósito por base). Determinístico (semente fixa) e idempotente (aborta
 se já houver organizações).
@@ -86,7 +86,7 @@ def executar() -> None:
 
 
 def _carregar(sessao: Session, rng: random.Random) -> None:
-    # 1) matriz + bases (a ordem do CSV garante TBR primeiro → id 1)
+    # 1) matriz + bases (a ordem do CSV garante TFB primeiro → id 1)
     for linha in _ler_csv("organizacoes_matriz_bases.csv"):
         org = Organizacao(
             sigla=linha["sigla"],

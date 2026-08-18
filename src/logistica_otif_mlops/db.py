@@ -1,6 +1,6 @@
 """Camada de banco de dados: engine, sessão e a Base dos models.
 
-O banco simula os sistemas da TransBrasil em dois schemas Postgres:
+O banco simula os sistemas da Trans Fictício BR em dois schemas Postgres:
 `operacao` (WMS/TMS) e `custos` (financeiro, servido pela API). A URL vem
 sempre do ambiente (12-factor), nunca do código.
 """

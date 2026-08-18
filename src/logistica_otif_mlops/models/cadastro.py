@@ -1,4 +1,4 @@
-"""Grupo CADASTRO do schema `operacao`: quem existe no mundo da TransBrasil.
+"""Grupo CADASTRO do schema `operacao`: quem existe no mundo da Trans Fictício BR.
 
 Decisões espelhadas do MER (docs/02): padrão Party na ORGANIZACAO; endereços
 carregam a identidade do ponto de entrega (nome_local/documento); catálogo de

@@ -6,7 +6,7 @@
 [← Documentação](README.md) | [Entendimento do negócio](01_entendimento_do_negocio.md) | [Entendimento dos dados](02_entendimento_dos_dados.md)
 <!-- nav:end -->
 
-> Como conectar nas duas fontes da TransBrasil: o **banco relacional** (operação) e a **API financeira** (custos). Serve para quem vai explorar em SQL, para quem vai plugar um BI e para quem vai consumir pelo pipeline.
+> Como conectar nas duas fontes da Trans Fictício BR: o **banco relacional** (operação) e a **API financeira** (custos). Serve para quem vai explorar em SQL, para quem vai plugar um BI e para quem vai consumir pelo pipeline.
 
 ## 1. As duas fontes, e por que são duas
 
@@ -27,8 +27,8 @@ docker compose up -d      # sobe o AMBIENTE DO CLIENTE (banco + API financeira)
 
 | Container | Papel | Porta |
 |---|---|---|
-| `transbrasil-postgres` | banco do sistema operacional (TBW) | 5432 |
-| `transbrasil-api-financeira` | sistema financeiro de terceiro | 8100 |
+| `tfb-postgres` | banco do sistema operacional (TBW) | 5432 |
+| `tfb-api-financeira` | sistema financeiro de terceiro | 8100 |
 
 Manter essa separação evita uma armadilha silenciosa: com tudo no mesmo processo, é fácil o pipeline "espiar" o banco do financeiro em vez de consumir a API. Funcionaria na máquina do analista e quebraria no cliente, onde esse banco simplesmente não é acessível. Fronteira que existe só na disciplina de quem escreve não é fronteira.
 

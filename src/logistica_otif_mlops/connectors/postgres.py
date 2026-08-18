@@ -1,4 +1,4 @@
-"""Adaptador de Postgres: a fonte operacional da TransBrasil.
+"""Adaptador de Postgres: a fonte operacional da Trans Fictício BR.
 
 Implementa o contrato `Conector` lendo SQL e devolvendo DataFrame. O consumidor
 (pipeline, notebook) não sabe se por trás há um Postgres local, um Neon ou um

@@ -1,4 +1,4 @@
-"""Schema `custos`: o sistema FINANCEIRO da TransBrasil (servido pela API).
+"""Schema `custos`: o sistema FINANCEIRO da Trans Fictício BR (servido pela API).
 
 Sistema de terceiro, de propósito: **nenhuma FK para o schema `operacao`**.
 A ligação com o mundo é por chave de negócio (`cliente_sigla`,
@@ -50,7 +50,7 @@ class CategoriaCusto(Base):
 
 
 class FaturamentoOperacao(Base):
-    """Receita por operação/competência (o lado que a TransBrasil cobra)."""
+    """Receita por operação/competência (o lado que a Trans Fictício BR cobra)."""
 
     __tablename__ = "faturamento_operacao"
     __table_args__ = (
@@ -73,7 +73,7 @@ class FaturamentoOperacao(Base):
 
 
 class CustoOperacao(Base):
-    """Custo variável por operação/competência (o lado que a TransBrasil paga)."""
+    """Custo variável por operação/competência (o lado que a Trans Fictício BR paga)."""
 
     __tablename__ = "custo_operacao"
     __table_args__ = ({"schema": SCHEMA_CUSTOS},)

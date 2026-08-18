@@ -1,20 +1,22 @@
 <a id="topo"></a>
 
-# Entendimento do Negócio · TransBrasil (CRISP-DM · Etapa 1)
+# Entendimento do Negócio · Trans Fictício BR (CRISP-DM · Etapa 1)
 
 <!-- nav:start -->
 [← Índice CRISP-DM](README.md) | [Entendimento dos Dados »](02_entendimento_dos_dados.md)
 <!-- nav:end -->
 
-> A primeira etapa do método CRISP-DM: entender o **negócio** antes dos dados. Este documento consolida as **entrevistas de discovery** com os stakeholders da TransBrasil: a história da empresa, as pessoas, as dores e as perguntas que este projeto responde. Empresa, pessoas e dados são **100% fictícios**; declarações divergentes dos entrevistados foram **mantidas de propósito** (validá-las contra os dados é parte do trabalho).
+> A primeira etapa do método CRISP-DM: entender o **negócio** antes dos dados. Este documento consolida as **entrevistas de discovery** com os stakeholders da Trans Fictício BR: a história da empresa, as pessoas, as dores e as perguntas que este projeto responde. Empresa, pessoas e dados são **100% fictícios**; declarações divergentes dos entrevistados foram **mantidas de propósito** (validá-las contra os dados é parte do trabalho).
+
+> ⚠️ **A Trans Fictício BR não existe.** É uma empresa inventada para este portfólio, com dados gerados por código. Pessoas, clientes, números e conflitos narrados abaixo são ficção construída para exercitar o método de análise. **Qualquer semelhança com empresas reais, inclusive homônimas, é mera coincidência, e não há qualquer afiliação.**
 
 ## 1. A história da empresa
 
-A **TransBrasil** nasceu em **2010**, em Joinville/SC, como uma transportadora familiar: os primeiros clientes eram parentes e amigos do fundador, com fábricas, lojas e produção agrícola. Quando esses parceiros passaram a precisar guardar mercadoria antes de entregar, a empresa descobriu a **armazenagem**, e o alcance cresceu: da região para o Sul, do Sul para o Sudeste.
+A **Trans Fictício BR** nasceu em **2010**, em Joinville/SC, como uma transportadora familiar: os primeiros clientes eram parentes e amigos do fundador, com fábricas, lojas e produção agrícola. Quando esses parceiros passaram a precisar guardar mercadoria antes de entregar, a empresa descobriu a **armazenagem**, e o alcance cresceu: da região para o Sul, do Sul para o Sudeste.
 
-Até 2015, tudo era controlado em **planilhas e drive** ("um milagre", nas palavras do dono). Em **2016**, dois eventos mudaram a empresa: ela tornou-se **base regional de uma grande transportadora de São Paulo** (absorvendo, na prática, um treinamento completo do modelo de operação logística que replicaria depois com bases parceiras pelo país) e implantou o **TBW (TransBrasil Warehouse)**, o WMS próprio construído pelo novo departamento de TI. É por isso que o histórico de dados começa em 2016.
+Até 2015, tudo era controlado em **planilhas e drive** ("um milagre", nas palavras do dono). Em **2016**, dois eventos mudaram a empresa: ela tornou-se **base regional de uma grande transportadora de São Paulo** (absorvendo, na prática, um treinamento completo do modelo de operação logística que replicaria depois com bases parceiras pelo país) e implantou o **TBW (Trans Fictício BR Warehouse)**, o WMS próprio construído pelo novo departamento de TI. É por isso que o histórico de dados começa em 2016.
 
-Em **2017** chegaram os dois primeiros clientes MEGA: **Woonka Chocolates** e **Derma Health**, multinacionais com distribuição nacional. A credibilidade disparou, e entre **2018 e 2020** a carteira viveu seu boom (impulsionada também pelo salto logístico da pandemia). No auge, a TransBrasil atendeu **~105 clientes ativos**, chegando a **45 GRANDES e 15 MEGA** simultâneos.
+Em **2017** chegaram os dois primeiros clientes MEGA: **Woonka Chocolates** e **Derma Health**, multinacionais com distribuição nacional. A credibilidade disparou, e entre **2018 e 2020** a carteira viveu seu boom (impulsionada também pelo salto logístico da pandemia). No auge, a Trans Fictício BR atendeu **~105 clientes ativos**, chegando a **45 GRANDES e 15 MEGA** simultâneos.
 
 O sonho azedou: os grandes clientes passaram a **consumir a operação inteira**, os custos explodiram (horas extras, folha, freelancers), o nível de serviço derreteu e a reputação junto (avaliação no Google de 4.8 para 3.0). A partir de **2023** a saída de clientes acelerou; **2025 foi o ano do êxodo**, em todos os portes, com vários grandes migrando para a concorrência, mesmo depois de renegociações agressivas de contrato. Hoje (**2026**) a carteira tem **98 clientes ativos (20 GRANDES, 7 MEGA)**, nenhum cancelamento no ano e três entradas novas: os problemas continuam, em menor intensidade.
 
@@ -94,7 +96,7 @@ As entrevistas produziram números **parcialmente divergentes**, mantidos aqui c
 
 ### 7.2. Raio-x de margens (Data Discovery)
 
-- Reconstruir o relatório de MC da Dna. Sarah por pipeline (receita × custos × impostos por operação) e responder com evidência: **quem sustenta a TransBrasil e quem é sustentado por ela**, por cliente, porte, stream e período, incluindo os efeitos do serviço exclusivo, do aging de estoque e das multas contratuais.
+- Reconstruir o relatório de MC da Dna. Sarah por pipeline (receita × custos × impostos por operação) e responder com evidência: **quem sustenta a Trans Fictício BR e quem é sustentado por ela**, por cliente, porte, stream e período, incluindo os efeitos do serviço exclusivo, do aging de estoque e das multas contratuais.
 
 ## 8. Restrições e riscos
 

@@ -24,7 +24,7 @@ TABELAS: dict[str, str] = {
     "operacao.endereco": "Ponto no mapa de qualquer organização. Para destinatário, "
         "guarda também o nome do local e o documento (a NF é emitida contra ele).",
     "operacao.item": "Catálogo por cliente (SKU). O material é do cliente; a "
-        "TransBrasil apenas guarda e movimenta.",
+        "Trans Fictício BR apenas guarda e movimenta.",
     "operacao.local_estoque": "Galpão da matriz ou depósito de base. É onde a coleta "
         "física acontece, e a divisão por local gera as ordens de coleta.",
     "operacao.transportador": "Frota própria, transportadora, agregado ou carreteiro.",

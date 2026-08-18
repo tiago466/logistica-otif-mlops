@@ -299,7 +299,7 @@ def _transporte(ctx: Contexto, rng: random.Random, cur: Any, mes: date, prox: da
     # rateio mensal de insumos (embalagem/produção) e apuração do DIFAL
     for sigla, linhas in linhas_cliente.items():
         seq_cus += 1
-        custos.append((seq_cus, sigla, None, cat["INSUMOS"], "Almoxarifado TransBrasil",
+        custos.append((seq_cus, sigla, None, cat["INSUMOS"], "Almoxarifado Trans Fictício BR",
                        round(linhas * INSUMO_POR_LINHA * rng.uniform(0.85, 1.2), 2), mes))
     for sigla, base in base_difal.items():
         seq_cus += 1

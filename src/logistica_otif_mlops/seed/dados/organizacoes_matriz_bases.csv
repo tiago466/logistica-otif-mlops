@@ -1,5 +1,5 @@
 sigla,razao_social,nome_fantasia,cnpj,tipo_parceria,porte,segmento,fl_entrega_agendada,dt_inicio_contrato,dt_cancelamento,ativo,cidade_sede,uf_sede,nivel_infra
-TBR,TransBrasil Logística Integrada LTDA,TransBrasil,92482096000190,MATRIZ,,LOGISTICA,,2016-01-04,,True,Joinville,SC,ALTA
+TFB,Trans Fictício BR Logística Integrada LTDA,Trans Fictício BR,92482096000190,MATRIZ,,LOGISTICA,,2016-01-04,,True,Joinville,SC,ALTA
 BSP,São Paulo Log LTDA,São Paulo Log,89028599000185,BASE,,LOGISTICA,,2019-06-03,,True,São Paulo,SP,ALTA
 BCA,Campinas Cargas LTDA,Campinas Cargas,83453364000154,BASE,,LOGISTICA,,2017-02-23,,True,Campinas,SP,ALTA
 BSO,Sorocaba Express Logística LTDA,Sorocaba Express Logística,17663667000177,BASE,,LOGISTICA,,2019-01-25,,True,Sorocaba,SP,MEDIA

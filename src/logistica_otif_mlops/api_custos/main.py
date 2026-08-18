@@ -1,4 +1,4 @@
-"""API do sistema financeiro da TransBrasil (o "sistema de terceiro" do cenário).
+"""API do sistema financeiro da Trans Fictício BR (o "sistema de terceiro" do cenário).
 
 No mundo do case, o financeiro **não** é um banco que a gente consulta à vontade:
 é um sistema de outro fornecedor, que expõe os dados por API com chave. Esta é a
@@ -41,10 +41,10 @@ LIMITE_MAXIMO = 1000
 LIMITE_PADRAO = 100
 
 app = FastAPI(
-    title="TransBrasil · API Financeira",
+    title="Trans Fictício BR · API Financeira",
     version="1.0.0",
     description=(
-        "Faturamento e custos operacionais da TransBrasil. "
+        "Faturamento e custos operacionais da Trans Fictício BR. "
         "Autenticação por chave no cabeçalho `X-API-Key`."
     ),
 )

@@ -1,16 +1,16 @@
 <a id="topo"></a>
 
-# Entendimento dos Dados · TransBrasil (CRISP-DM · Etapa 2)
+# Entendimento dos Dados · Trans Fictício BR (CRISP-DM · Etapa 2)
 
 <!-- nav:start -->
 [← Índice CRISP-DM](README.md) | [« Entendimento do Negócio](01_entendimento_do_negocio.md)
 <!-- nav:end -->
 
-> A segunda etapa do CRISP-DM: **onde os dados moram, como são servidos e qual é o seu modelo**. Aqui vive o MER (Modelo Entidade-Relacionamento) dos dois sistemas da TransBrasil. O Mermaid versionado neste arquivo é a **fonte da verdade** do desenho; o físico (models/migrations) deriva dele. Dados 100% sintéticos.
+> A segunda etapa do CRISP-DM: **onde os dados moram, como são servidos e qual é o seu modelo**. Aqui vive o MER (Modelo Entidade-Relacionamento) dos dois sistemas da Trans Fictício BR. O Mermaid versionado neste arquivo é a **fonte da verdade** do desenho; o físico (models/migrations) deriva dele. Dados 100% sintéticos.
 
 ## 1. Os dois sistemas (e as duas formas de acesso)
 
-A TransBrasil, como toda empresa real, não tem "um banco": tem **sistemas**. O João (TI) nos dá acesso a dois:
+A Trans Fictício BR, como toda empresa real, não tem "um banco": tem **sistemas**. O João (TI) nos dá acesso a dois:
 
 | Sistema | Conteúdo | Como é servido | Schema |
 |---|---|---|---|
@@ -21,7 +21,7 @@ A TransBrasil, como toda empresa real, não tem "um banco": tem **sistemas**. O 
 
 ## 2. A malha física: Matriz, galpões e Bases
 
-A TransBrasil opera a partir da **Matriz** (Santa Catarina), cujo estoque se distribui em **galpões internos** (locais de estoque, ex.: TB1, G2). Para alcançar o país, mantém **Bases regionais**: prestadoras de serviço parceiras que funcionam como ponto avançado (recebem, estocam e entregam). Dentro de cada galpão, o WMS endereça fisicamente cada item no padrão **`ÁREA.RUA.NÍVEL.POSIÇÃO`** (ex.: `TB1.T.36.1`); esse endereçamento fino é conceito do domínio documentado aqui, mas fica **fora do modelo v1** (uma posição abriga vários SKUs, exigiria tabelas próprias de WMS sem ganho para OTIF/MC). Um pedido pode ser atendido de três formas (campo `tipo_atendimento`, definido no planejamento):
+A Trans Fictício BR opera a partir da **Matriz** (Santa Catarina), cujo estoque se distribui em **galpões internos** (locais de estoque, ex.: TB1, G2). Para alcançar o país, mantém **Bases regionais**: prestadoras de serviço parceiras que funcionam como ponto avançado (recebem, estocam e entregam). Dentro de cada galpão, o WMS endereça fisicamente cada item no padrão **`ÁREA.RUA.NÍVEL.POSIÇÃO`** (ex.: `TB1.T.36.1`); esse endereçamento fino é conceito do domínio documentado aqui, mas fica **fora do modelo v1** (uma posição abriga vários SKUs, exigiria tabelas próprias de WMS sem ganho para OTIF/MC). Um pedido pode ser atendido de três formas (campo `tipo_atendimento`, definido no planejamento):
 
 | Tipo | Fluxo | O prazo (OTIF) é medido em |
 |---|---|---|
@@ -38,7 +38,7 @@ erDiagram
     %% ============ CADASTRO ============
     ORGANIZACAO {
         bigint id PK
-        varchar sigla UK "ex.: DHC, WCH, TBR"
+        varchar sigla UK "ex.: DHC, WCH, TFB"
         varchar razao_social
         varchar nome_fantasia "ex.: DermaHealth Cosmeticos"
         varchar cnpj UK
@@ -385,8 +385,8 @@ O modelo da Seção 3 é a **sombra do processo**. Se alguma cena ficasse sem ta
 | EC · Expedição | Joel + transportador | pedidos **consolidados num embarque**; caminhão sai | `PEDIDO_FASE` (EC); **`MINUTA`** + `ENTREGA` (pernas DIRETA/TRANSFERENCIA_BASE) |
 | CE · Confirmação de Entrega | motorista, Base ou recebedor | chegada confirmada (ou não); via Base: última milha ou retirada | `ENTREGA` (`dt_chegada`, `fl_sucesso`, `recebedor`); `RETIRADA_BASE`; falha vira `OCORRENCIA` + nova `ENTREGA` |
 | Fluxo paralelo: coleta reversa | cliente → Joel + transportador | material do cliente é buscado num ponto e trazido ao estoque (OS própria) | `COLETA`; receita/custo tipo COLETA no financeiro |
-| Fluxo paralelo: positivação | cliente → montador parceiro | material enviado a um evento é montado no local por parceiro pago pela TransBrasil | `POSITIVACAO`; receita tipo POSITIVACAO + custo MONTADOR |
-| Pós-fluxo financeiro | Dna. Sarah · sistema terceiro | prestadores cobram; TransBrasil fatura frete, armazenagem e serviços; impostos (DIFAL) e insumos lançados | `CUSTO_OPERACAO`, `FATURAMENTO_OPERACAO`, `TARIFA_ARMAZENAGEM`, `PARAMETRO_FINANCEIRO` |
+| Fluxo paralelo: positivação | cliente → montador parceiro | material enviado a um evento é montado no local por parceiro pago pela Trans Fictício BR | `POSITIVACAO`; receita tipo POSITIVACAO + custo MONTADOR |
+| Pós-fluxo financeiro | Dna. Sarah · sistema terceiro | prestadores cobram; Trans Fictício BR fatura frete, armazenagem e serviços; impostos (DIFAL) e insumos lançados | `CUSTO_OPERACAO`, `FATURAMENTO_OPERACAO`, `TARIFA_ARMAZENAGEM`, `PARAMETRO_FINANCEIRO` |
 
 O **Sr. Abraão** e o **Sr. Elias** não escrevem dado nenhum: consomem indicadores. O modo de emergência do Elias (rodoviário → aéreo) imprime custo `AEREO` em pedido rodoviário, padrão que o raio-x da Dna. Sarah deve reencontrar.
 
@@ -425,12 +425,12 @@ Antes de propor qualquer indicador novo, o projeto **reproduz os relatórios que
 
 ### 8.1 A régua de prazo (definida pelo Sr. Elias)
 
-A pergunta "o pedido atrasou?" não tem uma resposta só: depende de quem tem a responsabilidade na ponta. O princípio acordado é que **a TransBrasil responde até deixar o material disponível**; o tempo que o cliente leva para buscar não conta contra a operação.
+A pergunta "o pedido atrasou?" não tem uma resposta só: depende de quem tem a responsabilidade na ponta. O princípio acordado é que **a Trans Fictício BR responde até deixar o material disponível**; o tempo que o cliente leva para buscar não conta contra a operação.
 
 | Tipo de atendimento | Marco que define o cumprimento |
 |---|---|
 | Entrega (direta ou via base) | chegada da entrega efetiva ≤ `dt_prazo_entrega` |
-| Retira em galpão da TransBrasil | fim da fase **ME** (material pronto) ≤ `dt_prazo_entrega` |
+| Retira em galpão da Trans Fictício BR | fim da fase **ME** (material pronto) ≤ `dt_prazo_entrega` |
 | Retira em base parceira | `dt_entrada_base` ≤ `dt_prazo_entrega` |
 
 Essa régua é a **definição do alvo** do modelo preditivo: entregue no prazo (0) ou em atraso (1).

@@ -1,6 +1,6 @@
 # O AMBIENTE DO CLIENTE, não o projeto de dados.
 #
-# Aqui sobem os dois sistemas que a TransBrasil disponibilizou, cada um no seu
+# Aqui sobem os dois sistemas que a Trans Fictício BR disponibilizou, cada um no seu
 # container, como estariam em servidores diferentes na vida real:
 #
 #   postgres        → o banco do sistema operacional (TBW), acesso direto
@@ -16,11 +16,11 @@
 services:
   postgres:
     image: postgres:16-alpine
-    container_name: transbrasil-postgres
+    container_name: tfb-postgres
     environment:
-      POSTGRES_USER: ${POSTGRES_USER:-transbrasil}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-transbrasil}
-      POSTGRES_DB: ${POSTGRES_DB:-transbrasil}
+      POSTGRES_USER: ${POSTGRES_USER:-tfb}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-tfb}
+      POSTGRES_DB: ${POSTGRES_DB:-tfb}
     ports:
       - "5432:5432"
     # o padrão do Docker é 64 MB de /dev/shm, e o Postgres usa memória
@@ -30,7 +30,7 @@ services:
     volumes:
       - pgdata:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-transbrasil} -d ${POSTGRES_DB:-transbrasil}"]
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-tfb} -d ${POSTGRES_DB:-tfb}"]
       interval: 5s
       timeout: 3s
       retries: 10
@@ -39,14 +39,14 @@ services:
     build:
       context: .
       dockerfile: infra/api_financeira/Dockerfile
-    container_name: transbrasil-api-financeira
+    container_name: tfb-api-financeira
     environment:
       AMBIENTE: hmlg
       # A chave e a origem dos dados vêm do `.env` (nunca ficam escritas aqui).
       # Em produção a API lê o Neon; localmente, o container do Postgres — e é
       # por isso que o host é `postgres`, o nome do serviço na rede do compose.
       CUSTOS_API_KEY: ${CUSTOS_API_KEY:?defina CUSTOS_API_KEY no .env}
-      CUSTOS_API_DATABASE_URL: ${CUSTOS_API_DATABASE_URL:-postgresql://${POSTGRES_USER:-transbrasil}:${POSTGRES_PASSWORD:-transbrasil}@postgres:5432/${POSTGRES_DB:-transbrasil}}
+      CUSTOS_API_DATABASE_URL: ${CUSTOS_API_DATABASE_URL:-postgresql://${POSTGRES_USER:-tfb}:${POSTGRES_PASSWORD:-tfb}@postgres:5432/${POSTGRES_DB:-tfb}}
     ports:
       - "8100:8100"
     depends_on:

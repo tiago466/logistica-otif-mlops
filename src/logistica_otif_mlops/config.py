@@ -33,7 +33,7 @@ class Settings(BaseSettings):
 
     ambiente: Ambiente = "dev"
 
-    # Banco relacional da TransBrasil (schemas operacao + custos).
+    # Banco relacional da Trans Fictício BR (schemas operacao + custos).
     # dev: Postgres do docker-compose; hmlg: Neon.
     database_url: str | None = None
 

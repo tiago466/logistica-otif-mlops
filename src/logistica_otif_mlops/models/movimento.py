@@ -1,4 +1,4 @@
-"""Grupo MOVIMENTO do schema `operacao`: o que acontece na TransBrasil.
+"""Grupo MOVIMENTO do schema `operacao`: o que acontece na Trans Fictício BR.
 
 O coração do modelo: o pedido e sua vida (fases, DOCs, minutas, entregas,
 ocorrências), a entrada de material (recebimento), a foto do estoque e os

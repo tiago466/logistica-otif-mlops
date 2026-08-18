@@ -9,7 +9,7 @@
 # Deploy: no painel do Render, New > Blueprint, apontando para este repositório.
 services:
   - type: web
-    name: transbrasil-api-financeira
+    name: tfb-api-financeira
     runtime: python
     plan: free
     region: oregon

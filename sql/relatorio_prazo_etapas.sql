@@ -12,9 +12,9 @@
 --
 -- Régua de cumprimento de prazo (definida pelo Sr. Elias em 04/08/2026):
 --   ENTREGA (direta ou via base) → chegada da entrega efetiva
---   RETIRA em galpão TransBrasil → fim do MANUSEIO (material pronto)
+--   RETIRA em galpão Trans Fictício BR → fim do MANUSEIO (material pronto)
 --   RETIRA em base               → entrada na base
---   O princípio: a TransBrasil responde até deixar o material DISPONÍVEL;
+--   O princípio: a Trans Fictício BR responde até deixar o material DISPONÍVEL;
 --   a demora do cliente em buscar não conta contra a operação.
 --
 -- Parâmetro: ajuste a janela no filtro final (hoje: mês de referência).
@@ -112,7 +112,7 @@ passagem_base as (
   select e.pedido_id,
          max(e.dt_chegada) as chegada_base,
          max(e.dt_entrada_base) as entrada_base,
-         -- MATRIZ = retirada no galpão da TransBrasil; BASE = parceira
+         -- MATRIZ = retirada no galpão da Trans Fictício BR; BASE = parceira
          max(o.tipo_parceria) as tipo_local,
          max(o.nome_fantasia) as parceiro
   from operacao.entrega e
