@@ -1,0 +1,677 @@
+chave_endereco,cadastros_no_grupo,id,nome_local,logradouro,bairro,cidade,uf,cep
+ruadasflores3796|saopaulo|SP,4,8609,Mercado do Vale,"Rua das Flores, 3796",Industrial,São Paulo,SP,63304980
+ruadasflores3796|saopaulo|SP,4,8656,Distribuidora Popular,"Rua das Flores, 3796",Centro,São Paulo,SP,39095670
+ruadasflores3796|saopaulo|SP,4,11989,Loja Ideal,"Rua das Flores, 3796",Jardim,São Paulo,SP,14922290
+ruadasflores3796|saopaulo|SP,4,14041,Distribuidora do Vale,"Rua das Flores, 3796",Vila Nova,São Paulo,SP,87923380
+ruabrasil1713|saopaulo|SP,3,1677,Clínica Central,"Rua Brasil, 1713",Centro,São Paulo,SP,14519130
+ruabrasil1713|saopaulo|SP,3,13037,Consultório Sul,"Rua Brasil, 1713",Vila Nova,São Paulo,SP,26352560
+ruabrasil1713|saopaulo|SP,3,15015,Clínica Popular,"Rua Brasil, 1713",Vila Nova,São Paulo,SP,29744150
+ruabrasil3919|saopaulo|SP,3,2477,Clínica Central,"Rua Brasil, 3919",Jardim,São Paulo,SP,16993560
+ruabrasil3919|saopaulo|SP,3,8758,Clínica do Vale,"Rua Brasil, 3919",Industrial,São Paulo,SP,89123760
+ruabrasil3919|saopaulo|SP,3,13742,Atacado Sul,"Rua Brasil, 3919",Centro,São Paulo,SP,64791370
+ruadasflores2167|saopaulo|SP,3,2318,Loja Norte,"Rua das Flores, 2167",Jardim,São Paulo,SP,47841920
+ruadasflores2167|saopaulo|SP,3,2907,Clínica Real,"Rua das Flores, 2167",Jardim,São Paulo,SP,69253930
+ruadasflores2167|saopaulo|SP,3,11725,Clínica Sul,"Rua das Flores, 2167",Centro,São Paulo,SP,60047810
+ruadasflores2179|saopaulo|SP,3,2772,Loja Sul,"Rua das Flores, 2179",Jardim,São Paulo,SP,91824510
+ruadasflores2179|saopaulo|SP,3,6461,Distribuidora Norte,"Rua das Flores, 2179",Vila Nova,São Paulo,SP,60835260
+ruadasflores2179|saopaulo|SP,3,10744,Distribuidora Popular,"Rua das Flores, 2179",Vila Nova,São Paulo,SP,19993590
+ruadasflores2869|curitiba|PR,3,5430,Centro de Distribuição Central,"Rua das Flores, 2869",Industrial,Curitiba,PR,76347020
+ruadasflores2869|curitiba|PR,3,12408,Mercado do Vale,"Rua das Flores, 2869",Industrial,Curitiba,PR,32869310
+ruadasflores2869|curitiba|PR,3,17042,Farmácia Ideal,"Rua das Flores, 2869",Centro,Curitiba,PR,16284580
+ruaxvdenovembro2577|saopaulo|SP,3,360,Mercado Central,"Rua Xv de Novembro, 2577",Jardim,São Paulo,SP,21116520
+ruaxvdenovembro2577|saopaulo|SP,3,8018,Farmácia Ideal,"Rua Xv de Novembro, 2577",Industrial,São Paulo,SP,50210490
+ruaxvdenovembro2577|saopaulo|SP,3,14313,Consultório Ideal,"Rua Xv de Novembro, 2577",Jardim,São Paulo,SP,46010050
+ruaxvdenovembro3143|saopaulo|SP,3,3777,Farmácia Real,"Rua Xv de Novembro, 3143",Centro,São Paulo,SP,58780200
+ruaxvdenovembro3143|saopaulo|SP,3,3995,Centro de Distribuição Central,"Rua Xv de Novembro, 3143",Jardim,São Paulo,SP,76559130
+ruaxvdenovembro3143|saopaulo|SP,3,15314,Centro de Distribuição do Vale,"Rua Xv de Novembro, 3143",Jardim,São Paulo,SP,74557760
+ruaxvdenovembro3874|saopaulo|SP,3,1229,Loja Popular,"Rua Xv de Novembro, 3874",Jardim,São Paulo,SP,93892890
+ruaxvdenovembro3874|saopaulo|SP,3,3180,Consultório Central,"Rua Xv de Novembro, 3874",Jardim,São Paulo,SP,23183050
+ruaxvdenovembro3874|saopaulo|SP,3,5331,Distribuidora Real,"Rua Xv de Novembro, 3874",Vila Nova,São Paulo,SP,85548330
+ruabrasil1011|belohorizonte|MG,2,7407,Farmácia Norte,"Rua Brasil, 1011",Industrial,Belo Horizonte,MG,87817360
+ruabrasil1011|belohorizonte|MG,2,10217,Atacado Sul,"Rua Brasil, 1011",Industrial,Belo Horizonte,MG,11621820
+ruabrasil1057|saopaulo|SP,2,9072,Mercado Real,"Rua Brasil, 1057",Industrial,São Paulo,SP,54492500
+ruabrasil1057|saopaulo|SP,2,18297,Farmácia Norte,"Rua Brasil, 1057",Vila Nova,São Paulo,SP,78816600
+ruabrasil1113|saopaulo|SP,2,276,Atacado do Vale,"Rua Brasil, 1113",Jardim,São Paulo,SP,61862180
+ruabrasil1113|saopaulo|SP,2,16622,Atacado Central,"Rua Brasil, 1113",Vila Nova,São Paulo,SP,74491530
+ruabrasil1148|riodejaneiro|RJ,2,12007,Loja Ideal,"Rua Brasil, 1148",Vila Nova,Rio de Janeiro,RJ,99365440
+ruabrasil1148|riodejaneiro|RJ,2,13918,Mercado Ideal,"Rua Brasil, 1148",Vila Nova,Rio de Janeiro,RJ,96677050
+ruabrasil1219|ananindeua|PA,2,3531,Loja Popular,"Rua Brasil, 1219",Industrial,Ananindeua,PA,95924780
+ruabrasil1219|ananindeua|PA,2,14702,Farmácia Norte,"Rua Brasil, 1219",Industrial,Ananindeua,PA,80132570
+ruabrasil1239|salvador|BA,2,16109,Centro de Distribuição Sul,"Rua Brasil, 1239",Industrial,Salvador,BA,28081130
+ruabrasil1239|salvador|BA,2,19604,Centro de Distribuição Sul,"Rua Brasil, 1239",Jardim,Salvador,BA,32452430
+ruabrasil1280|salvador|BA,2,419,Mercado Central,"Rua Brasil, 1280",Centro,Salvador,BA,13745800
+ruabrasil1280|salvador|BA,2,12762,Consultório Sul,"Rua Brasil, 1280",Industrial,Salvador,BA,85065490
+ruabrasil1305|belohorizonte|MG,2,10666,Loja Real,"Rua Brasil, 1305",Industrial,Belo Horizonte,MG,67943120
+ruabrasil1305|belohorizonte|MG,2,16340,Loja Popular,"Rua Brasil, 1305",Centro,Belo Horizonte,MG,49071710
+ruabrasil1403|saopaulo|SP,2,4928,Loja Ideal,"Rua Brasil, 1403",Industrial,São Paulo,SP,10899890
+ruabrasil1403|saopaulo|SP,2,19179,Clínica Central,"Rua Brasil, 1403",Jardim,São Paulo,SP,36980040
+ruabrasil1410|uberlandia|MG,2,4585,Loja Real,"Rua Brasil, 1410",Vila Nova,Uberlândia,MG,23454640
+ruabrasil1410|uberlandia|MG,2,13380,Centro de Distribuição do Vale,"Rua Brasil, 1410",Jardim,Uberlândia,MG,36426230
+ruabrasil1417|portoalegre|RS,2,4499,Loja Norte,"Rua Brasil, 1417",Vila Nova,Porto Alegre,RS,26282920
+ruabrasil1417|portoalegre|RS,2,14455,Atacado Ideal,"Rua Brasil, 1417",Vila Nova,Porto Alegre,RS,68746260
+ruabrasil1424|belohorizonte|MG,2,9360,Farmácia Norte,"Rua Brasil, 1424",Vila Nova,Belo Horizonte,MG,11972130
+ruabrasil1424|belohorizonte|MG,2,11767,Atacado Central,"Rua Brasil, 1424",Jardim,Belo Horizonte,MG,78513670
+ruabrasil1621|fortaleza|CE,2,382,Consultório Sul,"Rua Brasil, 1621",Vila Nova,Fortaleza,CE,77571990
+ruabrasil1621|fortaleza|CE,2,4926,Loja Popular,"Rua Brasil, 1621",Vila Nova,Fortaleza,CE,24537760
+ruabrasil1657|belohorizonte|MG,2,1484,Clínica Norte,"Rua Brasil, 1657",Vila Nova,Belo Horizonte,MG,23011250
+ruabrasil1657|belohorizonte|MG,2,6148,Loja Popular,"Rua Brasil, 1657",Centro,Belo Horizonte,MG,76307090
+ruabrasil1753|saopaulo|SP,2,6570,Clínica Popular,"Rua Brasil, 1753",Vila Nova,São Paulo,SP,98785350
+ruabrasil1753|saopaulo|SP,2,12571,Clínica Real,"Rua Brasil, 1753",Jardim,São Paulo,SP,38162150
+ruabrasil175|saopaulo|SP,2,8842,Centro de Distribuição Central,"Rua Brasil, 175",Jardim,São Paulo,SP,10173290
+ruabrasil175|saopaulo|SP,2,15332,Mercado Ideal,"Rua Brasil, 175",Vila Nova,São Paulo,SP,41104010
+ruabrasil176|riodejaneiro|RJ,2,1773,Clínica Norte,"Rua Brasil, 176",Vila Nova,Rio de Janeiro,RJ,43766410
+ruabrasil176|riodejaneiro|RJ,2,14029,Distribuidora Popular,"Rua Brasil, 176",Industrial,Rio de Janeiro,RJ,76045730
+ruabrasil1791|saopaulo|SP,2,5913,Clínica Real,"Rua Brasil, 1791",Jardim,São Paulo,SP,45170070
+ruabrasil1791|saopaulo|SP,2,14383,Distribuidora Central,"Rua Brasil, 1791",Industrial,São Paulo,SP,66337960
+ruabrasil1802|salvador|BA,2,1731,Consultório do Vale,"Rua Brasil, 1802",Centro,Salvador,BA,43618560
+ruabrasil1802|salvador|BA,2,12992,Loja Real,"Rua Brasil, 1802",Industrial,Salvador,BA,71561950
+ruabrasil181|riodejaneiro|RJ,2,6670,Mercado Central,"Rua Brasil, 181",Vila Nova,Rio de Janeiro,RJ,29352240
+ruabrasil181|riodejaneiro|RJ,2,13651,Centro de Distribuição Ideal,"Rua Brasil, 181",Jardim,Rio de Janeiro,RJ,38239580
+ruabrasil1831|natal|RN,2,1074,Consultório Norte,"Rua Brasil, 1831",Centro,Natal,RN,27461550
+ruabrasil1831|natal|RN,2,17799,Mercado Ideal,"Rua Brasil, 1831",Jardim,Natal,RN,51330020
+ruabrasil1936|niteroi|RJ,2,3736,Centro de Distribuição Norte,"Rua Brasil, 1936",Jardim,Niterói,RJ,26976280
+ruabrasil1936|niteroi|RJ,2,7729,Farmácia Popular,"Rua Brasil, 1936",Industrial,Niterói,RJ,95674830
+ruabrasil193|belohorizonte|MG,2,1473,Atacado Ideal,"Rua Brasil, 193",Jardim,Belo Horizonte,MG,30739110
+ruabrasil193|belohorizonte|MG,2,8964,Farmácia Real,"Rua Brasil, 193",Industrial,Belo Horizonte,MG,82171580
+ruabrasil2006|campinas|SP,2,11769,Mercado Norte,"Rua Brasil, 2006",Industrial,Campinas,SP,21171330
+ruabrasil2006|campinas|SP,2,18953,Consultório do Vale,"Rua Brasil, 2006",Jardim,Campinas,SP,38121430
+ruabrasil2014|riodejaneiro|RJ,2,7012,Loja Norte,"Rua Brasil, 2014",Vila Nova,Rio de Janeiro,RJ,52781840
+ruabrasil2014|riodejaneiro|RJ,2,8575,Farmácia Popular,"Rua Brasil, 2014",Centro,Rio de Janeiro,RJ,37885800
+ruabrasil202|riodejaneiro|RJ,2,4645,Clínica Popular,"Rua Brasil, 202",Industrial,Rio de Janeiro,RJ,80556830
+ruabrasil202|riodejaneiro|RJ,2,12389,Distribuidora Sul,"Rua Brasil, 202",Centro,Rio de Janeiro,RJ,24317970
+ruabrasil2035|guarulhos|SP,2,13974,Centro de Distribuição Popular,"Rua Brasil, 2035",Industrial,Guarulhos,SP,72084730
+ruabrasil2035|guarulhos|SP,2,17720,Distribuidora Norte,"Rua Brasil, 2035",Centro,Guarulhos,SP,44518890
+ruabrasil2066|campinas|SP,2,3682,Clínica Sul,"Rua Brasil, 2066",Industrial,Campinas,SP,10092000
+ruabrasil2066|campinas|SP,2,13807,Clínica Popular,"Rua Brasil, 2066",Industrial,Campinas,SP,41622220
+ruabrasil2092|portoalegre|RS,2,3524,Distribuidora Sul,"Rua Brasil, 2092",Industrial,Porto Alegre,RS,85846650
+ruabrasil2092|portoalegre|RS,2,17562,Centro de Distribuição Central,"Rua Brasil, 2092",Vila Nova,Porto Alegre,RS,57327670
+ruabrasil2162|saopaulo|SP,2,14336,Consultório Central,"Rua Brasil, 2162",Vila Nova,São Paulo,SP,73256840
+ruabrasil2162|saopaulo|SP,2,16125,Clínica Ideal,"Rua Brasil, 2162",Centro,São Paulo,SP,11191040
+ruabrasil2193|saopaulo|SP,2,5578,Farmácia do Vale,"Rua Brasil, 2193",Centro,São Paulo,SP,20129640
+ruabrasil2193|saopaulo|SP,2,12177,Atacado Central,"Rua Brasil, 2193",Jardim,São Paulo,SP,35309590
+ruabrasil2314|recife|PE,2,13549,Distribuidora Real,"Rua Brasil, 2314",Centro,Recife,PE,16739230
+ruabrasil2314|recife|PE,2,16945,Clínica Central,"Rua Brasil, 2314",Vila Nova,Recife,PE,12239370
+ruabrasil2317|santos|SP,2,9320,Centro de Distribuição Sul,"Rua Brasil, 2317",Industrial,Santos,SP,44010870
+ruabrasil2317|santos|SP,2,12145,Clínica Norte,"Rua Brasil, 2317",Jardim,Santos,SP,73365430
+ruabrasil2360|riodejaneiro|RJ,2,6727,Farmácia Central,"Rua Brasil, 2360",Centro,Rio de Janeiro,RJ,38462810
+ruabrasil2360|riodejaneiro|RJ,2,6762,Atacado Norte,"Rua Brasil, 2360",Jardim,Rio de Janeiro,RJ,78990930
+ruabrasil2388|saopaulo|SP,2,6353,Farmácia Real,"Rua Brasil, 2388",Centro,São Paulo,SP,13673420
+ruabrasil2388|saopaulo|SP,2,17130,Farmácia Norte,"Rua Brasil, 2388",Jardim,São Paulo,SP,54260310
+ruabrasil240|saopaulo|SP,2,1710,Mercado Real,"Rua Brasil, 240",Jardim,São Paulo,SP,44685780
+ruabrasil240|saopaulo|SP,2,4917,Consultório Central,"Rua Brasil, 240",Vila Nova,São Paulo,SP,44866890
+ruabrasil2471|curitiba|PR,2,2106,Distribuidora do Vale,"Rua Brasil, 2471",Vila Nova,Curitiba,PR,67337560
+ruabrasil2471|curitiba|PR,2,14745,Distribuidora Central,"Rua Brasil, 2471",Jardim,Curitiba,PR,60686230
+ruabrasil2516|saopaulo|SP,2,3536,Farmácia Norte,"Rua Brasil, 2516",Centro,São Paulo,SP,95331500
+ruabrasil2516|saopaulo|SP,2,13428,Loja Central,"Rua Brasil, 2516",Jardim,São Paulo,SP,55429240
+ruabrasil2537|saopaulo|SP,2,827,Clínica Norte,"Rua Brasil, 2537",Centro,São Paulo,SP,37523560
+ruabrasil2537|saopaulo|SP,2,4763,Loja do Vale,"Rua Brasil, 2537",Industrial,São Paulo,SP,80087980
+ruabrasil2588|saopaulo|SP,2,11204,Loja do Vale,"Rua Brasil, 2588",Vila Nova,São Paulo,SP,47897940
+ruabrasil2588|saopaulo|SP,2,13196,Centro de Distribuição Central,"Rua Brasil, 2588",Industrial,São Paulo,SP,19115820
+ruabrasil2656|portoalegre|RS,2,10064,Distribuidora Real,"Rua Brasil, 2656",Jardim,Porto Alegre,RS,11851230
+ruabrasil2656|portoalegre|RS,2,14032,Farmácia Central,"Rua Brasil, 2656",Jardim,Porto Alegre,RS,93532570
+ruabrasil2692|campinas|SP,2,4581,Mercado Popular,"Rua Brasil, 2692",Vila Nova,Campinas,SP,98582340
+ruabrasil2692|campinas|SP,2,16612,Consultório Popular,"Rua Brasil, 2692",Vila Nova,Campinas,SP,94933890
+ruabrasil2705|riodejaneiro|RJ,2,8273,Farmácia Central,"Rua Brasil, 2705",Vila Nova,Rio de Janeiro,RJ,86857460
+ruabrasil2705|riodejaneiro|RJ,2,14356,Centro de Distribuição Norte,"Rua Brasil, 2705",Vila Nova,Rio de Janeiro,RJ,61867170
+ruabrasil2744|saopaulo|SP,2,8037,Consultório Ideal,"Rua Brasil, 2744",Vila Nova,São Paulo,SP,67688330
+ruabrasil2744|saopaulo|SP,2,15978,Mercado Norte,"Rua Brasil, 2744",Jardim,São Paulo,SP,13383810
+ruabrasil2756|riodejaneiro|RJ,2,3724,Consultório Sul,"Rua Brasil, 2756",Jardim,Rio de Janeiro,RJ,26432930
+ruabrasil2756|riodejaneiro|RJ,2,15325,Atacado Ideal,"Rua Brasil, 2756",Industrial,Rio de Janeiro,RJ,73425470
+ruabrasil2813|saopaulo|SP,2,5678,Mercado Central,"Rua Brasil, 2813",Vila Nova,São Paulo,SP,48918950
+ruabrasil2813|saopaulo|SP,2,17184,Centro de Distribuição Real,"Rua Brasil, 2813",Industrial,São Paulo,SP,90644230
+ruabrasil3024|belohorizonte|MG,2,3104,Mercado Ideal,"Rua Brasil, 3024",Vila Nova,Belo Horizonte,MG,18676090
+ruabrasil3024|belohorizonte|MG,2,14092,Consultório Popular,"Rua Brasil, 3024",Centro,Belo Horizonte,MG,86568650
+ruabrasil3085|saopaulo|SP,2,9922,Consultório Ideal,"Rua Brasil, 3085",Centro,São Paulo,SP,79053500
+ruabrasil3085|saopaulo|SP,2,12567,Distribuidora Sul,"Rua Brasil, 3085",Centro,São Paulo,SP,79726090
+ruabrasil3259|curitiba|PR,2,18080,Atacado do Vale,"Rua Brasil, 3259",Industrial,Curitiba,PR,27627270
+ruabrasil3259|curitiba|PR,2,19167,Loja do Vale,"Rua Brasil, 3259",Vila Nova,Curitiba,PR,23791040
+ruabrasil3322|saopaulo|SP,2,5003,Loja Norte,"Rua Brasil, 3322",Vila Nova,São Paulo,SP,96168830
+ruabrasil3322|saopaulo|SP,2,8999,Farmácia Norte,"Rua Brasil, 3322",Industrial,São Paulo,SP,20504600
+ruabrasil3358|riodejaneiro|RJ,2,2720,Distribuidora Norte,"Rua Brasil, 3358",Vila Nova,Rio de Janeiro,RJ,68978370
+ruabrasil3358|riodejaneiro|RJ,2,3043,Farmácia do Vale,"Rua Brasil, 3358",Industrial,Rio de Janeiro,RJ,36312420
+ruabrasil3363|guarulhos|SP,2,12554,Atacado do Vale,"Rua Brasil, 3363",Centro,Guarulhos,SP,68878750
+ruabrasil3363|guarulhos|SP,2,14805,Atacado Central,"Rua Brasil, 3363",Vila Nova,Guarulhos,SP,97150460
+ruabrasil3435|saoluis|MA,2,1781,Clínica Sul,"Rua Brasil, 3435",Centro,São Luís,MA,26901370
+ruabrasil3435|saoluis|MA,2,12734,Mercado Real,"Rua Brasil, 3435",Centro,São Luís,MA,66320350
+ruabrasil3456|saopaulo|SP,2,9146,Loja Sul,"Rua Brasil, 3456",Centro,São Paulo,SP,78811700
+ruabrasil3456|saopaulo|SP,2,11018,Centro de Distribuição Popular,"Rua Brasil, 3456",Vila Nova,São Paulo,SP,61210470
+ruabrasil3487|pelotas|RS,2,1136,Loja Central,"Rua Brasil, 3487",Vila Nova,Pelotas,RS,87048520
+ruabrasil3487|pelotas|RS,2,11501,Consultório Ideal,"Rua Brasil, 3487",Centro,Pelotas,RS,17573780
+ruabrasil3532|saopaulo|SP,2,2685,Mercado do Vale,"Rua Brasil, 3532",Centro,São Paulo,SP,39837970
+ruabrasil3532|saopaulo|SP,2,18941,Distribuidora Popular,"Rua Brasil, 3532",Industrial,São Paulo,SP,94852150
+ruabrasil3545|maringa|PR,2,7389,Consultório Norte,"Rua Brasil, 3545",Industrial,Maringá,PR,57563510
+ruabrasil3545|maringa|PR,2,12745,Consultório Popular,"Rua Brasil, 3545",Vila Nova,Maringá,PR,53512860
+ruabrasil3551|saopaulo|SP,2,1277,Mercado Norte,"Rua Brasil, 3551",Industrial,São Paulo,SP,72270200
+ruabrasil3551|saopaulo|SP,2,9233,Loja Central,"Rua Brasil, 3551",Jardim,São Paulo,SP,96164100
+ruabrasil3573|saopaulo|SP,2,494,Clínica Sul,"Rua Brasil, 3573",Industrial,São Paulo,SP,26630340
+ruabrasil3573|saopaulo|SP,2,11070,Loja Sul,"Rua Brasil, 3573",Jardim,São Paulo,SP,11833190
+ruabrasil359|brasilia|DF,2,5340,Mercado Real,"Rua Brasil, 359",Vila Nova,Brasília,DF,73329420
+ruabrasil359|brasilia|DF,2,17576,Distribuidora Ideal,"Rua Brasil, 359",Vila Nova,Brasília,DF,53513240
+ruabrasil3611|campinas|SP,2,13073,Distribuidora Norte,"Rua Brasil, 3611",Industrial,Campinas,SP,35192410
+ruabrasil3611|campinas|SP,2,16320,Farmácia Ideal,"Rua Brasil, 3611",Jardim,Campinas,SP,20364560
+ruabrasil3650|riodejaneiro|RJ,2,5924,Consultório Norte,"Rua Brasil, 3650",Centro,Rio de Janeiro,RJ,40149820
+ruabrasil3650|riodejaneiro|RJ,2,19194,Distribuidora Norte,"Rua Brasil, 3650",Centro,Rio de Janeiro,RJ,65588160
+ruabrasil3720|guarulhos|SP,2,14404,Farmácia Central,"Rua Brasil, 3720",Industrial,Guarulhos,SP,22276500
+ruabrasil3720|guarulhos|SP,2,14612,Mercado Sul,"Rua Brasil, 3720",Vila Nova,Guarulhos,SP,56125500
+ruabrasil3740|campinas|SP,2,7876,Distribuidora Central,"Rua Brasil, 3740",Centro,Campinas,SP,83191860
+ruabrasil3740|campinas|SP,2,11450,Atacado do Vale,"Rua Brasil, 3740",Jardim,Campinas,SP,23646400
+ruabrasil3778|saopaulo|SP,2,3476,Loja Central,"Rua Brasil, 3778",Industrial,São Paulo,SP,97959290
+ruabrasil3778|saopaulo|SP,2,7409,Atacado Ideal,"Rua Brasil, 3778",Jardim,São Paulo,SP,34672690
+ruabrasil3829|brasilia|DF,2,2361,Atacado Ideal,"Rua Brasil, 3829",Jardim,Brasília,DF,89396120
+ruabrasil3829|brasilia|DF,2,3630,Mercado Popular,"Rua Brasil, 3829",Vila Nova,Brasília,DF,40637060
+ruabrasil3920|fortaleza|CE,2,11952,Clínica do Vale,"Rua Brasil, 3920",Jardim,Fortaleza,CE,24472860
+ruabrasil3920|fortaleza|CE,2,18093,Atacado Sul,"Rua Brasil, 3920",Jardim,Fortaleza,CE,52475410
+ruabrasil4024|riodejaneiro|RJ,2,14219,Consultório Ideal,"Rua Brasil, 4024",Industrial,Rio de Janeiro,RJ,66586250
+ruabrasil4024|riodejaneiro|RJ,2,17120,Clínica Central,"Rua Brasil, 4024",Jardim,Rio de Janeiro,RJ,50114940
+ruabrasil4072|riodejaneiro|RJ,2,2311,Atacado Sul,"Rua Brasil, 4072",Industrial,Rio de Janeiro,RJ,48815840
+ruabrasil4072|riodejaneiro|RJ,2,8125,Farmácia Ideal,"Rua Brasil, 4072",Centro,Rio de Janeiro,RJ,71251280
+ruabrasil4081|campinas|SP,2,9211,Farmácia Central,"Rua Brasil, 4081",Vila Nova,Campinas,SP,62060250
+ruabrasil4081|campinas|SP,2,16417,Distribuidora Popular,"Rua Brasil, 4081",Jardim,Campinas,SP,29516330
+ruabrasil4096|campinas|SP,2,375,Clínica Ideal,"Rua Brasil, 4096",Vila Nova,Campinas,SP,16677830
+ruabrasil4096|campinas|SP,2,9206,Distribuidora Central,"Rua Brasil, 4096",Jardim,Campinas,SP,26614470
+ruabrasil4189|belohorizonte|MG,2,16050,Consultório Ideal,"Rua Brasil, 4189",Jardim,Belo Horizonte,MG,27719630
+ruabrasil4189|belohorizonte|MG,2,19579,Clínica Real,"Rua Brasil, 4189",Vila Nova,Belo Horizonte,MG,87782760
+ruabrasil4256|osasco|SP,2,3272,Centro de Distribuição Sul,"Rua Brasil, 4256",Centro,Osasco,SP,11990250
+ruabrasil4256|osasco|SP,2,18559,Centro de Distribuição Ideal,"Rua Brasil, 4256",Industrial,Osasco,SP,54825910
+ruabrasil4316|belohorizonte|MG,2,3900,Distribuidora Sul,"Rua Brasil, 4316",Vila Nova,Belo Horizonte,MG,84914810
+ruabrasil4316|belohorizonte|MG,2,5157,Mercado Popular,"Rua Brasil, 4316",Centro,Belo Horizonte,MG,98207370
+ruabrasil4333|saopaulo|SP,2,7593,Farmácia Central,"Rua Brasil, 4333",Vila Nova,São Paulo,SP,68477600
+ruabrasil4333|saopaulo|SP,2,15799,Clínica Norte,"Rua Brasil, 4333",Centro,São Paulo,SP,14285970
+ruabrasil4352|saopaulo|SP,2,1725,Farmácia Real,"Rua Brasil, 4352",Industrial,São Paulo,SP,36117140
+ruabrasil4352|saopaulo|SP,2,2170,Farmácia Sul,"Rua Brasil, 4352",Centro,São Paulo,SP,95092830
+ruabrasil435|vitoria|ES,2,4788,Loja Real,"Rua Brasil, 435",Vila Nova,Vitória,ES,91417750
+ruabrasil435|vitoria|ES,2,11280,Farmácia Central,"Rua Brasil, 435",Industrial,Vitória,ES,74397350
+ruabrasil4432|saopaulo|SP,2,16996,Consultório Central,"Rua Brasil, 4432",Vila Nova,São Paulo,SP,10271420
+ruabrasil4432|saopaulo|SP,2,18492,Consultório Sul,"Rua Brasil, 4432",Industrial,São Paulo,SP,73679690
+ruabrasil4439|salvador|BA,2,1542,Clínica Central,"Rua Brasil, 4439",Vila Nova,Salvador,BA,47578360
+ruabrasil4439|salvador|BA,2,7141,Consultório Norte,"Rua Brasil, 4439",Jardim,Salvador,BA,95709180
+ruabrasil4572|riodejaneiro|RJ,2,4579,Consultório do Vale,"Rua Brasil, 4572",Centro,Rio de Janeiro,RJ,55491970
+ruabrasil4572|riodejaneiro|RJ,2,7524,Distribuidora Real,"Rua Brasil, 4572",Industrial,Rio de Janeiro,RJ,29237900
+ruabrasil4656|saopaulo|SP,2,548,Distribuidora Real,"Rua Brasil, 4656",Vila Nova,São Paulo,SP,70581300
+ruabrasil4656|saopaulo|SP,2,7735,Clínica Real,"Rua Brasil, 4656",Vila Nova,São Paulo,SP,99793480
+ruabrasil4701|guarulhos|SP,2,5257,Mercado Central,"Rua Brasil, 4701",Jardim,Guarulhos,SP,65297000
+ruabrasil4701|guarulhos|SP,2,5401,Loja Sul,"Rua Brasil, 4701",Industrial,Guarulhos,SP,82164690
+ruabrasil4716|riodejaneiro|RJ,2,7199,Clínica Real,"Rua Brasil, 4716",Jardim,Rio de Janeiro,RJ,95326280
+ruabrasil4716|riodejaneiro|RJ,2,7526,Farmácia Ideal,"Rua Brasil, 4716",Jardim,Rio de Janeiro,RJ,16313800
+ruabrasil4783|belohorizonte|MG,2,11597,Loja Ideal,"Rua Brasil, 4783",Centro,Belo Horizonte,MG,25199180
+ruabrasil4783|belohorizonte|MG,2,17356,Clínica Popular,"Rua Brasil, 4783",Vila Nova,Belo Horizonte,MG,18945990
+ruabrasil4783|saopaulo|SP,2,12072,Mercado Real,"Rua Brasil, 4783",Vila Nova,São Paulo,SP,65089580
+ruabrasil4783|saopaulo|SP,2,16233,Consultório Popular,"Rua Brasil, 4783",Jardim,São Paulo,SP,99100630
+ruabrasil4995|curitiba|PR,2,1223,Clínica do Vale,"Rua Brasil, 4995",Vila Nova,Curitiba,PR,94817640
+ruabrasil4995|curitiba|PR,2,15103,Centro de Distribuição Popular,"Rua Brasil, 4995",Industrial,Curitiba,PR,68701150
+ruabrasil560|saopaulo|SP,2,8555,Farmácia Sul,"Rua Brasil, 560",Vila Nova,São Paulo,SP,52325550
+ruabrasil560|saopaulo|SP,2,14914,Distribuidora Sul,"Rua Brasil, 560",Vila Nova,São Paulo,SP,86768110
+ruabrasil569|riodejaneiro|RJ,2,14571,Farmácia Central,"Rua Brasil, 569",Industrial,Rio de Janeiro,RJ,90006630
+ruabrasil569|riodejaneiro|RJ,2,16505,Mercado Ideal,"Rua Brasil, 569",Industrial,Rio de Janeiro,RJ,97369580
+ruabrasil613|saopaulo|SP,2,3137,Farmácia Norte,"Rua Brasil, 613",Centro,São Paulo,SP,90027760
+ruabrasil613|saopaulo|SP,2,7807,Mercado Central,"Rua Brasil, 613",Vila Nova,São Paulo,SP,75725780
+ruabrasil742|riodejaneiro|RJ,2,7475,Consultório Real,"Rua Brasil, 742",Jardim,Rio de Janeiro,RJ,96742710
+ruabrasil742|riodejaneiro|RJ,2,11226,Atacado Ideal,"Rua Brasil, 742",Vila Nova,Rio de Janeiro,RJ,42774810
+ruabrasil938|sorocaba|SP,2,3869,Farmácia Sul,"Rua Brasil, 938",Centro,Sorocaba,SP,83266460
+ruabrasil938|sorocaba|SP,2,4214,Atacado Real,"Rua Brasil, 938",Centro,Sorocaba,SP,34004260
+ruabrasil943|riodejaneiro|RJ,2,12919,Farmácia Popular,"Rua Brasil, 943",Vila Nova,Rio de Janeiro,RJ,50473670
+ruabrasil943|riodejaneiro|RJ,2,17483,Distribuidora Real,"Rua Brasil, 943",Centro,Rio de Janeiro,RJ,54381620
+ruabrasil987|curitiba|PR,2,7313,Farmácia Norte,"Rua Brasil, 987",Centro,Curitiba,PR,62828900
+ruabrasil987|curitiba|PR,2,16872,Consultório do Vale,"Rua Brasil, 987",Jardim,Curitiba,PR,57062550
+ruabrasil988|curitiba|PR,2,1707,Distribuidora Ideal,"Rua Brasil, 988",Jardim,Curitiba,PR,76895200
+ruabrasil988|curitiba|PR,2,7194,Consultório Ideal,"Rua Brasil, 988",Vila Nova,Curitiba,PR,92116960
+ruadasflores100|belohorizonte|MG,2,3893,Clínica Real,"Rua das Flores, 100",Jardim,Belo Horizonte,MG,78981120
+ruadasflores100|belohorizonte|MG,2,12479,Consultório Sul,"Rua das Flores, 100",Industrial,Belo Horizonte,MG,94885200
+ruadasflores141|riodejaneiro|RJ,2,8055,Distribuidora Popular,"Rua das Flores, 141",Centro,Rio de Janeiro,RJ,13571440
+ruadasflores141|riodejaneiro|RJ,2,13176,Centro de Distribuição Ideal,"Rua das Flores, 141",Jardim,Rio de Janeiro,RJ,49395990
+ruadasflores141|saopaulo|SP,2,7531,Farmácia Popular,"Rua das Flores, 141",Vila Nova,São Paulo,SP,46652280
+ruadasflores141|saopaulo|SP,2,18639,Centro de Distribuição Sul,"Rua das Flores, 141",Industrial,São Paulo,SP,65737430
+ruadasflores1443|saopaulo|SP,2,4960,Mercado Sul,"Rua das Flores, 1443",Industrial,São Paulo,SP,95464520
+ruadasflores1443|saopaulo|SP,2,18784,Atacado Real,"Rua das Flores, 1443",Jardim,São Paulo,SP,46392470
+ruadasflores1470|riodejaneiro|RJ,2,5059,Farmácia Popular,"Rua das Flores, 1470",Vila Nova,Rio de Janeiro,RJ,58131270
+ruadasflores1470|riodejaneiro|RJ,2,13270,Mercado Central,"Rua das Flores, 1470",Centro,Rio de Janeiro,RJ,83242570
+ruadasflores1614|saopaulo|SP,2,8991,Farmácia Ideal,"Rua das Flores, 1614",Vila Nova,São Paulo,SP,80613360
+ruadasflores1614|saopaulo|SP,2,14537,Farmácia Central,"Rua das Flores, 1614",Vila Nova,São Paulo,SP,69782030
+ruadasflores1620|saopaulo|SP,2,1669,Loja do Vale,"Rua das Flores, 1620",Centro,São Paulo,SP,88848800
+ruadasflores1620|saopaulo|SP,2,5396,Mercado Norte,"Rua das Flores, 1620",Jardim,São Paulo,SP,74746020
+ruadasflores1679|saojosedoscampos|SP,2,3824,Clínica Norte,"Rua das Flores, 1679",Industrial,São José dos Campos,SP,52090290
+ruadasflores1679|saojosedoscampos|SP,2,10087,Centro de Distribuição Central,"Rua das Flores, 1679",Jardim,São José dos Campos,SP,11757440
+ruadasflores1737|brasilia|DF,2,8363,Consultório Popular,"Rua das Flores, 1737",Vila Nova,Brasília,DF,41725540
+ruadasflores1737|brasilia|DF,2,15119,Clínica Real,"Rua das Flores, 1737",Vila Nova,Brasília,DF,56440540
+ruadasflores1746|portoalegre|RS,2,3425,Farmácia do Vale,"Rua das Flores, 1746",Centro,Porto Alegre,RS,81293360
+ruadasflores1746|portoalegre|RS,2,18679,Consultório Norte,"Rua das Flores, 1746",Industrial,Porto Alegre,RS,16036070
+ruadasflores1812|riodejaneiro|RJ,2,6856,Farmácia do Vale,"Rua das Flores, 1812",Centro,Rio de Janeiro,RJ,80115800
+ruadasflores1812|riodejaneiro|RJ,2,18339,Mercado Central,"Rua das Flores, 1812",Industrial,Rio de Janeiro,RJ,84834360
+ruadasflores1945|saopaulo|SP,2,3946,Mercado Popular,"Rua das Flores, 1945",Centro,São Paulo,SP,11966960
+ruadasflores1945|saopaulo|SP,2,12356,Consultório Sul,"Rua das Flores, 1945",Jardim,São Paulo,SP,46309850
+ruadasflores1968|santoandre|SP,2,765,Clínica Ideal,"Rua das Flores, 1968",Industrial,Santo André,SP,97692380
+ruadasflores1968|santoandre|SP,2,7341,Clínica Ideal,"Rua das Flores, 1968",Vila Nova,Santo André,SP,66675850
+ruadasflores2061|saopaulo|SP,2,7685,Distribuidora Central,"Rua das Flores, 2061",Industrial,São Paulo,SP,82849000
+ruadasflores2061|saopaulo|SP,2,9802,Farmácia Ideal,"Rua das Flores, 2061",Industrial,São Paulo,SP,32923220
+ruadasflores207|riodejaneiro|RJ,2,6173,Farmácia do Vale,"Rua das Flores, 207",Jardim,Rio de Janeiro,RJ,24100220
+ruadasflores207|riodejaneiro|RJ,2,13816,Mercado Ideal,"Rua das Flores, 207",Vila Nova,Rio de Janeiro,RJ,99336120
+ruadasflores2108|saopaulo|SP,2,3439,Loja Central,"Rua das Flores, 2108",Industrial,São Paulo,SP,37704550
+ruadasflores2108|saopaulo|SP,2,16140,Mercado Popular,"Rua das Flores, 2108",Industrial,São Paulo,SP,97784310
+ruadasflores219|curitiba|PR,2,5103,Loja Real,"Rua das Flores, 219",Centro,Curitiba,PR,85257940
+ruadasflores219|curitiba|PR,2,13296,Atacado Sul,"Rua das Flores, 219",Industrial,Curitiba,PR,80965990
+ruadasflores21|saopaulo|SP,2,8984,Clínica Popular,"Rua das Flores, 21",Industrial,São Paulo,SP,45146280
+ruadasflores21|saopaulo|SP,2,18725,Distribuidora do Vale,"Rua das Flores, 21",Industrial,São Paulo,SP,13612740
+ruadasflores2343|belohorizonte|MG,2,18181,Atacado Central,"Rua das Flores, 2343",Centro,Belo Horizonte,MG,32129430
+ruadasflores2343|belohorizonte|MG,2,19569,Farmácia Sul,"Rua das Flores, 2343",Jardim,Belo Horizonte,MG,60960380
+ruadasflores2382|belohorizonte|MG,2,247,Distribuidora Popular,"Rua das Flores, 2382",Vila Nova,Belo Horizonte,MG,66579740
+ruadasflores2382|belohorizonte|MG,2,6093,Clínica Sul,"Rua das Flores, 2382",Industrial,Belo Horizonte,MG,77509850
+ruadasflores2430|brasilia|DF,2,14958,Mercado Real,"Rua das Flores, 2430",Industrial,Brasília,DF,12301990
+ruadasflores2430|brasilia|DF,2,18064,Consultório Ideal,"Rua das Flores, 2430",Centro,Brasília,DF,90137080
+ruadasflores2464|saopaulo|SP,2,9158,Farmácia Ideal,"Rua das Flores, 2464",Centro,São Paulo,SP,21848780
+ruadasflores2464|saopaulo|SP,2,10587,Mercado Sul,"Rua das Flores, 2464",Jardim,São Paulo,SP,11926980
+ruadasflores2527|belohorizonte|MG,2,269,Atacado Ideal,"Rua das Flores, 2527",Centro,Belo Horizonte,MG,97959990
+ruadasflores2527|belohorizonte|MG,2,3014,Clínica Popular,"Rua das Flores, 2527",Centro,Belo Horizonte,MG,56522160
+ruadasflores253|campinas|SP,2,544,Farmácia do Vale,"Rua das Flores, 253",Jardim,Campinas,SP,21186110
+ruadasflores253|campinas|SP,2,9459,Atacado Norte,"Rua das Flores, 253",Vila Nova,Campinas,SP,86491590
+ruadasflores2551|saojosedoscampos|SP,2,523,Distribuidora Ideal,"Rua das Flores, 2551",Jardim,São José dos Campos,SP,65963360
+ruadasflores2551|saojosedoscampos|SP,2,13044,Consultório Ideal,"Rua das Flores, 2551",Vila Nova,São José dos Campos,SP,36074450
+ruadasflores2606|riodejaneiro|RJ,2,9395,Clínica Real,"Rua das Flores, 2606",Vila Nova,Rio de Janeiro,RJ,38912880
+ruadasflores2606|riodejaneiro|RJ,2,12709,Centro de Distribuição Sul,"Rua das Flores, 2606",Jardim,Rio de Janeiro,RJ,42110630
+ruadasflores2613|guarulhos|SP,2,11977,Clínica Popular,"Rua das Flores, 2613",Jardim,Guarulhos,SP,10670100
+ruadasflores2613|guarulhos|SP,2,15883,Loja Central,"Rua das Flores, 2613",Vila Nova,Guarulhos,SP,11722300
+ruadasflores2707|saopaulo|SP,2,13731,Farmácia Real,"Rua das Flores, 2707",Vila Nova,São Paulo,SP,21979300
+ruadasflores2707|saopaulo|SP,2,16940,Consultório Real,"Rua das Flores, 2707",Jardim,São Paulo,SP,37279280
+ruadasflores274|santoandre|SP,2,5373,Centro de Distribuição do Vale,"Rua das Flores, 274",Vila Nova,Santo André,SP,26981460
+ruadasflores274|santoandre|SP,2,12640,Centro de Distribuição Central,"Rua das Flores, 274",Industrial,Santo André,SP,40616750
+ruadasflores2810|saopaulo|SP,2,2050,Consultório Popular,"Rua das Flores, 2810",Centro,São Paulo,SP,78658100
+ruadasflores2810|saopaulo|SP,2,18199,Clínica Central,"Rua das Flores, 2810",Vila Nova,São Paulo,SP,92014460
+ruadasflores2865|curitiba|PR,2,10998,Loja Ideal,"Rua das Flores, 2865",Vila Nova,Curitiba,PR,12026620
+ruadasflores2865|curitiba|PR,2,15479,Clínica Ideal,"Rua das Flores, 2865",Centro,Curitiba,PR,85978790
+ruadasflores2882|contagem|MG,2,4875,Mercado Ideal,"Rua das Flores, 2882",Industrial,Contagem,MG,75660060
+ruadasflores2882|contagem|MG,2,12067,Atacado Central,"Rua das Flores, 2882",Vila Nova,Contagem,MG,41484370
+ruadasflores2946|saopaulo|SP,2,15247,Farmácia Sul,"Rua das Flores, 2946",Jardim,São Paulo,SP,49228760
+ruadasflores2946|saopaulo|SP,2,16175,Clínica Norte,"Rua das Flores, 2946",Jardim,São Paulo,SP,26381800
+ruadasflores2964|riodejaneiro|RJ,2,9302,Atacado Sul,"Rua das Flores, 2964",Vila Nova,Rio de Janeiro,RJ,42095840
+ruadasflores2964|riodejaneiro|RJ,2,9446,Atacado Popular,"Rua das Flores, 2964",Jardim,Rio de Janeiro,RJ,89561330
+ruadasflores3018|curitiba|PR,2,3820,Mercado Central,"Rua das Flores, 3018",Centro,Curitiba,PR,84998280
+ruadasflores3018|curitiba|PR,2,5805,Atacado Ideal,"Rua das Flores, 3018",Centro,Curitiba,PR,63264120
+ruadasflores3037|saopaulo|SP,2,15465,Clínica Ideal,"Rua das Flores, 3037",Centro,São Paulo,SP,98795180
+ruadasflores3037|saopaulo|SP,2,15614,Consultório Popular,"Rua das Flores, 3037",Centro,São Paulo,SP,70296190
+ruadasflores3168|saopaulo|SP,2,16520,Clínica do Vale,"Rua das Flores, 3168",Centro,São Paulo,SP,64356320
+ruadasflores3168|saopaulo|SP,2,16631,Loja Central,"Rua das Flores, 3168",Jardim,São Paulo,SP,11104250
+ruadasflores3223|joinville|SC,2,11590,Consultório Norte,"Rua das Flores, 3223",Jardim,Joinville,SC,43295490
+ruadasflores3223|joinville|SC,2,15013,Centro de Distribuição Real,"Rua das Flores, 3223",Vila Nova,Joinville,SC,20487090
+ruadasflores3242|saopaulo|SP,2,8890,Clínica Norte,"Rua das Flores, 3242",Industrial,São Paulo,SP,80279000
+ruadasflores3242|saopaulo|SP,2,13978,Atacado Central,"Rua das Flores, 3242",Industrial,São Paulo,SP,23150940
+ruadasflores3245|saopaulo|SP,2,1149,Centro de Distribuição Central,"Rua das Flores, 3245",Jardim,São Paulo,SP,72014120
+ruadasflores3245|saopaulo|SP,2,10645,Mercado Norte,"Rua das Flores, 3245",Centro,São Paulo,SP,61805840
+ruadasflores3274|saopaulo|SP,2,10886,Clínica Ideal,"Rua das Flores, 3274",Jardim,São Paulo,SP,86916420
+ruadasflores3274|saopaulo|SP,2,17827,Clínica Real,"Rua das Flores, 3274",Jardim,São Paulo,SP,48882770
+ruadasflores3318|riodejaneiro|RJ,2,3336,Centro de Distribuição do Vale,"Rua das Flores, 3318",Jardim,Rio de Janeiro,RJ,79302510
+ruadasflores3318|riodejaneiro|RJ,2,13963,Consultório do Vale,"Rua das Flores, 3318",Jardim,Rio de Janeiro,RJ,25807600
+ruadasflores3322|saojosedoscampos|SP,2,6683,Atacado Popular,"Rua das Flores, 3322",Industrial,São José dos Campos,SP,90338330
+ruadasflores3322|saojosedoscampos|SP,2,7808,Centro de Distribuição Norte,"Rua das Flores, 3322",Vila Nova,São José dos Campos,SP,58802240
+ruadasflores3337|riodejaneiro|RJ,2,13802,Centro de Distribuição Central,"Rua das Flores, 3337",Centro,Rio de Janeiro,RJ,69382460
+ruadasflores3337|riodejaneiro|RJ,2,18534,Clínica Real,"Rua das Flores, 3337",Vila Nova,Rio de Janeiro,RJ,94553380
+ruadasflores3373|salvador|BA,2,7195,Atacado Popular,"Rua das Flores, 3373",Centro,Salvador,BA,88898990
+ruadasflores3373|salvador|BA,2,13065,Clínica Popular,"Rua das Flores, 3373",Centro,Salvador,BA,17019700
+ruadasflores3409|saopaulo|SP,2,10059,Mercado Real,"Rua das Flores, 3409",Vila Nova,São Paulo,SP,68454650
+ruadasflores3409|saopaulo|SP,2,18700,Mercado Real,"Rua das Flores, 3409",Jardim,São Paulo,SP,65313910
+ruadasflores3426|saopaulo|SP,2,12910,Distribuidora Ideal,"Rua das Flores, 3426",Vila Nova,São Paulo,SP,15178680
+ruadasflores3426|saopaulo|SP,2,14674,Consultório Real,"Rua das Flores, 3426",Centro,São Paulo,SP,70020730
+ruadasflores3470|curitiba|PR,2,14043,Distribuidora do Vale,"Rua das Flores, 3470",Vila Nova,Curitiba,PR,70839430
+ruadasflores3470|curitiba|PR,2,16732,Consultório do Vale,"Rua das Flores, 3470",Industrial,Curitiba,PR,90034380
+ruadasflores3473|saopaulo|SP,2,1214,Loja Ideal,"Rua das Flores, 3473",Vila Nova,São Paulo,SP,40380190
+ruadasflores3473|saopaulo|SP,2,13612,Clínica Central,"Rua das Flores, 3473",Industrial,São Paulo,SP,50389340
+ruadasflores3696|saopaulo|SP,2,738,Consultório Ideal,"Rua das Flores, 3696",Industrial,São Paulo,SP,10564660
+ruadasflores3696|saopaulo|SP,2,14630,Farmácia Real,"Rua das Flores, 3696",Vila Nova,São Paulo,SP,98273930
+ruadasflores3715|florianopolis|SC,2,4463,Mercado Popular,"Rua das Flores, 3715",Vila Nova,Florianópolis,SC,57502890
+ruadasflores3715|florianopolis|SC,2,5530,Mercado do Vale,"Rua das Flores, 3715",Centro,Florianópolis,SC,16038990
+ruadasflores3721|saopaulo|SP,2,4065,Loja Ideal,"Rua das Flores, 3721",Vila Nova,São Paulo,SP,98811680
+ruadasflores3721|saopaulo|SP,2,14823,Distribuidora Ideal,"Rua das Flores, 3721",Jardim,São Paulo,SP,79421780
+ruadasflores3763|saopaulo|SP,2,1539,Loja Central,"Rua das Flores, 3763",Centro,São Paulo,SP,42805340
+ruadasflores3763|saopaulo|SP,2,2709,Farmácia Sul,"Rua das Flores, 3763",Industrial,São Paulo,SP,98564740
+ruadasflores378|ribeiraopreto|SP,2,6605,Clínica do Vale,"Rua das Flores, 378",Jardim,Ribeirão Preto,SP,30643600
+ruadasflores378|ribeiraopreto|SP,2,18609,Distribuidora do Vale,"Rua das Flores, 378",Vila Nova,Ribeirão Preto,SP,38873770
+ruadasflores3849|saopaulo|SP,2,892,Mercado Real,"Rua das Flores, 3849",Industrial,São Paulo,SP,54378720
+ruadasflores3849|saopaulo|SP,2,15820,Farmácia Sul,"Rua das Flores, 3849",Jardim,São Paulo,SP,41283280
+ruadasflores404|saopaulo|SP,2,1187,Distribuidora Central,"Rua das Flores, 404",Centro,São Paulo,SP,86915950
+ruadasflores404|saopaulo|SP,2,9811,Farmácia Popular,"Rua das Flores, 404",Vila Nova,São Paulo,SP,78113490
+ruadasflores4079|riodejaneiro|RJ,2,11817,Consultório Central,"Rua das Flores, 4079",Industrial,Rio de Janeiro,RJ,75428470
+ruadasflores4079|riodejaneiro|RJ,2,14306,Mercado Real,"Rua das Flores, 4079",Jardim,Rio de Janeiro,RJ,48603590
+ruadasflores4182|salvador|BA,2,14255,Consultório Sul,"Rua das Flores, 4182",Jardim,Salvador,BA,29351300
+ruadasflores4182|salvador|BA,2,19385,Atacado Central,"Rua das Flores, 4182",Industrial,Salvador,BA,70626690
+ruadasflores4209|saopaulo|SP,2,2222,Clínica Central,"Rua das Flores, 4209",Centro,São Paulo,SP,38085450
+ruadasflores4209|saopaulo|SP,2,7028,Atacado Ideal,"Rua das Flores, 4209",Industrial,São Paulo,SP,50358500
+ruadasflores4240|portoalegre|RS,2,13633,Clínica Norte,"Rua das Flores, 4240",Jardim,Porto Alegre,RS,74906650
+ruadasflores4240|portoalegre|RS,2,16847,Consultório Ideal,"Rua das Flores, 4240",Centro,Porto Alegre,RS,63622470
+ruadasflores4250|ribeiraopreto|SP,2,890,Clínica Central,"Rua das Flores, 4250",Vila Nova,Ribeirão Preto,SP,76033340
+ruadasflores4250|ribeiraopreto|SP,2,9034,Distribuidora Ideal,"Rua das Flores, 4250",Industrial,Ribeirão Preto,SP,88388140
+ruadasflores4260|vitoria|ES,2,14599,Mercado Real,"Rua das Flores, 4260",Industrial,Vitória,ES,18901330
+ruadasflores4260|vitoria|ES,2,19536,Clínica Real,"Rua das Flores, 4260",Vila Nova,Vitória,ES,20072970
+ruadasflores4270|belohorizonte|MG,2,8166,Clínica Ideal,"Rua das Flores, 4270",Vila Nova,Belo Horizonte,MG,40015090
+ruadasflores4270|belohorizonte|MG,2,13540,Mercado do Vale,"Rua das Flores, 4270",Industrial,Belo Horizonte,MG,75996700
+ruadasflores4279|saopaulo|SP,2,9042,Atacado Central,"Rua das Flores, 4279",Jardim,São Paulo,SP,25771430
+ruadasflores4279|saopaulo|SP,2,18767,Consultório Popular,"Rua das Flores, 4279",Vila Nova,São Paulo,SP,27706060
+ruadasflores4285|saopaulo|SP,2,3646,Consultório Ideal,"Rua das Flores, 4285",Centro,São Paulo,SP,43406280
+ruadasflores4285|saopaulo|SP,2,16008,Atacado Norte,"Rua das Flores, 4285",Centro,São Paulo,SP,50114190
+ruadasflores4334|curitiba|PR,2,6996,Distribuidora Norte,"Rua das Flores, 4334",Industrial,Curitiba,PR,88553340
+ruadasflores4334|curitiba|PR,2,15250,Atacado Ideal,"Rua das Flores, 4334",Centro,Curitiba,PR,47176270
+ruadasflores4495|saopaulo|SP,2,408,Consultório Real,"Rua das Flores, 4495",Vila Nova,São Paulo,SP,48560500
+ruadasflores4495|saopaulo|SP,2,1203,Mercado Ideal,"Rua das Flores, 4495",Centro,São Paulo,SP,80280120
+ruadasflores4555|riodejaneiro|RJ,2,14904,Loja Real,"Rua das Flores, 4555",Vila Nova,Rio de Janeiro,RJ,40656700
+ruadasflores4555|riodejaneiro|RJ,2,15775,Mercado Sul,"Rua das Flores, 4555",Industrial,Rio de Janeiro,RJ,76979400
+ruadasflores4635|saopaulo|SP,2,4322,Clínica Ideal,"Rua das Flores, 4635",Centro,São Paulo,SP,44222620
+ruadasflores4635|saopaulo|SP,2,14690,Centro de Distribuição Norte,"Rua das Flores, 4635",Vila Nova,São Paulo,SP,58163580
+ruadasflores493|saopaulo|SP,2,17937,Farmácia do Vale,"Rua das Flores, 493",Industrial,São Paulo,SP,63541470
+ruadasflores493|saopaulo|SP,2,19265,Distribuidora Sul,"Rua das Flores, 493",Vila Nova,São Paulo,SP,81489370
+ruadasflores4967|portovelho|RO,2,2618,Atacado Real,"Rua das Flores, 4967",Jardim,Porto Velho,RO,72844770
+ruadasflores4967|portovelho|RO,2,6686,Mercado Ideal,"Rua das Flores, 4967",Jardim,Porto Velho,RO,11748290
+ruadasflores539|guarulhos|SP,2,9534,Mercado Popular,"Rua das Flores, 539",Jardim,Guarulhos,SP,30091130
+ruadasflores539|guarulhos|SP,2,16894,Farmácia Norte,"Rua das Flores, 539",Vila Nova,Guarulhos,SP,36974630
+ruadasflores558|saopaulo|SP,2,7591,Farmácia Real,"Rua das Flores, 558",Industrial,São Paulo,SP,36089620
+ruadasflores558|saopaulo|SP,2,12279,Centro de Distribuição Ideal,"Rua das Flores, 558",Centro,São Paulo,SP,63258050
+ruadasflores652|riodejaneiro|RJ,2,4538,Farmácia Popular,"Rua das Flores, 652",Industrial,Rio de Janeiro,RJ,52035990
+ruadasflores652|riodejaneiro|RJ,2,12935,Clínica do Vale,"Rua das Flores, 652",Industrial,Rio de Janeiro,RJ,32138440
+ruadasflores708|salvador|BA,2,1755,Loja Popular,"Rua das Flores, 708",Jardim,Salvador,BA,72678880
+ruadasflores708|salvador|BA,2,9865,Consultório Popular,"Rua das Flores, 708",Industrial,Salvador,BA,37222990
+ruadasflores775|portoalegre|RS,2,7734,Consultório Central,"Rua das Flores, 775",Centro,Porto Alegre,RS,69583220
+ruadasflores775|portoalegre|RS,2,8981,Mercado do Vale,"Rua das Flores, 775",Jardim,Porto Alegre,RS,40647850
+ruadasflores833|guarulhos|SP,2,2083,Atacado Ideal,"Rua das Flores, 833",Industrial,Guarulhos,SP,26930710
+ruadasflores833|guarulhos|SP,2,7004,Atacado Central,"Rua das Flores, 833",Industrial,Guarulhos,SP,73972450
+ruadasflores860|riodejaneiro|RJ,2,2614,Loja Real,"Rua das Flores, 860",Vila Nova,Rio de Janeiro,RJ,63179870
+ruadasflores860|riodejaneiro|RJ,2,14230,Farmácia Central,"Rua das Flores, 860",Vila Nova,Rio de Janeiro,RJ,53930580
+ruadasflores869|santoandre|SP,2,6900,Mercado Real,"Rua das Flores, 869",Jardim,Santo André,SP,21382240
+ruadasflores869|santoandre|SP,2,11773,Atacado Norte,"Rua das Flores, 869",Jardim,Santo André,SP,31550370
+ruadasflores914|belohorizonte|MG,2,6930,Centro de Distribuição Popular,"Rua das Flores, 914",Vila Nova,Belo Horizonte,MG,72934160
+ruadasflores914|belohorizonte|MG,2,10357,Loja Sul,"Rua das Flores, 914",Centro,Belo Horizonte,MG,78409480
+ruadasflores970|riodejaneiro|RJ,2,12778,Centro de Distribuição Norte,"Rua das Flores, 970",Jardim,Rio de Janeiro,RJ,76402130
+ruadasflores970|riodejaneiro|RJ,2,17319,Distribuidora Central,"Rua das Flores, 970",Jardim,Rio de Janeiro,RJ,70968140
+ruadasflores971|riodejaneiro|RJ,2,9893,Farmácia Ideal,"Rua das Flores, 971",Vila Nova,Rio de Janeiro,RJ,57023650
+ruadasflores971|riodejaneiro|RJ,2,17542,Atacado Central,"Rua das Flores, 971",Vila Nova,Rio de Janeiro,RJ,70448090
+ruaprojetada1028|saojosedoscampos|SP,2,10007,Centro de Distribuição Popular,"Rua Projetada, 1028",Centro,São José dos Campos,SP,74515380
+ruaprojetada1028|saojosedoscampos|SP,2,12559,Farmácia Ideal,"Rua Projetada, 1028",Jardim,São José dos Campos,SP,88211860
+ruaprojetada108|brasilia|DF,2,16183,Clínica Real,"Rua Projetada, 108",Industrial,Brasília,DF,39561280
+ruaprojetada108|brasilia|DF,2,17501,Loja Ideal,"Rua Projetada, 108",Industrial,Brasília,DF,87238390
+ruaprojetada1113|riodejaneiro|RJ,2,12046,Distribuidora Sul,"Rua Projetada, 1113",Centro,Rio de Janeiro,RJ,72766270
+ruaprojetada1113|riodejaneiro|RJ,2,18915,Distribuidora Norte,"Rua Projetada, 1113",Industrial,Rio de Janeiro,RJ,40788650
+ruaprojetada1128|saopaulo|SP,2,914,Loja Real,"Rua Projetada, 1128",Vila Nova,São Paulo,SP,26769090
+ruaprojetada1128|saopaulo|SP,2,6854,Atacado Ideal,"Rua Projetada, 1128",Jardim,São Paulo,SP,97638040
+ruaprojetada1173|fortaleza|CE,2,4486,Mercado Real,"Rua Projetada, 1173",Industrial,Fortaleza,CE,58490190
+ruaprojetada1173|fortaleza|CE,2,8684,Consultório Real,"Rua Projetada, 1173",Vila Nova,Fortaleza,CE,32325580
+ruaprojetada1212|londrina|PR,2,326,Mercado Popular,"Rua Projetada, 1212",Industrial,Londrina,PR,63638250
+ruaprojetada1212|londrina|PR,2,5515,Mercado Norte,"Rua Projetada, 1212",Industrial,Londrina,PR,85019090
+ruaprojetada1340|saopaulo|SP,2,17730,Clínica Real,"Rua Projetada, 1340",Centro,São Paulo,SP,37759780
+ruaprojetada1340|saopaulo|SP,2,19123,Clínica Sul,"Rua Projetada, 1340",Centro,São Paulo,SP,94739470
+ruaprojetada1353|saopaulo|SP,2,11714,Farmácia Ideal,"Rua Projetada, 1353",Vila Nova,São Paulo,SP,91313100
+ruaprojetada1353|saopaulo|SP,2,13390,Loja Popular,"Rua Projetada, 1353",Jardim,São Paulo,SP,11799430
+ruaprojetada1480|saopaulo|SP,2,12758,Loja do Vale,"Rua Projetada, 1480",Centro,São Paulo,SP,39350980
+ruaprojetada1480|saopaulo|SP,2,17030,Centro de Distribuição do Vale,"Rua Projetada, 1480",Vila Nova,São Paulo,SP,19520900
+ruaprojetada167|riodejaneiro|RJ,2,1263,Clínica Real,"Rua Projetada, 167",Centro,Rio de Janeiro,RJ,20851490
+ruaprojetada167|riodejaneiro|RJ,2,18730,Consultório Central,"Rua Projetada, 167",Vila Nova,Rio de Janeiro,RJ,42743420
+ruaprojetada1714|saopaulo|SP,2,971,Loja Central,"Rua Projetada, 1714",Industrial,São Paulo,SP,65654440
+ruaprojetada1714|saopaulo|SP,2,4639,Consultório Real,"Rua Projetada, 1714",Industrial,São Paulo,SP,49902960
+ruaprojetada1775|portoalegre|RS,2,10643,Loja Central,"Rua Projetada, 1775",Centro,Porto Alegre,RS,79402620
+ruaprojetada1775|portoalegre|RS,2,16963,Clínica Central,"Rua Projetada, 1775",Industrial,Porto Alegre,RS,35462090
+ruaprojetada177|saopaulo|SP,2,3249,Consultório do Vale,"Rua Projetada, 177",Jardim,São Paulo,SP,42865320
+ruaprojetada177|saopaulo|SP,2,14844,Mercado Ideal,"Rua Projetada, 177",Vila Nova,São Paulo,SP,79888840
+ruaprojetada1849|saopaulo|SP,2,14384,Farmácia Sul,"Rua Projetada, 1849",Industrial,São Paulo,SP,52390720
+ruaprojetada1849|saopaulo|SP,2,14659,Distribuidora Ideal,"Rua Projetada, 1849",Industrial,São Paulo,SP,34990130
+ruaprojetada1941|saopaulo|SP,2,2557,Mercado Real,"Rua Projetada, 1941",Industrial,São Paulo,SP,56680320
+ruaprojetada1941|saopaulo|SP,2,19556,Atacado do Vale,"Rua Projetada, 1941",Vila Nova,São Paulo,SP,42926090
+ruaprojetada2084|sorocaba|SP,2,542,Centro de Distribuição Ideal,"Rua Projetada, 2084",Centro,Sorocaba,SP,89397440
+ruaprojetada2084|sorocaba|SP,2,11143,Mercado Real,"Rua Projetada, 2084",Jardim,Sorocaba,SP,26709530
+ruaprojetada2125|saopaulo|SP,2,4731,Loja Real,"Rua Projetada, 2125",Jardim,São Paulo,SP,90761340
+ruaprojetada2125|saopaulo|SP,2,17370,Consultório Sul,"Rua Projetada, 2125",Vila Nova,São Paulo,SP,69193720
+ruaprojetada2198|saopaulo|SP,2,10409,Farmácia Central,"Rua Projetada, 2198",Centro,São Paulo,SP,84578320
+ruaprojetada2198|saopaulo|SP,2,18756,Centro de Distribuição Ideal,"Rua Projetada, 2198",Vila Nova,São Paulo,SP,43727970
+ruaprojetada2274|saopaulo|SP,2,1469,Mercado do Vale,"Rua Projetada, 2274",Jardim,São Paulo,SP,50350450
+ruaprojetada2274|saopaulo|SP,2,9867,Centro de Distribuição Real,"Rua Projetada, 2274",Industrial,São Paulo,SP,16154880
+ruaprojetada2336|saopaulo|SP,2,13778,Clínica Sul,"Rua Projetada, 2336",Centro,São Paulo,SP,11618980
+ruaprojetada2336|saopaulo|SP,2,18007,Clínica Sul,"Rua Projetada, 2336",Vila Nova,São Paulo,SP,95749480
+ruaprojetada2348|saopaulo|SP,2,12906,Farmácia Popular,"Rua Projetada, 2348",Vila Nova,São Paulo,SP,41183330
+ruaprojetada2348|saopaulo|SP,2,14868,Consultório Ideal,"Rua Projetada, 2348",Industrial,São Paulo,SP,44212870
+ruaprojetada241|ribeiraopreto|SP,2,8306,Centro de Distribuição Real,"Rua Projetada, 241",Industrial,Ribeirão Preto,SP,74700000
+ruaprojetada241|ribeiraopreto|SP,2,13635,Atacado Popular,"Rua Projetada, 241",Centro,Ribeirão Preto,SP,67239010
+ruaprojetada2622|saopaulo|SP,2,120,Sede Valenza Collection,Rua Projetada 2622,Distrito Industrial,São Paulo,SP,18036760
+ruaprojetada2622|saopaulo|SP,2,3648,Consultório Norte,"Rua Projetada, 2622",Vila Nova,São Paulo,SP,21625260
+ruaprojetada2699|saopaulo|SP,2,5200,Atacado Central,"Rua Projetada, 2699",Industrial,São Paulo,SP,58283700
+ruaprojetada2699|saopaulo|SP,2,12066,Distribuidora Popular,"Rua Projetada, 2699",Vila Nova,São Paulo,SP,31520780
+ruaprojetada270|saopaulo|SP,2,5671,Clínica Norte,"Rua Projetada, 270",Industrial,São Paulo,SP,78340200
+ruaprojetada270|saopaulo|SP,2,13500,Mercado Popular,"Rua Projetada, 270",Vila Nova,São Paulo,SP,71166570
+ruaprojetada2712|vitoria|ES,2,3686,Farmácia Ideal,"Rua Projetada, 2712",Centro,Vitória,ES,25059880
+ruaprojetada2712|vitoria|ES,2,17193,Distribuidora Real,"Rua Projetada, 2712",Vila Nova,Vitória,ES,12972470
+ruaprojetada282|curitiba|PR,2,4572,Atacado Popular,"Rua Projetada, 282",Centro,Curitiba,PR,16435080
+ruaprojetada282|curitiba|PR,2,4939,Distribuidora Popular,"Rua Projetada, 282",Centro,Curitiba,PR,40858010
+ruaprojetada2867|belohorizonte|MG,2,6065,Consultório Popular,"Rua Projetada, 2867",Centro,Belo Horizonte,MG,45662250
+ruaprojetada2867|belohorizonte|MG,2,18338,Farmácia Norte,"Rua Projetada, 2867",Vila Nova,Belo Horizonte,MG,91606150
+ruaprojetada2948|riodejaneiro|RJ,2,377,Atacado Popular,"Rua Projetada, 2948",Jardim,Rio de Janeiro,RJ,82484700
+ruaprojetada2948|riodejaneiro|RJ,2,12638,Farmácia Norte,"Rua Projetada, 2948",Industrial,Rio de Janeiro,RJ,10305000
+ruaprojetada2953|riodejaneiro|RJ,2,381,Clínica Ideal,"Rua Projetada, 2953",Centro,Rio de Janeiro,RJ,10245850
+ruaprojetada2953|riodejaneiro|RJ,2,2292,Consultório Ideal,"Rua Projetada, 2953",Centro,Rio de Janeiro,RJ,16866010
+ruaprojetada304|riodejaneiro|RJ,2,12232,Mercado Popular,"Rua Projetada, 304",Industrial,Rio de Janeiro,RJ,16325750
+ruaprojetada304|riodejaneiro|RJ,2,17493,Atacado Ideal,"Rua Projetada, 304",Vila Nova,Rio de Janeiro,RJ,88382880
+ruaprojetada3096|guarulhos|SP,2,2517,Consultório Popular,"Rua Projetada, 3096",Industrial,Guarulhos,SP,36893420
+ruaprojetada3096|guarulhos|SP,2,4326,Loja do Vale,"Rua Projetada, 3096",Jardim,Guarulhos,SP,38988180
+ruaprojetada3126|santoandre|SP,2,5976,Consultório Popular,"Rua Projetada, 3126",Industrial,Santo André,SP,76690720
+ruaprojetada3126|santoandre|SP,2,10491,Farmácia Sul,"Rua Projetada, 3126",Industrial,Santo André,SP,63455950
+ruaprojetada3305|saopaulo|SP,2,10077,Clínica Norte,"Rua Projetada, 3305",Centro,São Paulo,SP,50730640
+ruaprojetada3305|saopaulo|SP,2,11384,Farmácia Ideal,"Rua Projetada, 3305",Industrial,São Paulo,SP,92062440
+ruaprojetada3348|saopaulo|SP,2,349,Farmácia Central,"Rua Projetada, 3348",Jardim,São Paulo,SP,76413850
+ruaprojetada3348|saopaulo|SP,2,1121,Distribuidora Norte,"Rua Projetada, 3348",Centro,São Paulo,SP,59056940
+ruaprojetada3469|curitiba|PR,2,1339,Loja Central,"Rua Projetada, 3469",Industrial,Curitiba,PR,62960620
+ruaprojetada3469|curitiba|PR,2,14597,Loja Central,"Rua Projetada, 3469",Vila Nova,Curitiba,PR,48337680
+ruaprojetada3499|belohorizonte|MG,2,2121,Farmácia Sul,"Rua Projetada, 3499",Centro,Belo Horizonte,MG,94535720
+ruaprojetada3499|belohorizonte|MG,2,12891,Atacado Popular,"Rua Projetada, 3499",Industrial,Belo Horizonte,MG,20863300
+ruaprojetada3519|saopaulo|SP,2,3912,Distribuidora Central,"Rua Projetada, 3519",Centro,São Paulo,SP,11935200
+ruaprojetada3519|saopaulo|SP,2,13035,Mercado Popular,"Rua Projetada, 3519",Industrial,São Paulo,SP,15861930
+ruaprojetada3536|belohorizonte|MG,2,2252,Clínica Central,"Rua Projetada, 3536",Vila Nova,Belo Horizonte,MG,75750650
+ruaprojetada3536|belohorizonte|MG,2,4060,Farmácia Sul,"Rua Projetada, 3536",Vila Nova,Belo Horizonte,MG,76655070
+ruaprojetada3716|saopaulo|SP,2,2489,Distribuidora Ideal,"Rua Projetada, 3716",Centro,São Paulo,SP,66383590
+ruaprojetada3716|saopaulo|SP,2,17906,Loja Ideal,"Rua Projetada, 3716",Vila Nova,São Paulo,SP,56229860
+ruaprojetada3720|joinville|SC,2,1070,Centro de Distribuição Ideal,"Rua Projetada, 3720",Vila Nova,Joinville,SC,67574370
+ruaprojetada3720|joinville|SC,2,17762,Centro de Distribuição Sul,"Rua Projetada, 3720",Jardim,Joinville,SC,64124340
+ruaprojetada3779|riodejaneiro|RJ,2,17600,Atacado Real,"Rua Projetada, 3779",Industrial,Rio de Janeiro,RJ,63145470
+ruaprojetada3779|riodejaneiro|RJ,2,18860,Centro de Distribuição Ideal,"Rua Projetada, 3779",Vila Nova,Rio de Janeiro,RJ,11316780
+ruaprojetada3801|riodejaneiro|RJ,2,18328,Consultório Central,"Rua Projetada, 3801",Jardim,Rio de Janeiro,RJ,14029900
+ruaprojetada3801|riodejaneiro|RJ,2,18459,Loja Real,"Rua Projetada, 3801",Industrial,Rio de Janeiro,RJ,67922030
+ruaprojetada3810|saopaulo|SP,2,9564,Consultório Real,"Rua Projetada, 3810",Centro,São Paulo,SP,58954720
+ruaprojetada3810|saopaulo|SP,2,17622,Clínica Sul,"Rua Projetada, 3810",Jardim,São Paulo,SP,31850980
+ruaprojetada4081|saopaulo|SP,2,10529,Mercado Norte,"Rua Projetada, 4081",Jardim,São Paulo,SP,46481610
+ruaprojetada4081|saopaulo|SP,2,16319,Farmácia Popular,"Rua Projetada, 4081",Centro,São Paulo,SP,49443800
+ruaprojetada4136|saopaulo|SP,2,6119,Loja do Vale,"Rua Projetada, 4136",Centro,São Paulo,SP,30583270
+ruaprojetada4136|saopaulo|SP,2,19427,Consultório Norte,"Rua Projetada, 4136",Centro,São Paulo,SP,28304800
+ruaprojetada4166|riodejaneiro|RJ,2,574,Centro de Distribuição Real,"Rua Projetada, 4166",Industrial,Rio de Janeiro,RJ,95470610
+ruaprojetada4166|riodejaneiro|RJ,2,3457,Clínica Ideal,"Rua Projetada, 4166",Industrial,Rio de Janeiro,RJ,23515410
+ruaprojetada424|curitiba|PR,2,2964,Mercado Popular,"Rua Projetada, 424",Jardim,Curitiba,PR,87188460
+ruaprojetada424|curitiba|PR,2,9425,Atacado Ideal,"Rua Projetada, 424",Industrial,Curitiba,PR,93523300
+ruaprojetada4341|fortaleza|CE,2,11417,Centro de Distribuição do Vale,"Rua Projetada, 4341",Centro,Fortaleza,CE,12534710
+ruaprojetada4341|fortaleza|CE,2,18721,Farmácia do Vale,"Rua Projetada, 4341",Industrial,Fortaleza,CE,38692850
+ruaprojetada4365|campinas|SP,2,8536,Loja Popular,"Rua Projetada, 4365",Centro,Campinas,SP,91998430
+ruaprojetada4365|campinas|SP,2,17667,Centro de Distribuição do Vale,"Rua Projetada, 4365",Industrial,Campinas,SP,44455430
+ruaprojetada4379|manaus|AM,2,5480,Distribuidora Norte,"Rua Projetada, 4379",Vila Nova,Manaus,AM,23739390
+ruaprojetada4379|manaus|AM,2,15054,Clínica Ideal,"Rua Projetada, 4379",Centro,Manaus,AM,50535840
+ruaprojetada4410|curitiba|PR,2,4134,Centro de Distribuição Popular,"Rua Projetada, 4410",Vila Nova,Curitiba,PR,41428570
+ruaprojetada4410|curitiba|PR,2,16665,Consultório Ideal,"Rua Projetada, 4410",Centro,Curitiba,PR,53965350
+ruaprojetada4515|saopaulo|SP,2,3881,Distribuidora Ideal,"Rua Projetada, 4515",Centro,São Paulo,SP,74318260
+ruaprojetada4515|saopaulo|SP,2,18078,Mercado Popular,"Rua Projetada, 4515",Jardim,São Paulo,SP,23144570
+ruaprojetada4616|belohorizonte|MG,2,1499,Consultório Central,"Rua Projetada, 4616",Jardim,Belo Horizonte,MG,59374550
+ruaprojetada4616|belohorizonte|MG,2,12763,Clínica Popular,"Rua Projetada, 4616",Centro,Belo Horizonte,MG,10093830
+ruaprojetada4694|belohorizonte|MG,2,6562,Atacado Central,"Rua Projetada, 4694",Industrial,Belo Horizonte,MG,14503930
+ruaprojetada4694|belohorizonte|MG,2,8431,Mercado do Vale,"Rua Projetada, 4694",Centro,Belo Horizonte,MG,94579920
+ruaprojetada4703|belohorizonte|MG,2,2803,Centro de Distribuição Central,"Rua Projetada, 4703",Industrial,Belo Horizonte,MG,79667410
+ruaprojetada4703|belohorizonte|MG,2,9657,Loja do Vale,"Rua Projetada, 4703",Centro,Belo Horizonte,MG,63496710
+ruaprojetada4709|belohorizonte|MG,2,6589,Centro de Distribuição do Vale,"Rua Projetada, 4709",Industrial,Belo Horizonte,MG,42499980
+ruaprojetada4709|belohorizonte|MG,2,14710,Clínica Central,"Rua Projetada, 4709",Vila Nova,Belo Horizonte,MG,44768160
+ruaprojetada4730|brasilia|DF,2,8067,Atacado Popular,"Rua Projetada, 4730",Centro,Brasília,DF,71994350
+ruaprojetada4730|brasilia|DF,2,18033,Centro de Distribuição Real,"Rua Projetada, 4730",Centro,Brasília,DF,65342820
+ruaprojetada4733|riodejaneiro|RJ,2,12570,Mercado Popular,"Rua Projetada, 4733",Vila Nova,Rio de Janeiro,RJ,95217610
+ruaprojetada4733|riodejaneiro|RJ,2,18544,Centro de Distribuição Popular,"Rua Projetada, 4733",Centro,Rio de Janeiro,RJ,77411830
+ruaprojetada4814|portoalegre|RS,2,761,Clínica do Vale,"Rua Projetada, 4814",Industrial,Porto Alegre,RS,39973740
+ruaprojetada4814|portoalegre|RS,2,6357,Consultório do Vale,"Rua Projetada, 4814",Jardim,Porto Alegre,RS,11165860
+ruaprojetada4831|campinas|SP,2,5365,Clínica Ideal,"Rua Projetada, 4831",Industrial,Campinas,SP,25586820
+ruaprojetada4831|campinas|SP,2,10326,Atacado Real,"Rua Projetada, 4831",Centro,Campinas,SP,14449890
+ruaprojetada4864|saopaulo|SP,2,13187,Clínica Sul,"Rua Projetada, 4864",Vila Nova,São Paulo,SP,38676030
+ruaprojetada4864|saopaulo|SP,2,18619,Centro de Distribuição Real,"Rua Projetada, 4864",Industrial,São Paulo,SP,17103590
+ruaprojetada4885|saopaulo|SP,2,16464,Mercado Central,"Rua Projetada, 4885",Vila Nova,São Paulo,SP,14295910
+ruaprojetada4885|saopaulo|SP,2,17103,Mercado Real,"Rua Projetada, 4885",Vila Nova,São Paulo,SP,49211960
+ruaprojetada4892|ribeiraopreto|SP,2,6008,Farmácia Central,"Rua Projetada, 4892",Centro,Ribeirão Preto,SP,88919340
+ruaprojetada4892|ribeiraopreto|SP,2,13629,Atacado Ideal,"Rua Projetada, 4892",Centro,Ribeirão Preto,SP,33296510
+ruaprojetada4943|saojosedoriopreto|SP,2,3708,Distribuidora Real,"Rua Projetada, 4943",Vila Nova,São José do Rio Preto,SP,34084560
+ruaprojetada4943|saojosedoriopreto|SP,2,14480,Clínica Sul,"Rua Projetada, 4943",Jardim,São José do Rio Preto,SP,63446360
+ruaprojetada719|curitiba|PR,2,6658,Atacado Ideal,"Rua Projetada, 719",Jardim,Curitiba,PR,16799330
+ruaprojetada719|curitiba|PR,2,9137,Centro de Distribuição Central,"Rua Projetada, 719",Vila Nova,Curitiba,PR,67606130
+ruaprojetada802|juizdefora|MG,2,9434,Atacado Sul,"Rua Projetada, 802",Jardim,Juiz de Fora,MG,79746060
+ruaprojetada802|juizdefora|MG,2,13605,Mercado Sul,"Rua Projetada, 802",Jardim,Juiz de Fora,MG,47780150
+ruaxvdenovembro1092|saopaulo|SP,2,15919,Mercado Real,"Rua Xv de Novembro, 1092",Vila Nova,São Paulo,SP,35063520
+ruaxvdenovembro1092|saopaulo|SP,2,19639,Farmácia Norte,"Rua Xv de Novembro, 1092",Vila Nova,São Paulo,SP,25109980
+ruaxvdenovembro1097|londrina|PR,2,16225,Farmácia Popular,"Rua Xv de Novembro, 1097",Jardim,Londrina,PR,79666060
+ruaxvdenovembro1097|londrina|PR,2,17850,Mercado Popular,"Rua Xv de Novembro, 1097",Jardim,Londrina,PR,46012540
+ruaxvdenovembro1173|riodejaneiro|RJ,2,4189,Loja Sul,"Rua Xv de Novembro, 1173",Centro,Rio de Janeiro,RJ,35140780
+ruaxvdenovembro1173|riodejaneiro|RJ,2,7605,Distribuidora Sul,"Rua Xv de Novembro, 1173",Industrial,Rio de Janeiro,RJ,53840380
+ruaxvdenovembro127|salvador|BA,2,7218,Farmácia Real,"Rua Xv de Novembro, 127",Industrial,Salvador,BA,21460590
+ruaxvdenovembro127|salvador|BA,2,10545,Centro de Distribuição Central,"Rua Xv de Novembro, 127",Jardim,Salvador,BA,82667940
+ruaxvdenovembro1381|riodejaneiro|RJ,2,6696,Consultório Sul,"Rua Xv de Novembro, 1381",Vila Nova,Rio de Janeiro,RJ,61596890
+ruaxvdenovembro1381|riodejaneiro|RJ,2,17508,Atacado Real,"Rua Xv de Novembro, 1381",Vila Nova,Rio de Janeiro,RJ,86338670
+ruaxvdenovembro1397|belohorizonte|MG,2,1769,Consultório Sul,"Rua Xv de Novembro, 1397",Centro,Belo Horizonte,MG,43050160
+ruaxvdenovembro1397|belohorizonte|MG,2,8874,Clínica Popular,"Rua Xv de Novembro, 1397",Vila Nova,Belo Horizonte,MG,64268880
+ruaxvdenovembro1502|riodejaneiro|RJ,2,7213,Distribuidora Popular,"Rua Xv de Novembro, 1502",Centro,Rio de Janeiro,RJ,88930870
+ruaxvdenovembro1502|riodejaneiro|RJ,2,9544,Atacado Norte,"Rua Xv de Novembro, 1502",Centro,Rio de Janeiro,RJ,68693550
+ruaxvdenovembro1569|saopaulo|SP,2,10963,Distribuidora Popular,"Rua Xv de Novembro, 1569",Industrial,São Paulo,SP,82992630
+ruaxvdenovembro1569|saopaulo|SP,2,16427,Clínica do Vale,"Rua Xv de Novembro, 1569",Jardim,São Paulo,SP,98690570
+ruaxvdenovembro1610|osasco|SP,2,2103,Mercado Popular,"Rua Xv de Novembro, 1610",Vila Nova,Osasco,SP,32525670
+ruaxvdenovembro1610|osasco|SP,2,9294,Farmácia Sul,"Rua Xv de Novembro, 1610",Vila Nova,Osasco,SP,39814530
+ruaxvdenovembro1617|saopaulo|SP,2,5760,Loja Sul,"Rua Xv de Novembro, 1617",Industrial,São Paulo,SP,87904330
+ruaxvdenovembro1617|saopaulo|SP,2,7283,Mercado Sul,"Rua Xv de Novembro, 1617",Industrial,São Paulo,SP,58586150
+ruaxvdenovembro1858|campinas|SP,2,9450,Farmácia Real,"Rua Xv de Novembro, 1858",Jardim,Campinas,SP,47512960
+ruaxvdenovembro1858|campinas|SP,2,16652,Consultório Popular,"Rua Xv de Novembro, 1858",Vila Nova,Campinas,SP,69404750
+ruaxvdenovembro1895|saopaulo|SP,2,4368,Consultório Popular,"Rua Xv de Novembro, 1895",Centro,São Paulo,SP,38596530
+ruaxvdenovembro1895|saopaulo|SP,2,19181,Farmácia Sul,"Rua Xv de Novembro, 1895",Vila Nova,São Paulo,SP,35216810
+ruaxvdenovembro1926|riodejaneiro|RJ,2,4396,Consultório Sul,"Rua Xv de Novembro, 1926",Jardim,Rio de Janeiro,RJ,70042580
+ruaxvdenovembro1926|riodejaneiro|RJ,2,9130,Mercado Real,"Rua Xv de Novembro, 1926",Centro,Rio de Janeiro,RJ,38174270
+ruaxvdenovembro2045|saopaulo|SP,2,8040,Loja Sul,"Rua Xv de Novembro, 2045",Centro,São Paulo,SP,96776750
+ruaxvdenovembro2045|saopaulo|SP,2,14134,Loja Real,"Rua Xv de Novembro, 2045",Industrial,São Paulo,SP,69236120
+ruaxvdenovembro2048|osasco|SP,2,2579,Atacado Norte,"Rua Xv de Novembro, 2048",Centro,Osasco,SP,17491410
+ruaxvdenovembro2048|osasco|SP,2,3953,Loja Ideal,"Rua Xv de Novembro, 2048",Industrial,Osasco,SP,99453750
+ruaxvdenovembro2070|ribeiraopreto|SP,2,6225,Clínica Real,"Rua Xv de Novembro, 2070",Vila Nova,Ribeirão Preto,SP,90402020
+ruaxvdenovembro2070|ribeiraopreto|SP,2,17646,Atacado Central,"Rua Xv de Novembro, 2070",Jardim,Ribeirão Preto,SP,12217100
+ruaxvdenovembro2079|saopaulo|SP,2,11879,Farmácia Ideal,"Rua Xv de Novembro, 2079",Jardim,São Paulo,SP,70628270
+ruaxvdenovembro2079|saopaulo|SP,2,19006,Atacado Norte,"Rua Xv de Novembro, 2079",Jardim,São Paulo,SP,17189570
+ruaxvdenovembro2178|saopaulo|SP,2,6058,Clínica Popular,"Rua Xv de Novembro, 2178",Centro,São Paulo,SP,45438310
+ruaxvdenovembro2178|saopaulo|SP,2,11561,Clínica Ideal,"Rua Xv de Novembro, 2178",Industrial,São Paulo,SP,45955190
+ruaxvdenovembro2213|saopaulo|SP,2,13029,Mercado Ideal,"Rua Xv de Novembro, 2213",Centro,São Paulo,SP,19234690
+ruaxvdenovembro2213|saopaulo|SP,2,13649,Consultório Sul,"Rua Xv de Novembro, 2213",Vila Nova,São Paulo,SP,41669050
+ruaxvdenovembro2235|uberlandia|MG,2,6401,Clínica do Vale,"Rua Xv de Novembro, 2235",Jardim,Uberlândia,MG,83238510
+ruaxvdenovembro2235|uberlandia|MG,2,10238,Mercado do Vale,"Rua Xv de Novembro, 2235",Jardim,Uberlândia,MG,85967830
+ruaxvdenovembro2290|riodejaneiro|RJ,2,1874,Centro de Distribuição Popular,"Rua Xv de Novembro, 2290",Industrial,Rio de Janeiro,RJ,42478010
+ruaxvdenovembro2290|riodejaneiro|RJ,2,19367,Distribuidora Real,"Rua Xv de Novembro, 2290",Jardim,Rio de Janeiro,RJ,23750120
+ruaxvdenovembro2391|riodejaneiro|RJ,2,2692,Loja Sul,"Rua Xv de Novembro, 2391",Jardim,Rio de Janeiro,RJ,93666470
+ruaxvdenovembro2391|riodejaneiro|RJ,2,12814,Atacado Real,"Rua Xv de Novembro, 2391",Centro,Rio de Janeiro,RJ,93347030
+ruaxvdenovembro243|belohorizonte|MG,2,1737,Centro de Distribuição Real,"Rua Xv de Novembro, 243",Industrial,Belo Horizonte,MG,55490740
+ruaxvdenovembro243|belohorizonte|MG,2,7910,Farmácia Norte,"Rua Xv de Novembro, 243",Jardim,Belo Horizonte,MG,73738740
+ruaxvdenovembro2445|saopaulo|SP,2,12261,Mercado Popular,"Rua Xv de Novembro, 2445",Industrial,São Paulo,SP,70020350
+ruaxvdenovembro2445|saopaulo|SP,2,19180,Clínica Sul,"Rua Xv de Novembro, 2445",Centro,São Paulo,SP,49563930
+ruaxvdenovembro244|guarulhos|SP,2,1917,Clínica Popular,"Rua Xv de Novembro, 244",Vila Nova,Guarulhos,SP,39325620
+ruaxvdenovembro244|guarulhos|SP,2,6708,Atacado Central,"Rua Xv de Novembro, 244",Centro,Guarulhos,SP,32727740
+ruaxvdenovembro2450|riodejaneiro|RJ,2,8539,Farmácia Norte,"Rua Xv de Novembro, 2450",Centro,Rio de Janeiro,RJ,37079460
+ruaxvdenovembro2450|riodejaneiro|RJ,2,17440,Consultório Ideal,"Rua Xv de Novembro, 2450",Jardim,Rio de Janeiro,RJ,50107260
+ruaxvdenovembro2451|saopaulo|SP,2,3546,Consultório Popular,"Rua Xv de Novembro, 2451",Industrial,São Paulo,SP,83179370
+ruaxvdenovembro2451|saopaulo|SP,2,10900,Clínica Norte,"Rua Xv de Novembro, 2451",Centro,São Paulo,SP,24923240
+ruaxvdenovembro2478|saopaulo|SP,2,15302,Mercado Popular,"Rua Xv de Novembro, 2478",Jardim,São Paulo,SP,65737180
+ruaxvdenovembro2478|saopaulo|SP,2,17264,Farmácia Sul,"Rua Xv de Novembro, 2478",Centro,São Paulo,SP,23101910
+ruaxvdenovembro2525|guarulhos|SP,2,10052,Atacado Ideal,"Rua Xv de Novembro, 2525",Centro,Guarulhos,SP,71952230
+ruaxvdenovembro2525|guarulhos|SP,2,14589,Centro de Distribuição Ideal,"Rua Xv de Novembro, 2525",Vila Nova,Guarulhos,SP,19455940
+ruaxvdenovembro256|salvador|BA,2,9429,Centro de Distribuição Ideal,"Rua Xv de Novembro, 256",Vila Nova,Salvador,BA,20816780
+ruaxvdenovembro256|salvador|BA,2,16649,Loja Popular,"Rua Xv de Novembro, 256",Jardim,Salvador,BA,72748310
+ruaxvdenovembro2636|riodejaneiro|RJ,2,1382,Farmácia do Vale,"Rua Xv de Novembro, 2636",Jardim,Rio de Janeiro,RJ,84064440
+ruaxvdenovembro2636|riodejaneiro|RJ,2,14434,Loja Real,"Rua Xv de Novembro, 2636",Vila Nova,Rio de Janeiro,RJ,89521090
+ruaxvdenovembro2728|sorocaba|SP,2,3353,Loja Central,"Rua Xv de Novembro, 2728",Centro,Sorocaba,SP,32398120
+ruaxvdenovembro2728|sorocaba|SP,2,17797,Loja do Vale,"Rua Xv de Novembro, 2728",Vila Nova,Sorocaba,SP,76711190
+ruaxvdenovembro272|riodejaneiro|RJ,2,3671,Atacado Central,"Rua Xv de Novembro, 272",Centro,Rio de Janeiro,RJ,22951490
+ruaxvdenovembro272|riodejaneiro|RJ,2,17186,Loja Norte,"Rua Xv de Novembro, 272",Vila Nova,Rio de Janeiro,RJ,12294570
+ruaxvdenovembro2769|saopaulo|SP,2,14966,Mercado Ideal,"Rua Xv de Novembro, 2769",Vila Nova,São Paulo,SP,49577720
+ruaxvdenovembro2769|saopaulo|SP,2,17159,Atacado Sul,"Rua Xv de Novembro, 2769",Vila Nova,São Paulo,SP,44431730
+ruaxvdenovembro2778|saopaulo|SP,2,9968,Farmácia Real,"Rua Xv de Novembro, 2778",Industrial,São Paulo,SP,28655410
+ruaxvdenovembro2778|saopaulo|SP,2,19202,Atacado Real,"Rua Xv de Novembro, 2778",Centro,São Paulo,SP,71324420
+ruaxvdenovembro2832|portoalegre|RS,2,1777,Atacado Central,"Rua Xv de Novembro, 2832",Industrial,Porto Alegre,RS,33526590
+ruaxvdenovembro2832|portoalegre|RS,2,3667,Clínica do Vale,"Rua Xv de Novembro, 2832",Vila Nova,Porto Alegre,RS,45369260
+ruaxvdenovembro2893|saopaulo|SP,2,8339,Distribuidora Sul,"Rua Xv de Novembro, 2893",Industrial,São Paulo,SP,59055850
+ruaxvdenovembro2893|saopaulo|SP,2,13804,Clínica do Vale,"Rua Xv de Novembro, 2893",Industrial,São Paulo,SP,40793310
+ruaxvdenovembro2909|saopaulo|SP,2,5700,Loja Real,"Rua Xv de Novembro, 2909",Industrial,São Paulo,SP,83925190
+ruaxvdenovembro2909|saopaulo|SP,2,5891,Mercado Popular,"Rua Xv de Novembro, 2909",Centro,São Paulo,SP,91771640
+ruaxvdenovembro2968|saopaulo|SP,2,2094,Loja Real,"Rua Xv de Novembro, 2968",Centro,São Paulo,SP,21508640
+ruaxvdenovembro2968|saopaulo|SP,2,11624,Farmácia Popular,"Rua Xv de Novembro, 2968",Vila Nova,São Paulo,SP,23770710
+ruaxvdenovembro2993|portoalegre|RS,2,9821,Consultório do Vale,"Rua Xv de Novembro, 2993",Jardim,Porto Alegre,RS,51083960
+ruaxvdenovembro2993|portoalegre|RS,2,17464,Clínica Norte,"Rua Xv de Novembro, 2993",Centro,Porto Alegre,RS,98661850
+ruaxvdenovembro3016|riodejaneiro|RJ,2,8019,Distribuidora Real,"Rua Xv de Novembro, 3016",Centro,Rio de Janeiro,RJ,82539900
+ruaxvdenovembro3016|riodejaneiro|RJ,2,11244,Mercado Real,"Rua Xv de Novembro, 3016",Vila Nova,Rio de Janeiro,RJ,19796600
+ruaxvdenovembro3043|saopaulo|SP,2,3677,Loja Norte,"Rua Xv de Novembro, 3043",Industrial,São Paulo,SP,84871080
+ruaxvdenovembro3043|saopaulo|SP,2,15559,Atacado Sul,"Rua Xv de Novembro, 3043",Jardim,São Paulo,SP,36977460
+ruaxvdenovembro3065|recife|PE,2,4559,Loja Central,"Rua Xv de Novembro, 3065",Vila Nova,Recife,PE,41025190
+ruaxvdenovembro3065|recife|PE,2,4862,Mercado Norte,"Rua Xv de Novembro, 3065",Industrial,Recife,PE,81341470
+ruaxvdenovembro3277|belohorizonte|MG,2,16488,Distribuidora Real,"Rua Xv de Novembro, 3277",Jardim,Belo Horizonte,MG,24093630
+ruaxvdenovembro3277|belohorizonte|MG,2,17472,Consultório do Vale,"Rua Xv de Novembro, 3277",Industrial,Belo Horizonte,MG,53548140
+ruaxvdenovembro3335|santoandre|SP,2,2687,Atacado Popular,"Rua Xv de Novembro, 3335",Industrial,Santo André,SP,30336880
+ruaxvdenovembro3335|santoandre|SP,2,9993,Centro de Distribuição Ideal,"Rua Xv de Novembro, 3335",Centro,Santo André,SP,25328700
+ruaxvdenovembro3336|riodejaneiro|RJ,2,7380,Loja Central,"Rua Xv de Novembro, 3336",Centro,Rio de Janeiro,RJ,89086170
+ruaxvdenovembro3336|riodejaneiro|RJ,2,17679,Consultório Ideal,"Rua Xv de Novembro, 3336",Vila Nova,Rio de Janeiro,RJ,60769440
+ruaxvdenovembro3351|juazeirodonorte|CE,2,5457,Loja Norte,"Rua Xv de Novembro, 3351",Vila Nova,Juazeiro do Norte,CE,35275220
+ruaxvdenovembro3351|juazeirodonorte|CE,2,14531,Mercado do Vale,"Rua Xv de Novembro, 3351",Centro,Juazeiro do Norte,CE,15808600
+ruaxvdenovembro3372|santoandre|SP,2,4895,Mercado Popular,"Rua Xv de Novembro, 3372",Industrial,Santo André,SP,98408530
+ruaxvdenovembro3372|santoandre|SP,2,13459,Consultório do Vale,"Rua Xv de Novembro, 3372",Centro,Santo André,SP,68948740
+ruaxvdenovembro3432|riodejaneiro|RJ,2,16821,Distribuidora Norte,"Rua Xv de Novembro, 3432",Vila Nova,Rio de Janeiro,RJ,88903300
+ruaxvdenovembro3432|riodejaneiro|RJ,2,18818,Farmácia Sul,"Rua Xv de Novembro, 3432",Centro,Rio de Janeiro,RJ,95994230
+ruaxvdenovembro3432|saopaulo|SP,2,1763,Consultório Sul,"Rua Xv de Novembro, 3432",Jardim,São Paulo,SP,48842820
+ruaxvdenovembro3432|saopaulo|SP,2,18331,Consultório Popular,"Rua Xv de Novembro, 3432",Vila Nova,São Paulo,SP,14937510
+ruaxvdenovembro3469|saopaulo|SP,2,4280,Atacado Real,"Rua Xv de Novembro, 3469",Centro,São Paulo,SP,46290320
+ruaxvdenovembro3469|saopaulo|SP,2,11762,Centro de Distribuição Central,"Rua Xv de Novembro, 3469",Industrial,São Paulo,SP,56846680
+ruaxvdenovembro3544|brasilia|DF,2,11200,Consultório Real,"Rua Xv de Novembro, 3544",Jardim,Brasília,DF,21289770
+ruaxvdenovembro3544|brasilia|DF,2,18930,Farmácia Popular,"Rua Xv de Novembro, 3544",Jardim,Brasília,DF,34013620
+ruaxvdenovembro3776|riodejaneiro|RJ,2,5843,Loja Sul,"Rua Xv de Novembro, 3776",Vila Nova,Rio de Janeiro,RJ,96269510
+ruaxvdenovembro3776|riodejaneiro|RJ,2,13821,Farmácia Real,"Rua Xv de Novembro, 3776",Industrial,Rio de Janeiro,RJ,99125870
+ruaxvdenovembro3863|riodejaneiro|RJ,2,17083,Mercado Ideal,"Rua Xv de Novembro, 3863",Vila Nova,Rio de Janeiro,RJ,64901930
+ruaxvdenovembro3863|riodejaneiro|RJ,2,17961,Atacado Real,"Rua Xv de Novembro, 3863",Centro,Rio de Janeiro,RJ,88655360
+ruaxvdenovembro3942|saopaulo|SP,2,5324,Mercado Popular,"Rua Xv de Novembro, 3942",Jardim,São Paulo,SP,40610840
+ruaxvdenovembro3942|saopaulo|SP,2,17298,Clínica Ideal,"Rua Xv de Novembro, 3942",Jardim,São Paulo,SP,95096890
+ruaxvdenovembro3963|belohorizonte|MG,2,3610,Consultório Real,"Rua Xv de Novembro, 3963",Jardim,Belo Horizonte,MG,41273080
+ruaxvdenovembro3963|belohorizonte|MG,2,17900,Loja Sul,"Rua Xv de Novembro, 3963",Centro,Belo Horizonte,MG,68960570
+ruaxvdenovembro4003|saopaulo|SP,2,7709,Farmácia Real,"Rua Xv de Novembro, 4003",Jardim,São Paulo,SP,47883050
+ruaxvdenovembro4003|saopaulo|SP,2,18613,Farmácia Popular,"Rua Xv de Novembro, 4003",Centro,São Paulo,SP,27106210
+ruaxvdenovembro4067|osasco|SP,2,7993,Farmácia Sul,"Rua Xv de Novembro, 4067",Vila Nova,Osasco,SP,55279970
+ruaxvdenovembro4067|osasco|SP,2,19125,Mercado Sul,"Rua Xv de Novembro, 4067",Industrial,Osasco,SP,38895430
+ruaxvdenovembro4111|saopaulo|SP,2,3027,Atacado do Vale,"Rua Xv de Novembro, 4111",Jardim,São Paulo,SP,59477890
+ruaxvdenovembro4111|saopaulo|SP,2,8612,Centro de Distribuição Sul,"Rua Xv de Novembro, 4111",Vila Nova,São Paulo,SP,61815840
+ruaxvdenovembro4152|curitiba|PR,2,12212,Loja Sul,"Rua Xv de Novembro, 4152",Vila Nova,Curitiba,PR,77298340
+ruaxvdenovembro4152|curitiba|PR,2,18652,Centro de Distribuição Popular,"Rua Xv de Novembro, 4152",Centro,Curitiba,PR,36586620
+ruaxvdenovembro4177|bauru|SP,2,11285,Consultório Central,"Rua Xv de Novembro, 4177",Centro,Bauru,SP,95791630
+ruaxvdenovembro4177|bauru|SP,2,12369,Clínica do Vale,"Rua Xv de Novembro, 4177",Jardim,Bauru,SP,82473780
+ruaxvdenovembro4209|saopaulo|SP,2,15139,Consultório Central,"Rua Xv de Novembro, 4209",Centro,São Paulo,SP,63234580
+ruaxvdenovembro4209|saopaulo|SP,2,19465,Centro de Distribuição do Vale,"Rua Xv de Novembro, 4209",Jardim,São Paulo,SP,52690660
+ruaxvdenovembro4259|curitiba|PR,2,13371,Centro de Distribuição Ideal,"Rua Xv de Novembro, 4259",Vila Nova,Curitiba,PR,99877760
+ruaxvdenovembro4259|curitiba|PR,2,14714,Farmácia Ideal,"Rua Xv de Novembro, 4259",Vila Nova,Curitiba,PR,81540120
+ruaxvdenovembro4280|guarulhos|SP,2,9946,Distribuidora Central,"Rua Xv de Novembro, 4280",Vila Nova,Guarulhos,SP,60746130
+ruaxvdenovembro4280|guarulhos|SP,2,13066,Atacado do Vale,"Rua Xv de Novembro, 4280",Jardim,Guarulhos,SP,86180510
+ruaxvdenovembro4297|saopaulo|SP,2,1249,Atacado Sul,"Rua Xv de Novembro, 4297",Industrial,São Paulo,SP,38210210
+ruaxvdenovembro4297|saopaulo|SP,2,19376,Loja Popular,"Rua Xv de Novembro, 4297",Vila Nova,São Paulo,SP,49485240
+ruaxvdenovembro4362|riodejaneiro|RJ,2,12117,Distribuidora Sul,"Rua Xv de Novembro, 4362",Industrial,Rio de Janeiro,RJ,31745690
+ruaxvdenovembro4362|riodejaneiro|RJ,2,19533,Clínica Ideal,"Rua Xv de Novembro, 4362",Vila Nova,Rio de Janeiro,RJ,23674300
+ruaxvdenovembro4434|saopaulo|SP,2,12127,Farmácia Sul,"Rua Xv de Novembro, 4434",Centro,São Paulo,SP,98164720
+ruaxvdenovembro4434|saopaulo|SP,2,14987,Atacado Sul,"Rua Xv de Novembro, 4434",Centro,São Paulo,SP,15101600
+ruaxvdenovembro4492|saopaulo|SP,2,11781,Centro de Distribuição Sul,"Rua Xv de Novembro, 4492",Centro,São Paulo,SP,67320410
+ruaxvdenovembro4492|saopaulo|SP,2,13039,Mercado Ideal,"Rua Xv de Novembro, 4492",Centro,São Paulo,SP,91109250
+ruaxvdenovembro44|saopaulo|SP,2,7503,Distribuidora Central,"Rua Xv de Novembro, 44",Jardim,São Paulo,SP,51347760
+ruaxvdenovembro44|saopaulo|SP,2,18467,Consultório Real,"Rua Xv de Novembro, 44",Industrial,São Paulo,SP,16563800
+ruaxvdenovembro4543|sorocaba|SP,2,1160,Mercado Norte,"Rua Xv de Novembro, 4543",Industrial,Sorocaba,SP,19950940
+ruaxvdenovembro4543|sorocaba|SP,2,9910,Distribuidora Ideal,"Rua Xv de Novembro, 4543",Industrial,Sorocaba,SP,31028460
+ruaxvdenovembro4557|riodejaneiro|RJ,2,6365,Clínica Real,"Rua Xv de Novembro, 4557",Industrial,Rio de Janeiro,RJ,67861480
+ruaxvdenovembro4557|riodejaneiro|RJ,2,7672,Consultório Sul,"Rua Xv de Novembro, 4557",Centro,Rio de Janeiro,RJ,68700860
+ruaxvdenovembro4925|salvador|BA,2,2702,Distribuidora Central,"Rua Xv de Novembro, 4925",Industrial,Salvador,BA,75411130
+ruaxvdenovembro4925|salvador|BA,2,2735,Consultório Central,"Rua Xv de Novembro, 4925",Centro,Salvador,BA,81033000
+ruaxvdenovembro4973|belohorizonte|MG,2,1362,Consultório Real,"Rua Xv de Novembro, 4973",Jardim,Belo Horizonte,MG,38434380
+ruaxvdenovembro4973|belohorizonte|MG,2,5299,Farmácia Real,"Rua Xv de Novembro, 4973",Industrial,Belo Horizonte,MG,82053110
+ruaxvdenovembro522|florianopolis|SC,2,2825,Clínica do Vale,"Rua Xv de Novembro, 522",Industrial,Florianópolis,SC,55823320
+ruaxvdenovembro522|florianopolis|SC,2,5834,Consultório Popular,"Rua Xv de Novembro, 522",Jardim,Florianópolis,SC,13828810
+ruaxvdenovembro554|riodejaneiro|RJ,2,3749,Distribuidora Central,"Rua Xv de Novembro, 554",Jardim,Rio de Janeiro,RJ,45767430
+ruaxvdenovembro554|riodejaneiro|RJ,2,7553,Loja Norte,"Rua Xv de Novembro, 554",Jardim,Rio de Janeiro,RJ,90598000
+ruaxvdenovembro555|riodejaneiro|RJ,2,8420,Mercado Sul,"Rua Xv de Novembro, 555",Industrial,Rio de Janeiro,RJ,99025690
+ruaxvdenovembro555|riodejaneiro|RJ,2,16521,Mercado do Vale,"Rua Xv de Novembro, 555",Industrial,Rio de Janeiro,RJ,85494260
+ruaxvdenovembro690|saopaulo|SP,2,8851,Centro de Distribuição Central,"Rua Xv de Novembro, 690",Jardim,São Paulo,SP,38428590
+ruaxvdenovembro690|saopaulo|SP,2,16003,Atacado Real,"Rua Xv de Novembro, 690",Jardim,São Paulo,SP,25762930
+ruaxvdenovembro695|campinas|SP,2,5765,Farmácia do Vale,"Rua Xv de Novembro, 695",Centro,Campinas,SP,14475740
+ruaxvdenovembro695|campinas|SP,2,14576,Atacado Popular,"Rua Xv de Novembro, 695",Vila Nova,Campinas,SP,82804790
+ruaxvdenovembro759|salvador|BA,2,499,Centro de Distribuição do Vale,"Rua Xv de Novembro, 759",Industrial,Salvador,BA,95587940
+ruaxvdenovembro759|salvador|BA,2,6915,Atacado Popular,"Rua Xv de Novembro, 759",Industrial,Salvador,BA,12686190
+ruaxvdenovembro800|curitiba|PR,2,6204,Farmácia Norte,"Rua Xv de Novembro, 800",Industrial,Curitiba,PR,84256500
+ruaxvdenovembro800|curitiba|PR,2,8430,Distribuidora Sul,"Rua Xv de Novembro, 800",Industrial,Curitiba,PR,26439730
+ruaxvdenovembro883|belohorizonte|MG,2,2158,Clínica do Vale,"Rua Xv de Novembro, 883",Industrial,Belo Horizonte,MG,37840400
+ruaxvdenovembro883|belohorizonte|MG,2,15132,Loja Central,"Rua Xv de Novembro, 883",Industrial,Belo Horizonte,MG,68281060

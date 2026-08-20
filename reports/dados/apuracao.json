@@ -1,0 +1,255 @@
+{
+  "carga": {
+    "celulas": 189985538,
+    "ingerido_em": "2026-08-18",
+    "processado_em": "2026-08-20",
+    "duracao_silver": 9.5,
+    "tabelas": 18,
+    "linhas": 31132247,
+    "colunas": 133,
+    "linhas_silver": 31132247
+  },
+  "ajustes": {
+    "detalhe": [
+      {
+        "tabela": "entrega",
+        "coluna": "recebedor",
+        "celulas": 168523
+      },
+      {
+        "tabela": "endereco",
+        "coluna": "logradouro",
+        "celulas": 12473
+      },
+      {
+        "tabela": "endereco",
+        "coluna": "nome_local",
+        "celulas": 7000
+      },
+      {
+        "tabela": "endereco",
+        "coluna": "cidade",
+        "celulas": 5853
+      },
+      {
+        "tabela": "ocorrencia",
+        "coluna": "observacao",
+        "celulas": 834
+      }
+    ],
+    "total": 194683,
+    "colunas": 5,
+    "tabelas": 3
+  },
+  "grao": {
+    "tabelas": 18,
+    "preservadas": 18,
+    "perdidas": 0,
+    "ok": true
+  },
+  "ausencias": {
+    "divergentes": [
+      {
+        "tabela": "ocorrencia",
+        "coluna": "observacao",
+        "bronze": 0,
+        "silver": 717,
+        "diferenca": 717
+      }
+    ],
+    "disfarcados": 0,
+    "recebedor_bronze": 1239076,
+    "recebedor_silver": 1239076,
+    "valor_bronze": 345,
+    "valor_silver": 345
+  },
+  "texto": {
+    "cidade": {
+      "bronze": 65,
+      "silver": 0
+    },
+    "nome_local": {
+      "bronze": 56,
+      "silver": 0
+    },
+    "logradouro": {
+      "bronze": 10097,
+      "silver": 0
+    },
+    "recebedor": {
+      "bronze": 56,
+      "silver": 32
+    },
+    "sao_paulo": [
+      "SAO PAULO",
+      "Sao Paulo",
+      "SÃO PAULO",
+      "São Paulo"
+    ]
+  },
+  "duplicidade": {
+    "grupos": 333,
+    "cadastros": 676,
+    "eliminados_numa_fusao": 343,
+    "total": 19697
+  },
+  "sem_efeito": [
+    {
+      "tabela": "endereco",
+      "coluna": "documento",
+      "linhas": 19697
+    },
+    {
+      "tabela": "endereco",
+      "coluna": "bairro",
+      "linhas": 19697
+    },
+    {
+      "tabela": "endereco",
+      "coluna": "uf",
+      "linhas": 19697
+    },
+    {
+      "tabela": "endereco",
+      "coluna": "cep",
+      "linhas": 19697
+    },
+    {
+      "tabela": "organizacao",
+      "coluna": "sigla",
+      "linhas": 240
+    },
+    {
+      "tabela": "organizacao",
+      "coluna": "razao_social",
+      "linhas": 240
+    },
+    {
+      "tabela": "organizacao",
+      "coluna": "nome_fantasia",
+      "linhas": 240
+    },
+    {
+      "tabela": "organizacao",
+      "coluna": "cnpj",
+      "linhas": 240
+    },
+    {
+      "tabela": "item",
+      "coluna": "codigo",
+      "linhas": 6804
+    },
+    {
+      "tabela": "item",
+      "coluna": "descricao",
+      "linhas": 6804
+    },
+    {
+      "tabela": "transportador",
+      "coluna": "nome",
+      "linhas": 19
+    },
+    {
+      "tabela": "transportador",
+      "coluna": "cnpj",
+      "linhas": 19
+    },
+    {
+      "tabela": "veiculo",
+      "coluna": "placa",
+      "linhas": 78
+    }
+  ],
+  "inventario": [
+    {
+      "tabela": "pedido_fase",
+      "linhas": 14589229,
+      "colunas": 5
+    },
+    {
+      "tabela": "pedido_item",
+      "linhas": 7728077,
+      "colunas": 4
+    },
+    {
+      "tabela": "ordem_coleta",
+      "linhas": 3662275,
+      "colunas": 6
+    },
+    {
+      "tabela": "entrega",
+      "linhas": 2664991,
+      "colunas": 11
+    },
+    {
+      "tabela": "pedido",
+      "linhas": 1776391,
+      "colunas": 17
+    },
+    {
+      "tabela": "retirada_base",
+      "linhas": 364905,
+      "colunas": 5
+    },
+    {
+      "tabela": "minuta",
+      "linhas": 214692,
+      "colunas": 8
+    },
+    {
+      "tabela": "estoque_snapshot",
+      "linhas": 56008,
+      "colunas": 8
+    },
+    {
+      "tabela": "ocorrencia",
+      "linhas": 48793,
+      "colunas": 7
+    },
+    {
+      "tabela": "endereco",
+      "linhas": 19697,
+      "colunas": 12
+    },
+    {
+      "tabela": "item",
+      "linhas": 6804,
+      "colunas": 10
+    },
+    {
+      "tabela": "organizacao",
+      "linhas": 240,
+      "colunas": 13
+    },
+    {
+      "tabela": "veiculo",
+      "linhas": 78,
+      "colunas": 5
+    },
+    {
+      "tabela": "rota",
+      "linhas": 28,
+      "colunas": 4
+    },
+    {
+      "tabela": "transportador",
+      "linhas": 19,
+      "colunas": 5
+    },
+    {
+      "tabela": "fase",
+      "linhas": 10,
+      "colunas": 5
+    },
+    {
+      "tabela": "tipo_ocorrencia",
+      "linhas": 8,
+      "colunas": 4
+    },
+    {
+      "tabela": "modalidade",
+      "linhas": 2,
+      "colunas": 4
+    }
+  ]
+}
