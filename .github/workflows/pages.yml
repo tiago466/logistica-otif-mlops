@@ -1,0 +1,44 @@
+# Publica a Sala de Resultados no GitHub Pages.
+#
+# O que é publicado: apenas o conteúdo de `reports/`, que é HTML estático e
+# autocontido (CSS e imagens embutidos). Nada de código, dado ou notebook.
+#
+# Por que os HTML são versionados em vez de gerados aqui: gerá-los exigiria as
+# camadas Bronze e Silver, que são 31 milhões de linhas em Parquet e não vão ao
+# git. O relatório é o artefato publicável; o dado que o originou fica na origem.
+name: pages
+
+on:
+  push:
+    branches: [main]
+    paths: ["reports/**", ".github/workflows/pages.yml"]
+  workflow_dispatch: # permite publicar manualmente pela aba Actions
+
+# um deploy por vez: se dois pushes chegarem juntos, o segundo espera em vez de
+# competir com o primeiro pelo mesmo site
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: reports
+
+      - id: deploy
+        uses: actions/deploy-pages@v4

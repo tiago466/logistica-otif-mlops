@@ -1,0 +1,267 @@
+/* Identidade visual do cliente, extraída do próprio logo.
+   As duas cores da marca (#284D70 e #A2BBB7) governam o documento inteiro. */
+:root {
+  --marca: #284D70;
+  --marca-clara: #3A6B96;
+  --apoio: #A2BBB7;
+  --apoio-clara: #E8EFED;
+  --tinta: #1C2733;
+  --tinta-suave: #5A6672;
+  --papel: #FFFFFF;
+  --fundo: #F4F6F8;
+  --borda: #DCE2E8;
+  --alta: #B4462F;
+  --media: #B98514;
+  --baixa: #5A7D6E;
+  --largura: 940px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--fundo);
+  color: var(--tinta);
+  font-family: "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---------- cabeçalho ---------- */
+.capa {
+  background: var(--marca);
+  color: #fff;
+  padding: 48px 0 40px;
+  border-bottom: 6px solid var(--apoio);
+}
+.capa .interno { max-width: var(--largura); margin: 0 auto; padding: 0 32px; }
+.capa img { height: 76px; margin-bottom: 22px; }
+.capa .logo-papel { display: none; }
+
+/* ---------- barra de navegação ---------- */
+.barra {
+  background: var(--papel);
+  border-bottom: 1px solid var(--borda);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.barra .interno {
+  max-width: var(--largura);
+  margin: 0 auto;
+  padding: 10px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.barra .acoes { display: flex; align-items: center; gap: 14px; }
+.barra .acoes a {
+  font-size: .84rem;
+  color: var(--marca-clara);
+  text-decoration: none;
+}
+.barra .acoes a:hover { text-decoration: underline; }
+.barra button {
+  font: inherit;
+  font-size: .84rem;
+  background: var(--marca);
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  padding: 7px 16px;
+  cursor: pointer;
+}
+.barra button:hover { background: var(--marca-clara); }
+.capa .selo {
+  display: inline-block;
+  background: rgba(255, 255, 255, .14);
+  border: 1px solid rgba(255, 255, 255, .3);
+  border-radius: 3px;
+  padding: 3px 12px;
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.capa h1 { margin: 0 0 8px; font-size: 2.1rem; font-weight: 600; line-height: 1.2; }
+.capa .sub { margin: 0; font-size: 1.02rem; color: var(--apoio); max-width: 640px; }
+.capa .meta {
+  margin-top: 26px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(255, 255, 255, .2);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 34px;
+  font-size: .84rem;
+}
+.capa .meta span { display: block; color: var(--apoio); text-transform: uppercase;
+                   letter-spacing: .08em; font-size: .68rem; margin-bottom: 2px; }
+
+/* ---------- corpo ---------- */
+main { max-width: var(--largura); margin: 0 auto; padding: 0 32px 80px; }
+
+section {
+  background: var(--papel);
+  border: 1px solid var(--borda);
+  border-radius: 4px;
+  padding: 34px 38px;
+  margin-top: 26px;
+}
+section > h2:first-child { margin-top: 0; }
+
+h2 {
+  font-size: 1.32rem;
+  font-weight: 600;
+  color: var(--marca);
+  margin: 40px 0 6px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--apoio-clara);
+}
+h2 .n { color: var(--apoio); font-weight: 600; margin-right: 10px; }
+h3 { font-size: 1.03rem; font-weight: 600; color: var(--tinta); margin: 26px 0 6px; }
+p { margin: 0 0 14px; }
+a { color: var(--marca-clara); }
+
+.chamada {
+  border-left: 4px solid var(--apoio);
+  background: var(--apoio-clara);
+  padding: 16px 20px;
+  margin: 20px 0;
+  border-radius: 0 3px 3px 0;
+}
+.chamada strong { color: var(--marca); }
+.chamada.atencao { border-left-color: var(--alta); background: #FBF0ED; }
+.chamada.atencao strong { color: var(--alta); }
+
+/* ---------- placar ---------- */
+.placar { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin: 24px 0; }
+.placar .cartao {
+  background: var(--papel);
+  border: 1px solid var(--borda);
+  border-top: 3px solid var(--marca);
+  border-radius: 3px;
+  padding: 16px 18px;
+}
+.placar .valor { font-size: 1.75rem; font-weight: 650; color: var(--marca); line-height: 1.1; }
+.placar .rotulo { font-size: .78rem; color: var(--tinta-suave); margin-top: 5px; }
+
+/* ---------- tabelas ---------- */
+table { width: 100%; border-collapse: collapse; margin: 18px 0; font-size: .9rem; }
+thead th {
+  background: var(--marca);
+  color: #fff;
+  text-align: left;
+  padding: 9px 12px;
+  font-weight: 600;
+  font-size: .78rem;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+tbody td { padding: 9px 12px; border-bottom: 1px solid var(--borda); vertical-align: top; }
+tbody tr:nth-child(even) { background: #FAFBFC; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+
+.tag {
+  display: inline-block;
+  border-radius: 2px;
+  padding: 1px 9px;
+  font-size: .72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  color: #fff;
+  white-space: nowrap;
+}
+.tag.alta { background: var(--alta); }
+.tag.media { background: var(--media); }
+.tag.baixa { background: var(--baixa); }
+.tag.tratado { background: var(--marca); }
+.tag.marcado { background: var(--apoio); color: var(--marca); }
+.tag.preservado { background: #6C7A87; }
+
+/* ---------- achados ---------- */
+.achado {
+  border: 1px solid var(--borda);
+  border-left: 4px solid var(--borda);
+  border-radius: 0 3px 3px 0;
+  padding: 20px 24px;
+  margin: 18px 0;
+  background: var(--papel);
+  break-inside: avoid;
+}
+.achado.alta { border-left-color: var(--alta); }
+.achado.media { border-left-color: var(--media); }
+.achado.baixa { border-left-color: var(--baixa); }
+.achado .cabeca { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap;
+                  margin-bottom: 10px; }
+.achado .codigo { font-family: ui-monospace, "Cascadia Mono", Consolas, monospace;
+                  font-size: .82rem; color: var(--tinta-suave); }
+.achado h3 { margin: 0; flex: 1 1 300px; }
+.achado .rodape {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px dashed var(--borda);
+  font-size: .86rem;
+  color: var(--tinta-suave);
+}
+.achado .rodape b { color: var(--tinta); font-weight: 600; }
+
+/* ---------- barras ---------- */
+.barras { margin: 20px 0; }
+.barras .linha { display: grid; grid-template-columns: 210px 1fr 92px;
+                 align-items: center; gap: 12px; margin-bottom: 7px; font-size: .86rem; }
+.barras .trilho { background: var(--apoio-clara); border-radius: 2px; height: 20px; }
+.barras .preenchido { background: var(--marca); height: 100%; border-radius: 2px; }
+.barras .rotulo { font-family: ui-monospace, Consolas, monospace; font-size: .8rem; }
+.barras .valor { text-align: right; font-variant-numeric: tabular-nums; }
+
+/* ---------- diversos ---------- */
+code { font-family: ui-monospace, "Cascadia Mono", Consolas, monospace;
+       background: var(--apoio-clara); padding: 1px 5px; border-radius: 2px;
+       font-size: .88em; }
+.sumario ol { margin: 0; padding-left: 22px; }
+.sumario li { margin-bottom: 5px; }
+.previsto { color: var(--tinta-suave); font-style: italic; }
+
+.rodape-doc {
+  max-width: var(--largura);
+  margin: 0 auto;
+  padding: 26px 32px 60px;
+  font-size: .82rem;
+  color: var(--tinta-suave);
+  border-top: 1px solid var(--borda);
+}
+
+.voltar {
+  font-size: .86rem;
+  color: var(--marca-clara);
+  text-decoration: none;
+}
+.voltar:hover { text-decoration: underline; }
+.rodape-voltar { display: inline-block; margin-top: 22px; }
+
+/* ---------- impressão (Ctrl+P) ---------- */
+@media print {
+  @page { size: A4; margin: 15mm 14mm 16mm; }
+  body { background: #fff; font-size: 10.5pt; line-height: 1.5; }
+  .capa { padding: 0 0 16px; border-bottom: 3px solid var(--marca);
+          background: #fff !important; color: var(--tinta) !important; }
+  .capa .interno { padding: 0; }
+  .capa h1 { color: var(--marca); font-size: 20pt; }
+  .capa .sub, .capa .meta { color: var(--tinta-suave); }
+  .capa .meta span { color: var(--tinta-suave); }
+  .capa .selo { background: none; border: 1px solid var(--marca); color: var(--marca); }
+  /* no papel o cabeçalho vira branco, então o logo negativo sumiria */
+  .capa .logo-tela { display: none; }
+  .capa .logo-papel { display: block; height: 54px; }
+  main { padding: 0; max-width: none; }
+  section { border: none; padding: 0; margin-top: 18px; }
+  h2 { break-after: avoid; page-break-after: avoid; }
+  .achado, .placar, table, .chamada { break-inside: avoid; page-break-inside: avoid; }
+  .voltar, .nao-imprimir { display: none !important; }
+  thead { display: table-header-group; }
+  a { color: var(--tinta); text-decoration: none; }
+}

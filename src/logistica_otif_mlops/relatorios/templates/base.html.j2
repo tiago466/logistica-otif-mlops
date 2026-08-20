@@ -1,0 +1,57 @@
+{# Esqueleto comum aos dois relatórios. O CSS e o logo são embutidos no arquivo,
+   sem link externo, para que o HTML possa ser enviado por e-mail, aberto sem
+   internet e impresso sem perder a identidade visual. #}
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ titulo }} · {{ cliente }}</title>
+<style>{{ css }}</style>
+</head>
+<body>
+
+<header class="capa">
+  <div class="interno">
+    {# duas versões do logo: a negativa vale na tela, onde o fundo é azul; a
+       positiva entra na impressão, onde o cabeçalho vira branco e a negativa
+       desapareceria no papel #}
+    <img class="logo-tela" src="data:image/png;base64,{{ logo_negativo }}" alt="{{ cliente }}">
+    <img class="logo-papel" src="data:image/png;base64,{{ logo }}" alt="{{ cliente }}">
+    <div class="selo">{{ selo }}</div>
+    <h1>{{ titulo }}</h1>
+    <p class="sub">{{ subtitulo }}</p>
+    <div class="meta">
+      <div><span>Capítulo</span>{{ capitulo }}</div>
+      <div><span>Base analisada</span>{{ dados.carga.linhas | milhar }} linhas · {{ dados.carga.tabelas }} tabelas</div>
+      <div><span>Carga de referência</span>{{ dados.carga.ingerido_em }}</div>
+      <div><span>Emitido em</span>{{ emitido_em }}</div>
+      <div><span>Responsável técnico</span>{{ autor }}</div>
+    </div>
+  </div>
+</header>
+
+<nav class="barra nao-imprimir">
+  <div class="interno">
+    <a class="voltar" href="index.html">← voltar à Sala de Resultados</a>
+    <div class="acoes">
+      <a href="{{ irmao.arquivo }}">{{ irmao.rotulo }}</a>
+      <button type="button" onclick="window.print()">Imprimir ou salvar em PDF</button>
+    </div>
+  </div>
+</nav>
+
+<main>
+{% block corpo %}{% endblock %}
+<a class="voltar rodape-voltar nao-imprimir" href="index.html">← voltar à Sala de Resultados</a>
+</main>
+
+<footer class="rodape-doc">
+  <p><b>{{ cliente }}</b> · {{ titulo }} · capítulo {{ capitulo }} · emitido em {{ emitido_em }}.</p>
+  <p>Documento gerado automaticamente a partir das camadas de dados do projeto. Todo número
+  exibido é lido do dado no momento da emissão, nunca digitado, e pode ser reproduzido a
+  partir da mesma carga. {{ aviso }}</p>
+</footer>
+
+</body>
+</html>

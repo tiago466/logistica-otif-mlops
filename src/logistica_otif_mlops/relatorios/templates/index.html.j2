@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sala de Resultados · {{ cliente }}</title>
+<style>
+{{ css }}
+
+.entrada { min-height: 100vh; display: flex; flex-direction: column;
+           align-items: center; justify-content: center; padding: 40px 24px;
+           background: var(--marca); }
+.entrada .caixa { background: var(--papel); border-radius: 5px; max-width: 780px;
+                  width: 100%; padding: 46px 52px 40px; text-align: center;
+                  box-shadow: 0 18px 50px rgba(0,0,0,.22); }
+.entrada img { height: 84px; margin-bottom: 20px; }
+.entrada h1 { font-size: 1.5rem; color: var(--marca); margin: 0 0 6px; font-weight: 600; }
+.entrada .sub { color: var(--tinta-suave); margin: 0 0 6px; }
+.entrada .carga { color: var(--tinta-suave); font-size: .82rem; margin: 0 0 30px; }
+.portas { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; text-align: left; }
+.porta { display: block; text-decoration: none; color: inherit; border: 1px solid var(--borda);
+         border-top: 4px solid var(--marca); border-radius: 4px; padding: 24px 26px 22px;
+         transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease; }
+.porta:hover { transform: translateY(-3px); box-shadow: 0 10px 26px rgba(40,77,112,.16);
+               border-color: var(--apoio); }
+.porta .rotulo { font-size: .68rem; letter-spacing: .12em; text-transform: uppercase;
+                 color: var(--apoio); font-weight: 700; }
+.porta h2 { font-size: 1.14rem; color: var(--marca); margin: 6px 0 8px;
+            border: none; padding: 0; }
+.porta p { font-size: .88rem; color: var(--tinta-suave); margin: 0 0 12px; line-height: 1.55; }
+.porta .quem { font-size: .78rem; color: var(--tinta); border-top: 1px dashed var(--borda);
+               padding-top: 10px; }
+.porta.tecnica { border-top-color: var(--apoio); }
+.porta.tecnica h2 { color: var(--marca); }
+.entrada .capitulo { margin-top: 30px; padding-top: 20px; border-top: 1px solid var(--borda);
+                     text-align: left; font-size: .84rem; color: var(--tinta-suave); }
+.entrada .capitulo b { color: var(--tinta); }
+.entrada .assinatura { margin-top: 22px; font-size: .74rem; color: var(--tinta-suave); }
+
+@media (max-width: 700px) { .portas { grid-template-columns: 1fr; } }
+@media print { .entrada { min-height: auto; background: #fff; }
+               .entrada .caixa { box-shadow: none; } }
+</style>
+</head>
+<body>
+
+<div class="entrada">
+  <div class="caixa">
+    <img src="data:image/png;base64,{{ logo }}" alt="{{ cliente }}">
+    <h1>Sala de Resultados</h1>
+    <p class="sub">Projeto de Ciência de Dados · Previsão de atraso na entrega</p>
+    <p class="carga">Base analisada: {{ dados.carga.linhas | milhar }} registros em
+       {{ dados.carga.tabelas }} tabelas · carga de {{ dados.carga.ingerido_em }}</p>
+
+    <div class="portas">
+      <a class="porta" href="executivo.html">
+        <div class="rotulo">Para decidir</div>
+        <h2>Apresentação Executiva</h2>
+        <p>O estado da base em linguagem de negócio: o que foi encontrado, o que isso causa na
+        operação, o que já foi corrigido e o que depende de decisão de vocês.</p>
+        <div class="quem">Direção, operação e áreas de negócio</div>
+      </a>
+
+      <a class="porta tecnica" href="tecnico.html">
+        <div class="rotulo">Para verificar</div>
+        <h2>Apresentação Técnica</h2>
+        <p>O método, a evidência e a auditoria do tratamento: dimensões verificadas, regras
+        aplicadas, o que foi alterado célula a célula e como reproduzir cada número.</p>
+        <div class="quem">TI, dono do sistema e quem for auditar</div>
+      </a>
+    </div>
+
+    <div class="capitulo">
+      <p><b>Capítulo {{ capitulo_atual.numero }} de {{ capitulos | length }} · {{ capitulo_atual.titulo }}</b><br>
+      {{ capitulo_atual.resumo }}</p>
+      <p>Os dois documentos crescem a cada etapa entregue. Próximo capítulo:
+      <b>{{ proximo.titulo }}</b>.</p>
+    </div>
+
+    <p class="assinatura">{{ cliente }} · emitido em {{ emitido_em }} · {{ autor }}<br>
+    {{ aviso }}</p>
+  </div>
+</div>
+
+</body>
+</html>

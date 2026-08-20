@@ -1,0 +1,327 @@
+{% extends "base.html.j2" %}
+{% block corpo %}
+
+<section class="sumario">
+<h2><span class="n">§</span>Escopo e método</h2>
+
+<p>Este documento descreve o diagnóstico de qualidade da base operacional e a auditoria do
+tratamento aplicado na camada Silver. Ele é o par técnico do
+<a href="executivo.html">Relatório Executivo</a>: os dois contam os mesmos fatos, com os mesmos
+números, em profundidades diferentes. <b>Todo número do executivo é rastreável até uma seção
+daqui.</b></p>
+
+<h3>Arquitetura em camadas</h3>
+<p>O dado percorre três camadas, e a separação entre elas não é organizacional, é o que torna
+a auditoria possível:</p>
+
+<table>
+<thead><tr><th>Camada</th><th>O que é</th><th>O que nunca faz</th></tr></thead>
+<tbody>
+<tr><td><b>Bronze</b></td>
+    <td>Cópia fiel da origem, sem uma única transformação. Preserva até o defeito.</td>
+    <td>Nunca corrige nada. Se corrigisse, não haveria com o que comparar.</td></tr>
+<tr><td><b>Silver</b></td>
+    <td>O Bronze conformado, <b>no mesmo grão</b>. Uma tabela entra, a mesma tabela sai.</td>
+    <td>Nunca agrega, nunca descarta, nunca imputa.</td></tr>
+<tr><td><b>Gold</b></td>
+    <td>Transformação de negócio: fases em colunas, durações, régua de prazo.</td>
+    <td>Nunca volta ao Bronze direto.</td></tr>
+</tbody>
+</table>
+
+<div class="chamada">
+<p><strong>Por que o Bronze é intocável.</strong> O defeito mais caro deste projeto foi encontrado
+comparando o Silver com o Bronze, não lendo código. Sem a cópia original preservada, ele teria
+chegado ao relatório final. A seção 5.4 conta o caso com nome e número.</p>
+</div>
+
+<h3>Evidência de origem</h3>
+<ol>
+  <li><code>notebooks/operacional/00_eda_qualidade_dados_ope.ipynb</code> · o diagnóstico, em 12 dimensões de qualidade</li>
+  <li><code>notebooks/operacional/01_validacao_silver_ope.ipynb</code> · a auditoria do tratamento, célula a célula</li>
+  <li><code>src/logistica_otif_mlops/transformacoes.py</code> · as regras puras, com {{ testes }} testes unitários</li>
+  <li><code>src/logistica_otif_mlops/pipelines/silver.py</code> · a aplicação das regras e o manifesto</li>
+</ol>
+</section>
+
+<section>
+<h2><span class="n">1.</span>A fotografia da base</h2>
+
+<p>Toda avaliação de qualidade descreve um instante. Sem dizer qual, a conclusão perde validade:
+a base muda todo dia, e um defeito corrigido ontem continuaria sendo reportado. Os dados abaixo
+são lidos do manifesto de ingestão, gerado na mesma execução que gravou os arquivos.</p>
+
+<div class="placar">
+  <div class="cartao"><div class="valor">{{ dados.carga.tabelas }}</div><div class="rotulo">tabelas</div></div>
+  <div class="cartao"><div class="valor">{{ dados.carga.colunas }}</div><div class="rotulo">colunas</div></div>
+  <div class="cartao"><div class="valor">{{ dados.carga.linhas | milhar }}</div><div class="rotulo">registros</div></div>
+  <div class="cartao"><div class="valor">{{ dados.carga.duracao_silver }}s</div><div class="rotulo">para processar o Silver</div></div>
+</div>
+
+<table>
+<thead><tr><th>Tabela</th><th class="num">Linhas</th><th class="num">Colunas</th></tr></thead>
+<tbody>
+{% for t in dados.inventario %}
+<tr><td><code>{{ t.tabela }}</code></td><td class="num">{{ t.linhas | milhar }}</td><td class="num">{{ t.colunas }}</td></tr>
+{% endfor %}
+</tbody>
+</table>
+</section>
+
+<section>
+<h2><span class="n">2.</span>Dimensões verificadas</h2>
+
+<p>O diagnóstico cobriu doze dimensões. Registrar as que passaram é tão importante quanto
+registrar as que falharam: sem elas, o leitor não sabe se a dimensão foi verificada e passou ou
+se simplesmente não foi olhada.</p>
+
+<table>
+<thead><tr><th>Dimensão</th><th>O que procura</th><th>Resultado</th></tr></thead>
+<tbody>
+<tr><td>Perfil e tipagem</td><td>tipo coerente com o rótulo da coluna</td><td>sem divergência</td></tr>
+<tr><td>Completude</td><td>campo crítico vazio</td><td><b>achados Q4 e Q6</b></td></tr>
+<tr><td>Unicidade</td><td>chave de negócio duplicada</td><td>nenhuma duplicata</td></tr>
+<tr><td>Domínio</td><td>categoria fora do previsto</td><td>sem categoria estranha</td></tr>
+<tr><td>Texto</td><td>caixa, espaço e acentuação inconsistentes</td><td><b>achados Q1, Q2, Q5 e Q7</b></td></tr>
+<tr><td>Consistência temporal</td><td>evento que termina antes de começar</td><td>nenhuma inversão em 14,6 mi de passagens</td></tr>
+<tr><td>Integridade referencial</td><td>referência para registro inexistente</td><td>nenhum órfão</td></tr>
+<tr><td>Números impossíveis</td><td>peso, volume ou quantidade negativos</td><td>nenhum</td></tr>
+<tr><td>Duplicidade de cadastro</td><td>mesmo endereço em registros distintos</td><td><b>achado Q3</b></td></tr>
+<tr><td>Vazamento temporal</td><td>campo que só existe depois do instante da previsão</td><td>2 vazamentos corrigidos na geração</td></tr>
+<tr><td>Coerência entre tabelas</td><td>contradição entre fontes do mesmo fato</td><td>sem contradição</td></tr>
+<tr><td>Coerência com o negócio</td><td>número plausível para a operação descrita</td><td>21 indicadores dentro da banda</td></tr>
+</tbody>
+</table>
+</section>
+
+<section>
+<h2><span class="n">3.</span>Achados, com a leitura técnica</h2>
+
+{% for a in achados %}
+<div class="achado {{ a.severidade | classe }}">
+  <div class="cabeca">
+    <span class="codigo">{{ a.codigo }}</span>
+    <h3>{{ a.titulo }}</h3>
+    <span class="tag {{ a.severidade | classe }}">{{ a.severidade }}</span>
+    <span class="tag {{ a.situacao }}">{{ a.situacao }}</span>
+  </div>
+  <p>{{ a.detalhe | seguro }}</p>
+  <div class="rodape">
+    <b>Decisão:</b> {{ a.decisao }}<br>
+    <b>Evidência:</b> {{ a.evidencia }}
+    {% if a.origem %}<br><b>Correção na origem:</b> {{ a.acao_cliente }}{% endif %}
+  </div>
+</div>
+{% endfor %}
+</section>
+
+<section>
+<h2><span class="n">4.</span>A camada Silver: o que foi aplicado</h2>
+
+<p>Sete tabelas têm regra de tratamento; as outras {{ dados.carga.tabelas - 7 }} são copiadas
+como vieram, porque no Bronze já estavam conformes e transformar o que não precisa é criar
+diferença sem motivo.</p>
+
+<h3>4.1. As regras</h3>
+<p>As funções de transformação vivem em <code>transformacoes.py</code>, isoladas de banco, arquivo e
+DataFrame. Cada uma faz uma coisa, recebe e devolve valor simples, e tem teste unitário com o
+caso fácil e o caso que costuma quebrar. A regra que governa todas é
+<b>normalizar para comparar, preservar para exibir</b>.</p>
+
+<table>
+<thead><tr><th>Função</th><th>O que faz</th><th>O caso difícil que ela trata</th></tr></thead>
+<tbody>
+<tr><td><code>chave_comparacao</code></td><td>reduz o texto à forma comparável</td><td>é o instrumento de medida, nunca vira valor de negócio</td></tr>
+<tr><td><code>normalizar_espacos</code></td><td>tira espaço das pontas e colapsa o do meio</td><td>string só com espaço vira ausência, não texto vazio</td></tr>
+<tr><td><code>capitalizar_nome</code></td><td>capitaliza respeitando partículas e siglas</td><td><code>str.title()</code> transformaria "Rua das Flores" em "Rua Das Flores" e "CD SP" em "Cd Sp"</td></tr>
+<tr><td><code>normalizar_logradouro</code></td><td>expande a abreviação do tipo</td><td>capitaliza o texto inteiro de uma vez, senão a partícula do meio vira início de frase</td></tr>
+<tr><td><code>normalizar_documento</code></td><td>mantém só os dígitos</td><td>preserva zero à esquerda</td></tr>
+<tr><td><code>normalizar_cep</code></td><td>mantém oito dígitos</td><td>o zero à esquerda é a razão de CEP ser texto: como número, 01001000 vira 1001000</td></tr>
+<tr><td><code>canonizar_variantes</code></td><td>elege uma grafia oficial por grupo</td><td>capitalizar não devolve acento não digitado; a eleição prefere quem tem acento, depois caixa de nome próprio, depois frequência, depois ordem alfabética (para ser reprodutível)</td></tr>
+</tbody>
+</table>
+
+<h3>4.2. Onde o tratamento tocou</h3>
+<p><b>{{ dados.ajustes.total | milhar }} células</b> alteradas em {{ dados.ajustes.colunas }} colunas de
+{{ dados.ajustes.tabelas }} tabelas. O denominador correto aqui é a célula, não a linha: o
+tratamento age em campo, e dividir por linha inflaria a proporção em tantas vezes quantas forem
+as colunas. Sobre as <b>{{ dados.carga.celulas | milhar }} células</b> do domínio operacional, a
+proporção é <b>{{ (dados.ajustes.total / dados.carga.celulas * 100) | round(4) }}%</b>, ou 1 célula
+em cada {{ (dados.carga.celulas // dados.ajustes.total) | milhar }}.</p>
+
+<table>
+<thead><tr><th>Tabela</th><th>Coluna</th><th class="num">Células</th><th class="num">% do total</th></tr></thead>
+<tbody>
+{% for linha in dados.ajustes.detalhe %}
+<tr><td><code>{{ linha.tabela }}</code></td><td><code>{{ linha.coluna }}</code></td>
+    <td class="num">{{ linha.celulas | milhar }}</td>
+    <td class="num">{{ (linha.celulas / dados.ajustes.total * 100) | round(1) }}%</td></tr>
+{% endfor %}
+</tbody>
+</table>
+
+<h3>4.3. As regras que rodaram e não corrigiram nada</h3>
+<p>{{ dados.sem_efeito | length }} colunas passaram por regra de tratamento sem ter uma única
+célula alterada, porque já vinham conformes da origem. Isso é registrado por honestidade
+metodológica (o pipeline não infla o número de correções) e porque essas regras são
+<b>defesa, não conserto</b>: existem para o dia em que a origem mudar de formato, e são o que
+impede que essa mudança quebre o Gold sem aviso.</p>
+
+<table>
+<thead><tr><th>Tabela</th><th>Coluna</th><th class="num">Linhas verificadas</th></tr></thead>
+<tbody>
+{% for linha in dados.sem_efeito %}
+<tr><td><code>{{ linha.tabela }}</code></td><td><code>{{ linha.coluna }}</code></td>
+    <td class="num">{{ linha.linhas | milhar }}</td></tr>
+{% endfor %}
+</tbody>
+</table>
+</section>
+
+<section>
+<h2><span class="n">5.</span>Auditoria do tratamento</h2>
+
+<p>Um pipeline de limpeza falha de dois jeitos, e o segundo é muito pior. <b>Não corrigir o que
+devia</b> é visível: o defeito continua lá, alguém reclama. <b>Corrigir o que não devia</b> é
+invisível: o número fica bonito, o relatório fecha, e o dado está errado. Esta seção foi
+desenhada para pegar o segundo caso.</p>
+
+<h3>5.1. O grão foi preservado?</h3>
+<p>{{ dados.grao.preservadas }} de {{ dados.grao.tabelas }} tabelas mantiveram a contagem exata de
+linhas. {{ dados.grao.perdidas }} colunas foram perdidas. As únicas colunas novas são
+<code>_processado_em</code>, técnica, e <code>chave_endereco</code>, derivada e aditiva.</p>
+<p>Grão preservado é o que garante que qualquer número do Gold pode ser aberto até o registro
+individual. É também o que separa uma camada Silver de uma camada de relatório: se o tratamento
+já entregasse o dado agregado, todo relatório novo voltaria ao Bronze e a rastreabilidade
+morreria no meio do caminho.</p>
+
+<h3>5.2. Alguma ausência foi criada ou destruída?</h3>
+<table>
+<thead><tr><th>Tabela</th><th>Coluna</th><th class="num">Bronze</th><th class="num">Silver</th><th class="num">Diferença</th></tr></thead>
+<tbody>
+{% for linha in dados.ausencias.divergentes %}
+<tr><td><code>{{ linha.tabela }}</code></td><td><code>{{ linha.coluna }}</code></td>
+    <td class="num">{{ linha.bronze | milhar }}</td><td class="num">{{ linha.silver | milhar }}</td>
+    <td class="num">{{ '%+d' | format(linha.diferenca) }}</td></tr>
+{% else %}
+<tr><td colspan="5">Nenhuma coluna teve a contagem de ausência alterada.</td></tr>
+{% endfor %}
+</tbody>
+</table>
+
+<p>A única divergência é deliberada, e vale como exemplo do critério. Em
+<code>ocorrencia.observacao</code> havia texto livre com <code>-</code>, <code>N/A</code> e
+<code>sem informacao</code>, que é <b>ausência disfarçada de conteúdo</b>: mantê-los faria qualquer
+agrupamento exibir <code>-</code> como se fosse uma categoria real de ocorrência.
+<b>Converter para ausência revela a falta; preencher a ausência esconde a falta.</b></p>
+
+<p>Verificação complementar: <b>{{ dados.ausencias.disfarcados }}</b> valores de ausência
+disfarçados de texto (<code>nan</code>, <code>none</code>, <code>null</code>, <code>-</code>) sobraram
+nas {{ dados.carga.tabelas }} tabelas do Silver.</p>
+
+<h3>5.3. Os achados que precisavam sobreviver intactos</h3>
+<table>
+<thead><tr><th>Achado</th><th class="num">Bronze</th><th class="num">Silver</th><th>Situação</th></tr></thead>
+<tbody>
+<tr><td>Transferência para base sem recebedor (Q4)</td>
+    <td class="num">{{ dados.ausencias.recebedor_bronze | milhar }}</td>
+    <td class="num">{{ dados.ausencias.recebedor_silver | milhar }}</td>
+    <td>preservado</td></tr>
+<tr><td>Item sem valor unitário (Q6)</td>
+    <td class="num">{{ dados.ausencias.valor_bronze | milhar }}</td>
+    <td class="num">{{ dados.ausencias.valor_silver | milhar }}</td>
+    <td>preservado</td></tr>
+</tbody>
+</table>
+
+<h3>5.4. O incidente que originou esta seção</h3>
+<div class="chamada atencao">
+<p><strong>Registro de defeito do próprio pipeline.</strong> Durante o desenvolvimento, a aplicação
+das funções de texto converteu <b>{{ dados.ausencias.recebedor_bronze | milhar }} ausências em um
+recebedor chamado "Nan"</b>.</p>
+<p>A causa: o pandas, ao aplicar uma função sobre coluna de texto, passa o valor ausente para a
+função em vez de pulá-lo, e no caminho o ausente vira a string <code>"nan"</code>. A função de
+capitalizar recebeu <code>"nan"</code> e devolveu <code>"Nan"</code>, corretamente. <b>O erro não
+estava na função, estava na chamada.</b></p>
+<p>Por que é grave: é silencioso (a coluna fica com aparência melhor que antes), é irreversível
+dentro do Silver (a ausência não se recupera de um texto) e destrói justamente o achado mais
+valioso do diagnóstico. Correção aplicada: instrução explícita ao pandas para pular os
+ausentes, em todas as chamadas.</p>
+<p><b>Como foi encontrado:</b> não por leitura de código, mas por comparação com a camada
+anterior. É o argumento prático a favor do Bronze intocável, e a razão de esta auditoria ser
+etapa do processo e não um extra.</p>
+</div>
+
+<h3>5.5. O tratamento é idempotente?</h3>
+<p>As 7 regras foram reaplicadas sobre o próprio Silver: <b>nenhuma célula muda</b>. Sem essa
+propriedade, reprocessar uma carga (o que acontece o tempo todo, por falha de rede, correção de
+defeito ou dado atrasado) produziria resultado diferente do anterior, e ninguém saberia qual dos
+dois é o certo.</p>
+<p>A propriedade não é automática. A eleição da grafia canônica poderia facilmente não ser
+idempotente: se o desempate fosse a ordem de leitura do arquivo, ou se houvesse qualquer sorteio,
+duas execuções elegeriam vencedores diferentes e o mesmo endereço mudaria de nome a cada carga.
+Por isso o desempate final é alfabético, que é ordem estável e independe de como o dado chegou.</p>
+</section>
+
+<section>
+<h2><span class="n">6.</span>Antes e depois, por campo</h2>
+
+<table>
+<thead><tr><th>Campo</th><th>Medida</th><th class="num">Bronze</th><th class="num">Silver</th></tr></thead>
+<tbody>
+<tr><td><code>endereco.cidade</code></td><td>valores em grafia múltipla</td>
+    <td class="num">{{ dados.texto.cidade.bronze }}</td><td class="num">{{ dados.texto.cidade.silver }}</td></tr>
+<tr><td><code>endereco.nome_local</code></td><td>valores em grafia múltipla</td>
+    <td class="num">{{ dados.texto.nome_local.bronze }}</td><td class="num">{{ dados.texto.nome_local.silver }}</td></tr>
+<tr><td><code>endereco.logradouro</code></td><td>tipo abreviado</td>
+    <td class="num">{{ dados.texto.logradouro.bronze | milhar }}</td><td class="num">{{ dados.texto.logradouro.silver }}</td></tr>
+<tr><td><code>entrega.recebedor</code></td><td>nomes distintos</td>
+    <td class="num">{{ dados.texto.recebedor.bronze }}</td><td class="num">{{ dados.texto.recebedor.silver }}</td></tr>
+</tbody>
+</table>
+
+<p>O caso de São Paulo ilustra o mecanismo: no Bronze existiam as grafias
+{% for g in dados.texto.sao_paulo %}<code>{{ g }}</code>{% if not loop.last %}, {% endif %}{% endfor %};
+no Silver existe uma só, <b>com acento</b>.</p>
+
+<h3>Duplicidade de endereço: marcada, não fundida</h3>
+<div class="placar">
+  <div class="cartao"><div class="valor">{{ dados.duplicidade.grupos }}</div><div class="rotulo">grupos duplicados</div></div>
+  <div class="cartao"><div class="valor">{{ dados.duplicidade.cadastros }}</div><div class="rotulo">cadastros envolvidos</div></div>
+  <div class="cartao"><div class="valor">{{ dados.duplicidade.eliminados_numa_fusao }}</div><div class="rotulo">seriam eliminados numa fusão</div></div>
+  <div class="cartao"><div class="valor">{{ dados.duplicidade.total | milhar }}</div><div class="rotulo">endereços na base</div></div>
+</div>
+<p>O pipeline tem informação suficiente para fundir os cadastros e <b>escolhe não fazê-lo</b>.
+Saber que dois cadastros são o mesmo lugar é diferente de ter autoridade para eliminar um deles.
+Marcar entrega ao cliente as duas coisas: o problema quantificado e a liberdade de decidir.
+Fundir entregaria só o resultado, sem volta, porque os pedidos antigos referenciam o registro
+que seria eliminado.</p>
+</section>
+
+<section>
+<h2><span class="n">7.</span>Limitações e como reproduzir</h2>
+
+<h3>Limitações declaradas</h3>
+<ul>
+<li>O diagnóstico descreve a carga de <b>{{ dados.carga.ingerido_em }}</b>. Cargas posteriores podem
+trazer defeitos novos, e os defeitos de origem (Q1, Q2, Q3, Q5) <b>voltam a cada carga</b>
+enquanto não houver validação na entrada do sistema.</li>
+<li>A eleição de grafia canônica usa apenas os próprios dados, sem lista externa de municípios.
+Se a base inteira escrever uma cidade errada, ela continua errada, só que uniforme.</li>
+<li>A duplicidade de endereço é detectada por logradouro, cidade e UF. Duplicata com logradouro
+escrito de forma substancialmente diferente não é capturada.</li>
+<li>O tratamento cobre texto e formato. <b>Não cobre veracidade</b>: um CEP válido no formato mas
+errado para o endereço não é detectável sem fonte externa.</li>
+</ul>
+
+<h3>Reprodução</h3>
+<p>Todo número deste documento sai da leitura das camadas no momento da emissão. Para reproduzir:</p>
+<ol>
+<li><code>uv run python -m logistica_otif_mlops.pipelines.bronze</code></li>
+<li><code>uv run python -m logistica_otif_mlops.pipelines.silver</code></li>
+<li><code>uv run pytest</code> · {{ testes }} testes</li>
+<li><code>uv run python -m logistica_otif_mlops.relatorios</code> · regera estes dois documentos</li>
+</ol>
+</section>
+
+{% endblock %}

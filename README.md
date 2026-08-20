@@ -7,8 +7,20 @@
 # Logística OTIF · Ciência de Dados & MLOps ponta a ponta
 
 <!-- nav:start -->
- [Problema](#o-problema-de-negócio) | [Acesso aos dados](#sobre-o-cenário-de-acesso-aos-dados) | [Dados](#os-dados) | [Arquitetura](#arquitetura--stack) | [Estrutura](#estrutura-do-repositório) | [Documentação](#documentação) | [Como rodar](#como-rodar) | [Status](#status-do-projeto) | [Autor](#autor)
+ [Sala de Resultados](#sala-de-resultados) | [Problema](#o-problema-de-negócio) | [Acesso aos dados](#sobre-o-cenário-de-acesso-aos-dados) | [Dados](#os-dados) | [Arquitetura](#arquitetura--stack) | [Estrutura](#estrutura-do-repositório) | [Documentação](#documentação) | [Como rodar](#como-rodar) | [Status](#status-do-projeto) | [Autor](#autor)
 <!-- nav:end -->
+
+<h2 align="center" id="sala-de-resultados">
+  <a href="https://tiago466.github.io/logistica-otif-mlops/">🔎 Abrir a Sala de Resultados</a>
+</h2>
+
+<p align="center">
+  <b>O produto antes do código.</b><br>
+  Os relatórios que o cliente recebe, publicados como site: uma
+  <b>Apresentação Executiva</b>, para quem decide, e uma <b>Apresentação Técnica</b>,
+  para quem verifica.<br>
+  Todo número dos dois é lido das camadas de dados na hora da geração, nunca digitado.
+</p>
 
 > Projeto **end-to-end** de Ciência de Dados e MLOps no domínio **logístico**, com dados **100% sintéticos**. Duas entregas sobre a mesma base: **(1)** previsão de **atraso em entregas (OTIF)**, um problema de classificação desbalanceada com custo assimétrico, e **(2)** **raio-x de margem de contribuição por cliente** (Data Discovery financeiro). O foco é a **engenharia** em volta da ciência: pipeline reprodutível, rastreamento de experimentos, testes, CI e monitoramento, não só um notebook com um bom AUC.
 
@@ -62,6 +74,24 @@ Por isso a camada de conectores existe desde o primeiro commit: trocar um banco 
 
 Fluxo de dados em camadas (**medallion**): fonte → **bronze** (cru) → **silver** (limpo/conformado) → **gold** (pronto para análise e modelo) → **modelo** → **operação** (API + monitoramento).
 
+### Onde cada consumidor busca o dado
+
+O sistema transacional do cliente **nunca** é consultado por relatório ou painel. Ele responde à operação em tempo real, e uma consulta analítica pesada ali compete com quem está trabalhando. O caminho é outro:
+
+```
+sistema do cliente  ──(leitura, na janela combinada)──>  bronze → silver → gold
+                                                                            │
+                                          publicação do modelo dimensional  │
+                                                                            v
+                                                          banco analítico (Neon)
+                                                                            │
+                                                    BI, dashboards, consultas ad hoc
+```
+
+A camada gold existe **em dois lugares, de propósito**: em Parquet dentro do projeto, que é a verdade reprodutível usada pelo modelo e pelos notebooks; e publicada no banco analítico, que é a vitrine otimizada para quem consulta em SQL. Não é duplicação por descuido, é **serving layer**.
+
+**Portabilidade.** Trocar o banco analítico (Neon por RDS, Azure SQL, BigQuery) é trocar variável de ambiente, não reescrever o pipeline. Isso só se sustenta por uma disciplina: **a lógica de negócio vive no pipeline, em Python, e o banco recebe o resultado pronto**. Transformação escrita em SQL amarra o projeto ao dialeto daquele banco, e a portabilidade evapora na primeira migração.
+
 | Camada | Tecnologia | Papel |
 |---|---|---|
 | Ingestão | **Conectores** (ports & adapters) | toda fonte (banco/arquivo/API) entra por um conector nomeado, configurado por ambiente |
@@ -82,8 +112,12 @@ logistica-otif-mlops/
 │   ├── config.py                # configuração 12-factor (via ambiente)
 │   ├── connectors/              # camada de conectores de dados (base + registro)
 │   ├── api_custos/              # a API do sistema financeiro (a segunda fonte)
+│   ├── pipelines/               # bronze (ingestão) e silver (tratamento)
+│   ├── relatorios/              # gera a Sala de Resultados (HTML + PDF)
 │   ├── seed/                    # geração e publicação da base sintética
 │   └── dicionario.py            # gera o dicionário de dados a partir do banco
+├── reports/                     # a Sala de Resultados publicada (GitHub Pages)
+├── scripts/                     # utilitários de manutenção do projeto
 ├── assets/                      # identidade visual (logos)
 ├── infra/                       # o ambiente do CLIENTE (containers das fontes)
 ├── sql/                         # relatórios de referência reproduzidos
@@ -135,6 +169,15 @@ cp .env.example .env    # configure as variáveis (sem segredos no git)
 uv run pytest           # roda os testes
 ```
 
+Com o banco de pé (`docker compose up -d`), o caminho completo do dado até o relatório:
+
+```bash
+uv run python -m logistica_otif_mlops.pipelines.bronze      # ingestão (cópia fiel)
+uv run python -m logistica_otif_mlops.pipelines.silver      # tratamento (mesmo grão)
+uv run python -m logistica_otif_mlops.relatorios            # Sala de Resultados (HTML)
+uv run python -m logistica_otif_mlops.relatorios.pdf        # os dois relatórios em PDF
+```
+
 ## Status do projeto
 
 Construído em público, um passo por vez. Transparência sobre o que já está de pé:
@@ -144,8 +187,9 @@ Construído em público, um passo por vez. Transparência sobre o que já está 
 - [x] Base relacional sintética de 11 anos, validada contra 21 indicadores de referência
 - [x] Publicação em nuvem + API do sistema financeiro (chave, paginação, menor privilégio)
 - [x] Relatórios de referência reproduzidos e aprovados pelos donos
-- [ ] Pipeline medallion (bronze/silver/gold)
-- [ ] EDA de qualidade + relatório de saúde dos dados
+- [x] Pipeline medallion: bronze (ingestão) e silver (tratamento, com auditoria)
+- [x] EDA de qualidade + validação do Silver + Sala de Resultados (executivo e técnico)
+- [ ] Camada gold (transformações de negócio)
 - [ ] Data Discovery financeiro: margem de contribuição por cliente (relatório executivo + slides)
 - [ ] Modelo de predição OTIF (baseline + comparação) + MLflow
 - [ ] Testes, CI e monitoramento de drift

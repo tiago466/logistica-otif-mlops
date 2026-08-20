@@ -42,3 +42,7 @@ mlartifacts/
 .pytest_cache/
 .coverage
 htmlcov/
+
+# relatorios em PDF: gerados por comando, nao versionados (binario que incha o historico)
+# o HTML e versionado porque o GitHub Pages publica a pasta reports/
+reports/*.pdf

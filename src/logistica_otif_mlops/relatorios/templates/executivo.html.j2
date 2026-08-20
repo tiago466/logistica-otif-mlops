@@ -1,0 +1,192 @@
+{% extends "base.html.j2" %}
+{% block corpo %}
+
+<section>
+<h2><span class="n">§</span>Em uma página</h2>
+
+<p>A base operacional da {{ cliente }} foi examinada por inteiro: <b>{{ dados.carga.tabelas }} tabelas,
+{{ dados.carga.colunas }} colunas e {{ dados.carga.linhas | milhar }} registros</b>, referentes à carga de
+{{ dados.carga.ingerido_em }}. Foram encontrados <b>{{ achados | length }} problemas</b>, dos quais
+{{ achados | selectattr('severidade', 'equalto', 'alta') | list | length }} de severidade alta.</p>
+
+<p>Os quatro números abaixo resumem o trabalho. Repare que "corrigidos por nós" e "voltam sem
+ação na origem" não somam sete, e não deveriam: um problema que corrigimos aqui continua sendo
+gerado no sistema de vocês, e volta na próxima carga enquanto a causa não for tratada lá.</p>
+
+<div class="placar">
+  <div class="cartao">
+    <div class="valor">{{ achados | length }}</div>
+    <div class="rotulo">problemas encontrados</div>
+  </div>
+  <div class="cartao">
+    <div class="valor">{{ achados | selectattr('situacao', 'equalto', 'tratado') | list | length }}</div>
+    <div class="rotulo">corrigidos por nós</div>
+  </div>
+  <div class="cartao">
+    <div class="valor">{{ achados | selectattr('origem') | list | length }}</div>
+    <div class="rotulo">voltam sem ação na origem</div>
+  </div>
+  <div class="cartao">
+    <div class="valor">1 em {{ (dados.carga.celulas // dados.ajustes.total) | milhar }}</div>
+    <div class="rotulo">campos alterados por nós</div>
+  </div>
+</div>
+
+<p>O resumo honesto é este: <b>a base está estruturalmente saudável e é utilizável</b>. Não há
+duplicata de chave, não há inversão de datas, não há número impossível e nenhuma referência
+aponta para registro inexistente. Os problemas encontrados se concentram no <b>texto digitado
+por pessoas</b> e em <b>duas ausências que são de processo, não de sistema</b>.</p>
+
+<div class="chamada">
+<p><strong>O que isso significa na prática.</strong> Os defeitos de digitação nós corrigimos, e a
+correção está prestada conta neste documento. Os dois achados de processo (transferência sem
+recebedor e item sem valor) <b>não foram corrigidos de propósito</b>: preenchê-los seria inventar
+informação que ninguém coletou, e apagaria do relatório justamente o que precisa chegar até
+vocês.</p>
+</div>
+</section>
+
+<section>
+<h2><span class="n">1.</span>O estado da base, problema por problema</h2>
+
+<p>Cada problema abaixo traz o que ele causa no dia a dia, o que foi feito com ele e o que
+ainda depende de decisão de vocês. A leitura técnica de cada um está no
+<a href="tecnico.html">Relatório Técnico</a>.</p>
+
+{% for a in achados %}
+<div class="achado {{ a.severidade | classe }}">
+  <div class="cabeca">
+    <span class="codigo">{{ a.codigo }}</span>
+    <h3>{{ a.titulo }}</h3>
+    <span class="tag {{ a.severidade | classe }}">{{ a.severidade }}</span>
+    <span class="tag {{ a.situacao }}">{{ a.situacao }}</span>
+  </div>
+  <p>{{ a.impacto | seguro }}</p>
+  <div class="rodape">
+    <b>O que fizemos:</b> {{ a.decisao }}<br>
+    <b>Evidência:</b> {{ a.evidencia }}
+  </div>
+</div>
+{% endfor %}
+</section>
+
+<section>
+<h2><span class="n">2.</span>O que mexemos nos seus dados</h2>
+
+<p>Esta seção existe porque a pergunta que sempre vem depois de uma limpeza não é "vocês
+limparam?", é <b>"o que vocês mexeram?"</b>. A resposta está abaixo, e ela é verificável célula
+a célula, porque a cópia original permanece intocada e disponível para comparação.</p>
+
+<div class="placar">
+  <div class="cartao">
+    <div class="valor">{{ dados.ajustes.total | milhar }}</div>
+    <div class="rotulo">células corrigidas</div>
+  </div>
+  <div class="cartao">
+    <div class="valor">{{ dados.ajustes.colunas }}</div>
+    <div class="rotulo">campos afetados, de {{ dados.carga.colunas }}</div>
+  </div>
+  <div class="cartao">
+    <div class="valor">0</div>
+    <div class="rotulo">valores, datas ou chaves tocados</div>
+  </div>
+  <div class="cartao">
+    <div class="valor">0</div>
+    <div class="rotulo">registros excluídos</div>
+  </div>
+  <div class="cartao">
+    <div class="valor">0</div>
+    <div class="rotulo">ausências preenchidas</div>
+  </div>
+</div>
+
+<p>A base tem <b>{{ dados.carga.celulas | milhar }} campos preenchidos</b> ao todo. Alteramos
+{{ dados.ajustes.total | milhar }} deles, o que é <b>1 campo em cada
+{{ (dados.carga.celulas // dados.ajustes.total) | milhar }}</b>. As correções se concentraram em
+{{ dados.ajustes.colunas }} campos de texto, todos de preenchimento manual:</p>
+
+<div class="barras">
+{% set maximo = dados.ajustes.detalhe[0].celulas %}
+{% for linha in dados.ajustes.detalhe %}
+  <div class="linha">
+    <div class="rotulo">{{ linha.tabela }}.{{ linha.coluna }}</div>
+    <div class="trilho"><div class="preenchido" style="width: {{ (linha.celulas / maximo * 100) | round(1) }}%"></div></div>
+    <div class="valor">{{ linha.celulas | milhar }}</div>
+  </div>
+{% endfor %}
+</div>
+
+<p><b>O que não foi tocado é o mais importante desta lista.</b> Nenhum peso, volume, quantidade,
+valor, data ou número de documento foi alterado. Nenhuma chave que liga uma tabela à outra foi
+modificada. Todo indicador operacional e financeiro que vocês já usam continua saindo dos
+mesmos números de antes.</p>
+
+<h3>As três garantias que conferimos uma a uma</h3>
+
+<table>
+<thead><tr><th>Garantia</th><th>Resultado</th></tr></thead>
+<tbody>
+<tr><td>Nenhum registro foi perdido nem agregado</td>
+    <td>{{ dados.grao.preservadas }} de {{ dados.grao.tabelas }} tabelas com a contagem exata de antes</td></tr>
+<tr><td>Nenhum campo vazio foi preenchido com valor inventado</td>
+    <td>{{ dados.ausencias.recebedor_silver | milhar }} e {{ dados.ausencias.valor_silver }} ausências
+        chegaram intactas do lado de cá</td></tr>
+<tr><td>Rodar o processo de novo dá o mesmo resultado</td>
+    <td>as 7 regras de tratamento são idempotentes</td></tr>
+</tbody>
+</table>
+</section>
+
+<section>
+<h2><span class="n">3.</span>O que depende de vocês</h2>
+
+<p>Nem tudo que encontramos se resolve no nosso lado. Os pontos abaixo são de <b>decisão ou de
+sistema de origem</b>, e enquanto não forem tratados na fonte, voltam a cada nova carga.</p>
+
+<table>
+<thead><tr><th>#</th><th>Ponto</th><th>Quem decide</th><th>O que precisa acontecer</th></tr></thead>
+<tbody>
+{% for a in achados if a.origem %}
+<tr>
+  <td>{{ a.codigo }}</td>
+  <td><b>{{ a.titulo }}</b></td>
+  <td>{{ a.severidade | dono }}</td>
+  <td>{{ a.acao_cliente }}</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+
+<div class="chamada atencao">
+<p><strong>Duas decisões travam trabalho futuro.</strong> A regra de valor para os itens sem preço
+(Q6) precisa existir antes de qualquer cálculo financeiro por carga, e a conferência dos
+endereços duplicados (Q3) precisa acontecer antes de qualquer análise de cobertura geográfica.
+As duas são decisões de negócio, e nós não as tomamos no lugar de vocês.</p>
+</div>
+</section>
+
+<section>
+<h2><span class="n">4.</span>O caminho do projeto</h2>
+
+<p>Este documento cresce a cada etapa concluída. O capítulo abaixo marcado como concluído é o
+que vocês estão lendo agora; os demais entram aqui conforme forem entregues.</p>
+
+<table>
+<thead><tr><th>Capítulo</th><th>O que entrega</th><th>Situação</th></tr></thead>
+<tbody>
+{% for c in capitulos %}
+<tr class="{{ 'previsto' if c.situacao == 'previsto' }}">
+  <td><b>{{ c.numero }}. {{ c.titulo }}</b></td>
+  <td>{{ c.resumo }}</td>
+  <td>{{ c.situacao | situacao }}</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+
+<p>A ordem não é negociável por um motivo técnico: <b>modelo treinado sobre dado sujo aprende a
+sujeira</b>. Só depois de a base estar conformada e a conformação estar prestada conta é que faz
+sentido perguntar o que os dados dizem sobre a operação, e só depois disso faz sentido prever.</p>
+</section>
+
+{% endblock %}
