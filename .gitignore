@@ -46,3 +46,6 @@ htmlcov/
 # relatorios em PDF: gerados por comando, nao versionados (binario que incha o historico)
 # o HTML e versionado porque o GitHub Pages publica a pasta reports/
 reports/*.pdf
+
+# symlink de skill que o streamlit criava; nao usamos streamlit
+.agents/

@@ -1,0 +1,88 @@
+{% extends "_parcial.html" if parcial else "_modulo.html" %}
+{% import "_pecas.html" as p %}
+
+{% block corpo %}
+{{ p.topo(subsecao) }}
+
+{% for a in achados if a.origem %}
+<div class="achado achado--{{ a.severidade | severidade }}">
+  <div class="achado__cab">
+    <span class="achado__cod">{{ a.codigo }}</span>
+    <b>{{ a.titulo }}</b>
+    <span class="tag tag--{{ a.severidade | severidade }}">{{ a.severidade }}</span>
+  </div>
+  <p>{{ a.acao_cliente }}</p>
+</div>
+{% endfor %}
+
+<div class="bloco">
+  <h3>Os endereços duplicados, para conferência</h3>
+  <p class="sub"><b>Não fundimos nada.</b> Eliminar registro quebraria o histórico dos
+  pedidos antigos, e a escolha de qual cadastro sobrevive é de vocês, não nossa. Esta é a
+  lista que o dono do cadastro abre para decidir.</p>
+
+  <form class="filtros"
+        hx-get="/executivo/qualidade/acoes"
+        hx-target="#resultado" hx-select="#resultado" hx-swap="outerHTML"
+        hx-trigger="change, keyup delay:400ms from:input"
+        hx-push-url="true">
+    <div class="campo">
+      <label for="f-uf">UF</label>
+      <select id="f-uf" name="uf">
+        <option value="">todas</option>
+        {% for u in ufs %}
+        <option value="{{ u }}" {% if filtro.uf == u %}selected{% endif %}>{{ u }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="campo">
+      <label for="f-cidade">Cidade</label>
+      <input id="f-cidade" name="cidade" value="{{ filtro.cidade }}"
+             placeholder="ex.: São Paulo" autocomplete="off">
+    </div>
+  </form>
+
+  <div id="resultado">
+  <div class="resumo-filtro">
+    {{ grupos | milhar }} grupos · {{ total | milhar }} cadastros ·
+    {{ (total - grupos) | milhar }} registros seriam eliminados numa fusão
+    {% if total > linhas | length %}· mostrando os {{ linhas | length }} primeiros{% endif %}
+  </div>
+
+  <div class="tabela-wrap">
+    <table>
+      <thead>
+        <tr><th class="num">No grupo</th><th class="num">Cadastro</th><th>Local</th>
+            <th>Logradouro</th><th>Bairro</th><th>Cidade</th><th>UF</th><th>CEP</th></tr>
+      </thead>
+      <tbody>
+        {% for linha in linhas %}
+        <tr>
+          <td class="num">{{ linha.cadastros_no_grupo }}</td>
+          <td class="num">{{ linha.id }}</td>
+          <td>{{ linha.nome_local }}</td>
+          <td>{{ linha.logradouro }}</td>
+          <td>{{ linha.bairro }}</td>
+          <td>{{ linha.cidade }}</td>
+          <td>{{ linha.uf }}</td>
+          <td>{{ linha.cep }}</td>
+        </tr>
+        {% else %}
+        <tr><td colspan="8">Nenhum endereço duplicado com esses filtros.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  </div>
+</div>
+
+{% call p.nota() %}
+  <p><b>Observado:</b> {{ achados | selectattr('origem') | list | length }} dos
+  {{ achados | length }} achados têm causa no sistema de origem e voltam a cada carga.</p>
+  <p><b>Por que importa:</b> corrigir na origem custa uma vez; corrigir no pipeline custa
+  em toda carga, para sempre, e ainda deixa o dado errado dentro do sistema que a operação
+  usa no dia a dia. O tratamento aqui é <b>paliativo consciente</b>, não solução.</p>
+  <p><b>Ação:</b> levar os pontos acima ao dono do sistema, e definir a regra de valor para
+  os itens sem preço, que trava qualquer cálculo financeiro por carga.</p>
+{% endcall %}
+{% endblock %}

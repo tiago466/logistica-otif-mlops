@@ -1,0 +1,20 @@
+{# Esqueleto de QUALQUER módulo com subabas.
+
+   Todo módulo herda daqui, e por isso o módulo escrito daqui a meses vai nascer
+   com a mesma barra de abas, o mesmo cabeçalho e a mesma troca sem recarregar.
+   O template da subaba só preenche `corpo`.
+
+   O truque das duas entregas: cada subaba escolhe de quem herda em tempo de
+   renderização (`{% raw %}{% extends "_parcial.html" if parcial else "_modulo.html" %}{% endraw %}`).
+   Da barra de endereço vem a página inteira; do HTMX vem só o miolo. Um arquivo
+   por subaba, duas formas de entrega, nenhuma duplicação. #}
+{% extends "base_app.html" %}
+
+{% block titulo %}{{ modulo.titulo }} · {{ cliente }}{% endblock %}
+{% block tela_titulo %}{{ modulo.numero }}. {{ modulo.titulo }}{% endblock %}
+{% block tela_sub %}{{ modulo.pergunta }}{% endblock %}
+
+{% block miolo %}
+{% include "_abas.html" %}
+<div class="painel">{% block corpo %}{% endblock %}</div>
+{% endblock %}

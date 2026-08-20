@@ -1,0 +1,48 @@
+{% extends "_parcial.html" if parcial else "_modulo.html" %}
+{% import "_pecas.html" as p %}
+
+{% block corpo %}
+{{ p.topo(subsecao) }}
+
+<div class="kpis">
+  {{ p.kpi(achados | selectattr('severidade', 'equalto', 'alta') | list | length, "Severidade alta") }}
+  {{ p.kpi(achados | selectattr('severidade', 'equalto', 'média') | list | length, "Severidade média") }}
+  {{ p.kpi(achados | selectattr('severidade', 'equalto', 'baixa') | list | length, "Severidade baixa") }}
+  {{ p.kpi(achados | selectattr('origem') | list | length, "Com causa na origem") }}
+</div>
+
+{% call p.caixa() %}
+  <b>A leitura geral é boa.</b> Não há duplicata de chave, não há inversão de datas,
+  não há número impossível e nenhuma referência aponta para registro inexistente.
+  Os problemas se concentram no <b>texto digitado por pessoas</b> e em
+  <b>duas ausências que são de processo, não de sistema</b>.
+{% endcall %}
+
+{% for a in achados %}
+<div class="achado achado--{{ a.severidade | severidade }}">
+  <div class="achado__cab">
+    <span class="achado__cod">{{ a.codigo }}</span>
+    <b>{{ a.titulo }}</b>
+    <span class="tag tag--{{ a.severidade | severidade }}">{{ a.severidade }}</span>
+    <span class="tag tag--situacao">{{ a.situacao }}</span>
+  </div>
+  <p>{{ a.impacto }}</p>
+  <div class="achado__pe">
+    <b>O que fizemos:</b> {{ a.decisao }} &nbsp;·&nbsp; <b>Evidência:</b> {{ a.evidencia }}
+  </div>
+</div>
+{% endfor %}
+
+{% call p.nota() %}
+  <p><b>Observado:</b> {{ achados | length }} achados, sendo
+  {{ achados | selectattr('severidade', 'equalto', 'alta') | list | length }} de severidade
+  alta. Nenhum inviabiliza a análise, mas todos distorcem algum indicador se forem
+  ignorados.</p>
+  <p><b>Por que importa:</b> severidade aqui não mede o tamanho do defeito, mede
+  <b>o quanto ele engana</b>. A cidade em quatro grafias é grave não por serem quatro
+  linhas a mais, mas porque as quatro parecem cidades legítimas na tela, e a decisão
+  sobre frota sai errada sem que ninguém desconfie.</p>
+  <p><b>Ação:</b> {{ achados | selectattr('origem') | list | length }} dos achados têm
+  causa no sistema de origem e voltam a cada carga enquanto não forem corrigidos lá.</p>
+{% endcall %}
+{% endblock %}

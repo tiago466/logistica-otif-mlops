@@ -1,0 +1,41 @@
+{% extends "_parcial.html" if parcial else "_modulo.html" %}
+{% import "_pecas.html" as p %}
+
+{% block corpo %}
+{{ p.topo(subsecao) }}
+
+<div class="kpis">
+  {{ p.kpi(apuracao.carga.tabelas, "Tabelas") }}
+  {{ p.kpi(apuracao.carga.colunas, "Colunas") }}
+  {{ p.kpi(apuracao.carga.linhas | milhar, "Registros") }}
+  {{ p.kpi(apuracao.carga.celulas | milhar, "Campos preenchidos") }}
+</div>
+
+<div class="bloco">
+  <h3>Volume por tabela</h3>
+  <p class="sub">O desequilíbrio define onde vale investir esforço de qualidade.</p>
+  <div class="barras">
+    {% set maior = inventario[0].linhas %}
+    {% for t in inventario %}
+    <div class="barra">
+      <div class="barra__r" title="{{ t.tabela }}">{{ t.tabela }}</div>
+      <div class="barra__t">
+        <div class="barra__p" style="width: {{ (t.linhas / maior * 100) | round(1) }}%"></div>
+      </div>
+      <div class="barra__v">{{ t.linhas | milhar }}</div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% call p.nota() %}
+  <p><b>Observado:</b> a base tem {{ apuracao.carga.linhas | milhar }} registros distribuídos
+  de forma muito desigual: cinco tabelas concentram a maior parte do volume, e o restante
+  são cadastros pequenos.</p>
+  <p><b>Por que importa:</b> um defeito numa tabela de 14 milhões de linhas custa caro para
+  corrigir e afeta todo indicador; um defeito num cadastro de 240 linhas se resolve por
+  conferência manual. O tamanho da tabela decide o custo do erro.</p>
+  <p><b>Ação:</b> nenhuma. A carga de {{ apuracao.carga.ingerido_em }} é a referência de
+  todos os números deste módulo.</p>
+{% endcall %}
+{% endblock %}

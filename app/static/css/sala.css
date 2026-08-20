@@ -1,0 +1,331 @@
+/* ============================================================
+   Sala de Resultados — folha de estilo.
+
+   Paleta do CLIENTE, extraída do logo (não a da Neviah): o documento é
+   dele, e a marca de quem executou aparece só no rodapé.
+     petróleo #284D70 (estrutura)   sálvia #A2BBB7 (apoio)
+
+   Regra de layout que governa tudo: **a página não rola.** O shell ocupa
+   exatamente 100vh e o que rola é a tabela dentro do painel, nunca o
+   documento. Numa apresentação, rolar a página faz o público perder o
+   contexto; a tela precisa se comportar como um sistema, não como um texto.
+
+   Tudo self-hosted: zero CDN, zero fonte externa.
+   ============================================================ */
+
+:root {
+  --marca: #284D70;
+  --marca-2: #35618B;
+  --marca-3: #17304A;
+  --apoio: #A2BBB7;
+  --apoio-esc: #6F918B;
+  --apoio-suave: #EDF3F1;
+
+  --branco: #FFFFFF;
+  --fundo: #F5F7F9;
+  --texto: #1C2733;
+  --texto-suave: #5A6672;
+  --texto-claro: #BCCAD6;
+  --borda: #E1E7EC;
+
+  --alta: #B4462F;
+  --media: #B98514;
+  --baixa: #5A7D6E;
+
+  --radius: 12px;
+  --sombra: 0 8px 30px rgba(40, 77, 112, .12);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; }
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  color: var(--texto);
+  background: var(--fundo);
+  -webkit-font-smoothing: antialiased;
+  overflow: hidden;               /* o documento nunca rola: só os painéis */
+}
+
+/* ======================= ENTRADA (a porta) ======================= */
+.entrada { display: grid; grid-template-columns: 1fr minmax(380px, 40%); height: 100vh; }
+@media (max-width: 980px) {
+  .entrada { grid-template-columns: 1fr; }
+  .entrada__vitrine { display: none; }
+}
+
+.entrada__vitrine {
+  background:
+    radial-gradient(760px 420px at 78% 6%, rgba(162, 187, 183, .18), transparent 62%),
+    linear-gradient(160deg, var(--marca) 0%, var(--marca-3) 100%);
+  color: var(--branco);
+  padding: 44px 56px;
+  display: flex; flex-direction: column; justify-content: center;
+  overflow: auto;
+}
+.vitrine__titulo { font-size: 32px; font-weight: 800; line-height: 1.25; }
+.vitrine__titulo b { color: var(--apoio); }
+.vitrine__sub {
+  margin-top: 12px; font-size: 15px; color: var(--texto-claro);
+  max-width: 58ch; line-height: 1.6;
+}
+
+.selos { margin-top: 22px; display: flex; gap: 10px; flex-wrap: wrap; }
+.selo {
+  display: inline-flex; align-items: center; gap: 7px;
+  font-size: 12.5px; color: var(--texto-claro);
+  background: rgba(255, 255, 255, .06); border: 1px solid rgba(255, 255, 255, .12);
+  border-radius: 999px; padding: 6px 13px;
+}
+.selo svg { width: 15px; height: 15px; color: var(--apoio); }
+
+/* o mapa do projeto: os módulos, com o entregue destacado do previsto */
+.mapa {
+  margin-top: 30px; max-width: 660px;
+  background: rgba(255, 255, 255, .05); border: 1px solid rgba(255, 255, 255, .11);
+  border-radius: 16px; padding: 20px 22px;
+}
+.mapa__lbl {
+  font-size: 11.5px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+  color: #8FA3B5; margin-bottom: 12px;
+}
+.mapa__mods { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.mmod {
+  display: flex; gap: 11px; align-items: center; text-align: left;
+  background: rgba(255, 255, 255, .05); border: 1px solid rgba(255, 255, 255, .13);
+  border-radius: 11px; padding: 11px 13px; color: var(--branco);
+}
+.mmod--previsto { opacity: .48; }
+.mmod__ico {
+  flex: none; width: 34px; height: 34px; border-radius: 9px;
+  display: grid; place-items: center;
+  background: rgba(162, 187, 183, .16); color: var(--apoio);
+}
+.mmod__ico svg { width: 18px; height: 18px; }
+.mmod__t { font-size: 13.5px; font-weight: 700; line-height: 1.25; display: block; }
+.mmod__d { font-size: 11.5px; color: var(--texto-claro); margin-top: 2px; display: block; }
+.mapa__dica { margin-top: 11px; font-size: 11.5px; color: #8FA3B5; }
+
+.vitrine__rodape { margin-top: 28px; font-size: 12.5px; color: #8FA3B5; }
+.vitrine__rodape b { color: var(--texto-claro); }
+
+/* ---- direita: marca + as duas portas ---- */
+.entrada__form {
+  background: var(--branco);
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 48px 44px; overflow: auto;
+}
+.entrada__in { width: 100%; max-width: 380px; margin: 0 auto; }
+.entrada__logo { width: 100%; max-width: 260px; display: block; margin-bottom: 26px; }
+.entrada__sistema {
+  font-size: 21px; font-weight: 800; color: var(--marca); line-height: 1.25;
+  margin-bottom: 6px;
+}
+.entrada__sub { font-size: 13.5px; color: var(--texto-suave); margin-bottom: 24px; }
+.entrada__carga {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: var(--apoio-suave); border: 1px solid #D3E3DF; border-radius: 999px;
+  padding: 5px 12px; font-size: 12px; color: #3F6B62; margin-bottom: 24px;
+}
+
+.portas { display: flex; flex-direction: column; gap: 12px; }
+.porta {
+  display: flex; align-items: center; gap: 14px; text-align: left;
+  border: 1px solid var(--borda); border-left: 4px solid var(--marca);
+  border-radius: var(--radius); padding: 16px 18px;
+  background: var(--branco); color: inherit; text-decoration: none;
+  font: inherit; cursor: pointer;
+  transition: border-color .15s, box-shadow .15s, transform .15s;
+}
+.porta:hover { border-color: var(--apoio-esc); box-shadow: var(--sombra); transform: translateY(-2px); }
+.porta__ico {
+  flex: none; width: 42px; height: 42px; border-radius: 11px;
+  display: grid; place-items: center;
+  background: var(--apoio-suave); color: var(--marca);
+}
+.porta__ico svg { width: 21px; height: 21px; }
+.porta b { display: block; font-size: 15px; color: var(--marca); }
+.porta span { display: block; font-size: 12.5px; color: var(--texto-suave); margin-top: 2px; }
+.porta--off { opacity: .55; cursor: default; border-left-color: var(--texto-claro); }
+.porta--off:hover { border-color: var(--borda); box-shadow: none; transform: none; }
+.porta--off .porta__ico { background: var(--fundo); color: var(--texto-suave); }
+.porta--off b { color: var(--texto-suave); }
+
+.entrada__pe { margin-top: 26px; font-size: 11.5px; color: var(--texto-suave); line-height: 1.6; }
+
+/* ======================= SHELL DO APP ======================= */
+.app { display: flex; height: 100vh; overflow: hidden; }
+
+.lateral {
+  width: 250px; flex-shrink: 0; background: var(--marca); color: var(--branco);
+  padding: 20px 12px; display: flex; flex-direction: column; overflow: hidden;
+}
+.lateral__marca { padding: 0 8px 16px; }
+.lateral__marca img { width: 100%; max-width: 180px; display: block; }
+.lateral__nav { display: flex; flex-direction: column; gap: 2px; flex: 1; overflow-y: auto; }
+.lateral__lbl {
+  font-size: 10.5px; color: #8FA3B5; letter-spacing: .1em;
+  font-weight: 700; text-transform: uppercase; padding: 14px 8px 5px;
+}
+.lateral__pe {
+  display: flex; flex-direction: column; gap: 2px;
+  border-top: 1px solid rgba(255, 255, 255, .09); padding-top: 10px;
+}
+.lateral__info { padding: 6px 10px; font-size: 11.5px; color: #8FA3B5; line-height: 1.55; }
+.lateral__info b { color: var(--texto-claro); }
+
+.item {
+  display: flex; align-items: center; justify-content: space-between; gap: 8px;
+  padding: 9px 10px; border-radius: 8px; font-size: 13.5px;
+  color: #D5DEE9; text-decoration: none; transition: background .12s;
+}
+a.item:hover { background: rgba(255, 255, 255, .07); color: var(--branco); }
+.item--on { background: rgba(162, 187, 183, .18); color: var(--branco); font-weight: 700; }
+.item--off { color: #7C8BA1; cursor: default; }
+.item__n {
+  font-size: 9px; font-weight: 800; padding: 2px 6px; border-radius: 999px;
+  background: rgba(255, 255, 255, .08); color: #9FB0C4; flex-shrink: 0;
+}
+.item__n--ok { background: rgba(162, 187, 183, .24); color: var(--apoio); }
+.item--sair {
+  background: transparent; border: 0; width: 100%; text-align: left;
+  font: inherit; font-size: 13.5px; color: #D5DEE9; cursor: pointer;
+  padding: 9px 10px; border-radius: 8px; text-decoration: none; display: block;
+}
+.item--sair:hover { background: rgba(255, 255, 255, .07); color: var(--branco); }
+
+/* ---- área: cabeçalho fixo, abas fixas, painel que rola por dentro ---- */
+.area { flex: 1; min-width: 0; display: flex; flex-direction: column; overflow: hidden; }
+
+.cabecalho {
+  background: var(--branco); border-bottom: 1px solid var(--borda);
+  padding: 16px 28px; display: flex; align-items: center;
+  justify-content: space-between; gap: 16px; flex-shrink: 0;
+}
+.cabecalho h1 { font-size: 19px; font-weight: 800; color: var(--marca); }
+.cabecalho p { font-size: 13px; color: var(--texto-suave); margin-top: 2px; }
+.cabecalho__quem { font-size: 12.5px; color: var(--texto-suave); text-align: right; }
+
+/* as subabas: a segunda camada de navegação, dentro do módulo */
+.abas {
+  display: flex; gap: 2px; background: var(--branco);
+  border-bottom: 1px solid var(--borda); padding: 0 28px; flex-shrink: 0;
+  overflow-x: auto;
+}
+.aba {
+  border: 0; background: transparent; font: inherit; font-size: 13px;
+  color: var(--texto-suave); padding: 11px 15px; cursor: pointer;
+  border-bottom: 2px solid transparent; white-space: nowrap; text-decoration: none;
+}
+.aba:hover { color: var(--marca); }
+.aba--on { color: var(--marca); font-weight: 700; border-bottom-color: var(--marca); }
+
+.painel { flex: 1; min-height: 0; overflow-y: auto; padding: 22px 28px 28px; }
+.painel__topo { margin-bottom: 16px; }
+.painel__topo h2 { font-size: 16px; color: var(--marca); font-weight: 800; }
+.painel__topo p { font-size: 13.5px; color: var(--texto-suave); margin-top: 5px; max-width: 92ch; line-height: 1.6; }
+
+/* ======================= PEÇAS ======================= */
+.kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin-bottom: 18px; }
+.kpi {
+  background: var(--branco); border: 1px solid var(--borda);
+  border-top: 3px solid var(--marca); border-radius: 10px; padding: 13px 15px;
+}
+.kpi__v { font-size: 1.5rem; font-weight: 750; color: var(--marca); line-height: 1.15; }
+.kpi__r { font-size: 11.5px; color: var(--texto-suave); margin-top: 4px; }
+
+.bloco {
+  background: var(--branco); border: 1px solid var(--borda);
+  border-radius: 12px; padding: 18px 20px; margin-bottom: 16px;
+}
+.bloco h3 { font-size: 14px; color: var(--marca); margin-bottom: 4px; }
+.bloco p.sub { font-size: 13px; color: var(--texto-suave); margin-bottom: 12px; line-height: 1.6; }
+
+.caixa {
+  border-left: 4px solid var(--apoio); background: var(--apoio-suave);
+  padding: 13px 17px; border-radius: 0 8px 8px 0; margin-bottom: 16px;
+  font-size: 13.5px; line-height: 1.6;
+}
+.caixa b { color: var(--marca); }
+.caixa--atencao { border-left-color: var(--alta); background: #FBF0ED; }
+.caixa--atencao b { color: var(--alta); }
+.caixa--nota { border-left-color: var(--marca); background: #F2F6FA; }
+
+.nota { font-size: 13px; line-height: 1.65; }
+.nota p { margin-bottom: 9px; }
+.nota p:last-child { margin-bottom: 0; }
+
+/* achado */
+.achado {
+  border: 1px solid var(--borda); border-left: 4px solid var(--borda);
+  border-radius: 0 10px 10px 0; padding: 14px 18px; margin-bottom: 12px; background: var(--branco);
+}
+.achado--alta { border-left-color: var(--alta); }
+.achado--media { border-left-color: var(--media); }
+.achado--baixa { border-left-color: var(--baixa); }
+.achado__cab { display: flex; align-items: center; gap: 9px; flex-wrap: wrap; margin-bottom: 7px; }
+.achado__cod { font-family: ui-monospace, Consolas, monospace; font-size: 12px; color: var(--texto-suave); }
+.achado__cab b { font-size: 14px; color: var(--marca); flex: 1 1 260px; }
+.achado p { font-size: 13px; line-height: 1.6; color: var(--texto); }
+.achado__pe {
+  margin-top: 10px; padding-top: 9px; border-top: 1px dashed var(--borda);
+  font-size: 12.5px; color: var(--texto-suave);
+}
+.achado__pe b { color: var(--texto); }
+
+.tag {
+  display: inline-block; font-size: 10.5px; font-weight: 700; padding: 2px 8px;
+  border-radius: 999px; text-transform: uppercase; letter-spacing: .04em; color: #fff;
+}
+.tag--alta { background: var(--alta); }
+.tag--media { background: var(--media); }
+.tag--baixa { background: var(--baixa); }
+.tag--situacao { background: var(--marca); }
+
+/* barras em SVG puro: sem biblioteca de gráfico, sem CDN */
+.barras { display: grid; gap: 6px; }
+.barra { display: grid; grid-template-columns: 190px 1fr 92px; align-items: center; gap: 11px; }
+.barra__r { font-family: ui-monospace, Consolas, monospace; font-size: 11.5px; color: var(--texto-suave);
+            overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.barra__t { background: var(--apoio-suave); border-radius: 3px; height: 19px; }
+.barra__p { background: var(--marca); height: 100%; border-radius: 3px; }
+.barra__v { text-align: right; font-size: 12px; font-variant-numeric: tabular-nums; }
+
+/* tabela: o cabeçalho gruda e só o corpo rola */
+.tabela-wrap { border: 1px solid var(--borda); border-radius: 10px; overflow: auto; max-height: 46vh; background: var(--branco); }
+table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+thead th {
+  position: sticky; top: 0; z-index: 1;
+  background: var(--marca); color: #fff; text-align: left; padding: 8px 11px;
+  font-size: 11px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
+}
+tbody td { padding: 7px 11px; border-bottom: 1px solid var(--borda); }
+tbody tr:nth-child(even) { background: #FAFBFC; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+
+/* filtros */
+.filtros { display: flex; gap: 10px; flex-wrap: wrap; align-items: flex-end; margin-bottom: 12px; }
+.campo { display: flex; flex-direction: column; gap: 4px; }
+.campo label { font-size: 11px; color: var(--texto-suave); font-weight: 600; }
+.campo select, .campo input {
+  font: inherit; font-size: 13px; padding: 7px 10px;
+  border: 1px solid var(--borda); border-radius: 8px; background: var(--branco); color: var(--texto);
+  min-width: 170px;
+}
+.campo select:focus, .campo input:focus { outline: 2px solid var(--apoio); outline-offset: -1px; }
+.resumo-filtro { font-size: 12px; color: var(--texto-suave); margin-bottom: 9px; }
+
+.btn-sutil {
+  font: inherit; font-size: 12.5px; text-decoration: none;
+  border: 1px solid var(--borda); border-radius: 8px; padding: 7px 13px;
+  color: var(--marca); background: var(--branco); display: inline-block;
+}
+.btn-sutil:hover { border-color: var(--apoio-esc); }
+
+.previsto-aviso { text-align: center; padding: 40px 20px; }
+.previsto-aviso h3 { font-size: 16px; color: var(--marca); margin-bottom: 8px; }
+.previsto-aviso p { font-size: 13.5px; color: var(--texto-suave); max-width: 60ch; margin: 0 auto 16px; line-height: 1.65; }
+.previsto-aviso ul { list-style: none; font-size: 13px; color: var(--texto-suave); line-height: 1.9; }
+
+/* o miolo é o pedaço trocado pelo HTMX: abas + painel, sempre juntos */
+.miolo { flex: 1; min-height: 0; display: flex; flex-direction: column; overflow: hidden; }
+.item--fraco { color: #8FA3B5; }

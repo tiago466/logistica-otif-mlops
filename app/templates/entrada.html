@@ -1,0 +1,92 @@
+{# A PORTA. Mesmo desenho da entrada do produto Neviah: vitrine escura à
+   esquerda, painel claro à direita. No lugar de usuário e senha, as duas
+   apresentações. Quem entra declara o público antes de ver qualquer número. #}
+{% extends "base.html" %}
+{% import "_icones.html" as ic %}
+{% block titulo %}Sala de Resultados · {{ cliente }}{% endblock %}
+
+{% block conteudo %}
+<div class="entrada">
+
+  {# ---------- ESQUERDA: o que este projeto é ---------- #}
+  <aside class="entrada__vitrine">
+    <h1 class="vitrine__titulo">
+      O dado no lugar.<br>A <b>decisão</b> com evidência.
+    </h1>
+    <p class="vitrine__sub">
+      Um projeto de dados não termina num modelo. Ele começa dizendo se a base merece
+      confiança, mostra o que os números dizem do negócio, e só então prevê. Cada etapa
+      entrega evidência que pode ser conferida, não conclusão para acreditar.
+    </p>
+
+    <div class="selos">
+      <span class="selo">{{ ic.icone('camadas') }} Origem preservada e intocada</span>
+      <span class="selo">{{ ic.icone('escudo') }} Todo número rastreável</span>
+      <span class="selo">{{ ic.icone('documento') }} Relatório e apresentação em par</span>
+    </div>
+
+    <div class="mapa">
+      <div class="mapa__lbl">O caminho do projeto — {{ entregues|length }} de {{ modulos|length }} módulos entregues</div>
+      <div class="mapa__mods">
+        {% for m in modulos %}
+        <div class="mmod {% if m.previsto %}mmod--previsto{% endif %}">
+          <span class="mmod__ico">{{ ic.icone(m.icone) }}</span>
+          <span>
+            <span class="mmod__t">{{ m.numero }}. {{ m.titulo }}</span>
+            <span class="mmod__d">{% if m.previsto %}previsto{% else %}entregue{% endif %}</span>
+          </span>
+        </div>
+        {% endfor %}
+      </div>
+      <div class="mapa__dica">
+        Os módulos previstos aparecem desde já, de propósito: o caminho inteiro fica
+        visível desde a primeira reunião.
+      </div>
+    </div>
+
+    <div class="vitrine__rodape">uma solução <b>PRO-DATA</b></div>
+  </aside>
+
+  {# ---------- DIREITA: a marca do cliente e as duas portas ---------- #}
+  <div class="entrada__form">
+    <div class="entrada__in">
+      <img class="entrada__logo" src="{{ url_for('static', path='/img/logo_tfb.png') }}"
+           alt="{{ cliente }}">
+
+      <div class="entrada__sistema">Sala de<br>Resultados</div>
+      <p class="entrada__sub">Ciência de Dados · Previsão de atraso na entrega</p>
+
+      <div class="entrada__carga">
+        {{ ic.icone('camadas') }}
+        {{ apuracao.carga.linhas | milhar }} registros · carga de {{ apuracao.carga.ingerido_em }}
+      </div>
+
+      <div class="portas">
+        <a class="porta" href="/executivo">
+          <span class="porta__ico">{{ ic.icone('painel') }}</span>
+          <span>
+            <b>Apresentação Executiva</b>
+            <span>Os resultados: o que foi encontrado, o que mudou na base e o que
+                  depende de decisão de vocês.</span>
+          </span>
+        </a>
+
+        <div class="porta porta--off" title="Entra quando o MLOps estiver de pé">
+          <span class="porta__ico">{{ ic.icone('ferramenta') }}</span>
+          <span>
+            <b>Apresentação Técnica</b>
+            <span>Ferramentas, hospedagem, rotinas de manutenção e manuais de operação.
+                  Em construção.</span>
+          </span>
+        </div>
+      </div>
+
+      <p class="entrada__pe">
+        Empresa fictícia e dados sintéticos: projeto de portfólio, sem vínculo com
+        qualquer empresa real de nome semelhante.
+      </p>
+    </div>
+  </div>
+
+</div>
+{% endblock %}

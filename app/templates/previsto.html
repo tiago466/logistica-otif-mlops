@@ -1,0 +1,19 @@
+{# Módulo ainda não construído. Existe no menu de propósito: o cliente vê o
+   caminho inteiro do projeto, e não só o trecho já entregue. #}
+{% extends "base_app.html" %}
+{% import "_icones.html" as ic %}
+
+{% block titulo %}{{ modulo.titulo }} · {{ cliente }}{% endblock %}
+{% block tela_titulo %}{{ modulo.numero }}. {{ modulo.titulo }}{% endblock %}
+{% block tela_sub %}{{ modulo.pergunta }}{% endblock %}
+
+{% block miolo %}<div class="painel">
+<div class="previsto-aviso">
+  <h3>Este módulo ainda não foi entregue</h3>
+  <p>Ele vai responder: <i>"{{ modulo.pergunta }}"</i></p>
+  <p>Aparece aqui desde já porque o cliente precisa enxergar o caminho inteiro do projeto,
+  não só o trecho pronto. Quando ficar pronto, entra neste mesmo lugar, com as subabas e a
+  Nota Técnica de sempre.</p>
+  <a class="btn-sutil" href="/executivo">← voltar à visão geral</a>
+</div>
+</div>{% endblock %}

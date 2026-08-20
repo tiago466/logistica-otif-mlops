@@ -1,0 +1,89 @@
+{% extends "_parcial.html" if parcial else "_modulo.html" %}
+{% import "_pecas.html" as p %}
+
+{% block corpo %}
+{{ p.topo(subsecao) }}
+
+{% set au = apuracao.ausencias %}
+<div class="kpis">
+  {{ p.kpi(apuracao.grao.preservadas ~ " de " ~ apuracao.grao.tabelas, "Grão preservado",
+           "Uma linha entrou, uma linha saiu: nada foi agregado nem descartado") }}
+  {{ p.kpi(0, "Ausências preenchidas", "Nenhum campo vazio recebeu valor inventado") }}
+  {{ p.kpi(au.disfarcados, "Vazios virados texto", "Nenhum 'nan', 'null' ou '-' sobrou") }}
+  {{ p.kpi("7 de 7", "Regras idempotentes", "Rodar duas vezes dá o mesmo resultado") }}
+</div>
+
+{% call p.caixa('atencao') %}
+  <b>Por que não preenchemos os campos vazios.</b> A ausência de recebedor na transferência
+  entre bases não é falha de digitação, é <b>ausência de processo</b>: não existe conferência
+  formal na chegada. Preencher esse campo apagaria do relatório o problema que precisa ser
+  visto, e criaria um responsável que não existiu.
+{% endcall %}
+
+<div class="bloco">
+  <h3>Os dois achados que precisavam sobreviver intactos</h3>
+  <div class="tabela-wrap" style="max-height:none">
+    <table>
+      <thead>
+        <tr><th>Achado</th><th class="num">Antes (Bronze)</th><th class="num">Depois (Silver)</th><th>Situação</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Transferência para base sem recebedor (Q4)</td>
+          <td class="num">{{ au.recebedor_bronze | milhar }}</td>
+          <td class="num">{{ au.recebedor_silver | milhar }}</td>
+          <td>preservado</td>
+        </tr>
+        <tr>
+          <td>Item sem valor unitário (Q6)</td>
+          <td class="num">{{ au.valor_bronze | milhar }}</td>
+          <td class="num">{{ au.valor_silver | milhar }}</td>
+          <td>preservado</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="bloco">
+  <h3>Onde estão os campos vazios</h3>
+  <p class="sub">Qualquer diferença entre as duas colunas precisa de justificativa. Só uma
+  tem, e é deliberada.</p>
+  <div class="tabela-wrap">
+    <table>
+      <thead>
+        <tr><th>Tabela</th><th>Campo</th><th class="num">Registros</th>
+            <th class="num">Vazios antes</th><th class="num">Vazios depois</th><th class="num">% vazio</th></tr>
+      </thead>
+      <tbody>
+        {% for linha in ausencias %}
+        <tr>
+          <td>{{ linha.tabela }}</td>
+          <td>{{ linha.coluna }}</td>
+          <td class="num">{{ linha.linhas | milhar }}</td>
+          <td class="num">{{ linha.vazios_bronze | milhar }}</td>
+          <td class="num">{{ linha.vazios_silver | milhar }}</td>
+          <td class="num">{{ linha.percentual }}%</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+{% call p.nota() %}
+  <p><b>Observado:</b> de todas as colunas da base, apenas
+  {{ au.divergentes | length }} teve a contagem de vazios alterada, e por decisão
+  explícita: em <code>ocorrencia.observacao</code> havia texto como
+  <code>-</code>, <code>N/A</code> e <code>sem informacao</code>, que é ausência disfarçada
+  de conteúdo.</p>
+  <p><b>Por que importa:</b> converter esse texto em ausência é o <b>inverso</b> de
+  preencher um vazio. Manter <code>-</code> faria qualquer agrupamento por motivo de
+  ocorrência exibi-lo como se fosse uma categoria real, competindo em volume com motivos
+  de verdade. Converter <b>revela</b> a falta; preencher <b>esconde</b> a falta.</p>
+  <p><b>Ação:</b> as verificações desta tela rodam a cada execução do pipeline, não uma
+  vez só. Elas nasceram de um defeito real: uma versão anterior transformou
+  {{ au.recebedor_bronze | milhar }} ausências num recebedor inexistente, e foi a
+  comparação com a camada de origem que pegou.</p>
+{% endcall %}
+{% endblock %}

@@ -1,0 +1,12 @@
+{# A barra de subabas. Fica num arquivo à parte porque é renderizada nas duas
+   entregas: dentro da página inteira e dentro do pedaço trocado pelo HTMX. #}
+<nav class="abas">
+  {% for s in modulo.subsecoes %}
+  <a class="aba {% if s.chave == subsecao.chave %}aba--on{% endif %}"
+     href="/executivo/{{ modulo.chave }}/{{ s.chave }}"
+     hx-get="/executivo/{{ modulo.chave }}/{{ s.chave }}"
+     hx-target="#miolo"
+     hx-swap="innerHTML"
+     hx-push-url="true">{{ s.rotulo }}</a>
+  {% endfor %}
+</nav>

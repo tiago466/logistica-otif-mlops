@@ -1,0 +1,30 @@
+{# As peças reutilizadas pelas subabas.
+
+   Existem para que a subaba escrita daqui a seis meses tenha a mesma cara da
+   escrita hoje. Sem elas, cada módulo novo reinventa o cartão, o destaque e a
+   Nota Técnica, e a apresentação vira uma colcha de retalhos. #}
+
+{% macro topo(subsecao) -%}
+<div class="painel__topo">
+  <h2>{{ subsecao.numero }} {{ subsecao.titulo }}</h2>
+  <p>{{ subsecao.resumo }}</p>
+</div>
+{%- endmacro %}
+
+{% macro kpi(valor, rotulo, dica='') -%}
+<div class="kpi" {% if dica %}title="{{ dica }}"{% endif %}>
+  <div class="kpi__v">{{ valor }}</div>
+  <div class="kpi__r">{{ rotulo }}</div>
+</div>
+{%- endmacro %}
+
+{% macro caixa(tipo='') -%}
+<div class="caixa {% if tipo %}caixa--{{ tipo }}{% endif %}">{{ caller() }}</div>
+{%- endmacro %}
+
+{# A Nota Técnica que fecha toda subaba, no mesmo formato dos notebooks:
+   observado / por que importa / ação. Repetir a estrutura é o que faz o leitor
+   saber onde procurar a conclusão sem reler a tela inteira. #}
+{% macro nota() -%}
+<div class="caixa caixa--nota nota">{{ caller() }}</div>
+{%- endmacro %}

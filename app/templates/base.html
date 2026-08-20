@@ -1,0 +1,15 @@
+{# Esqueleto de todas as telas. Zero CDN: CSS, imagens e HTMX saem de /static. #}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block titulo %}Sala de Resultados · {{ cliente }}{% endblock %}</title>
+  <link rel="icon" href="{{ url_for('static', path='/img/logo_tfb_icone.png') }}">
+  <link rel="stylesheet" href="{{ url_for('static', path='/css/sala.css') }}">
+  <script src="{{ url_for('static', path='/js/htmx.min.js') }}" defer></script>
+</head>
+<body>
+{% block conteudo %}{% endblock %}
+</body>
+</html>

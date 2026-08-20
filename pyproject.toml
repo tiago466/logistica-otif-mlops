@@ -12,8 +12,6 @@ dependencies = [
     "fastapi>=0.141.1",
     "httpx>=0.28.1",
     "jinja2>=3.1.6",
-    "plotly>=6.0.0",
-    "streamlit>=1.40.0",
     "matplotlib>=3.11.1",
     "pandas>=3.0.5",
     "psycopg[binary]>=3.3.4",
@@ -54,14 +52,11 @@ select = ["E", "F", "I", "N", "UP", "B", "SIM"]
 [tool.ruff.lint.per-file-ignores]
 # migrations sao codigo GERADO pelo alembic: estilo do template dele nao nos bloqueia
 "migrations/versions/*" = ["E501", "I001", "UP007", "UP035"]
-# o Streamlit usa o NOME DO ARQUIVO como titulo da pagina no menu, entao o
-# ponto de entrada da apresentacao e nomeado para o usuario, nao para o import
-"app/Apresentacao.py" = ["N999"]
 
 [tool.mypy]
 python_version = "3.12"
 strict = true
-files = ["src", "tests"]
+files = ["src", "tests", "app"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

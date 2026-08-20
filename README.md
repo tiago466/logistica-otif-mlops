@@ -113,10 +113,11 @@ logistica-otif-mlops/
 │   ├── connectors/              # camada de conectores de dados (base + registro)
 │   ├── api_custos/              # a API do sistema financeiro (a segunda fonte)
 │   ├── pipelines/               # bronze (ingestão) e silver (tratamento)
-│   ├── relatorios/              # gera a Sala de Resultados (HTML + PDF)
+│   ├── relatorios/              # gera os relatórios do cliente (HTML + PDF)
 │   ├── seed/                    # geração e publicação da base sintética
 │   └── dicionario.py            # gera o dicionário de dados a partir do banco
-├── reports/                     # a Sala de Resultados publicada (GitHub Pages)
+├── app/                         # a Sala de Resultados (FastAPI + Jinja2 + HTMX)
+├── reports/                     # relatórios publicados + extratos que o app consome
 ├── scripts/                     # utilitários de manutenção do projeto
 ├── assets/                      # identidade visual (logos)
 ├── infra/                       # o ambiente do CLIENTE (containers das fontes)
@@ -176,6 +177,8 @@ uv run python -m logistica_otif_mlops.pipelines.bronze      # ingestão (cópia 
 uv run python -m logistica_otif_mlops.pipelines.silver      # tratamento (mesmo grão)
 uv run python -m logistica_otif_mlops.relatorios            # Sala de Resultados (HTML)
 uv run python -m logistica_otif_mlops.relatorios.pdf        # os dois relatórios em PDF
+uv run python -m logistica_otif_mlops.relatorios.extratos   # extratos que a apresentação lê
+uv run uvicorn app.main:app --reload                        # a Sala de Resultados
 ```
 
 ## Status do projeto

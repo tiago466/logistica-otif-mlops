@@ -1,0 +1,60 @@
+{% extends "base_app.html" %}
+{% import "_icones.html" as ic %}
+{% import "_pecas.html" as p %}
+
+{% block titulo %}Visão geral · {{ cliente }}{% endblock %}
+{% block tela_titulo %}Visão geral{% endblock %}
+{% block tela_sub %}Onde o projeto está e o que cada módulo responde.{% endblock %}
+
+{% block miolo %}<div class="painel">
+{% set aj = apuracao.ajustes %}
+<div class="kpis">
+  {{ p.kpi(apuracao.carga.linhas | milhar, "Registros analisados") }}
+  {{ p.kpi(achados | length, "Problemas encontrados") }}
+  {{ p.kpi(achados | selectattr('situacao', 'equalto', 'tratado') | list | length, "Corrigidos por nós") }}
+  {{ p.kpi(achados | selectattr('origem') | list | length, "Voltam sem ação na origem") }}
+  {{ p.kpi("1 em " ~ ((apuracao.carga.celulas // aj.total) | milhar), "Do dado foi alterado") }}
+</div>
+
+{% call p.caixa() %}
+  <b>Onde estamos.</b> A base operacional foi examinada por inteiro:
+  {{ apuracao.carga.tabelas }} tabelas, {{ apuracao.carga.colunas }} colunas,
+  {{ apuracao.carga.linhas | milhar }} registros. O diagnóstico está concluído, o
+  tratamento aplicado e auditado. <b>A base está estruturalmente saudável e é
+  utilizável.</b>
+{% endcall %}
+
+<div class="bloco">
+  <h3>O que cada módulo responde</h3>
+  <p class="sub">Os módulos previstos aparecem desde já, de propósito: o caminho inteiro
+  fica visível desde a primeira reunião, e não só o que está pronto hoje.</p>
+
+  {% for m in modulos %}
+  <div class="achado {% if m.previsto %}{% else %}achado--baixa{% endif %}"
+       style="{% if m.previsto %}opacity:.62{% endif %}">
+    <div class="achado__cab">
+      <span class="achado__cod">Módulo {{ m.numero }}</span>
+      <b>{{ m.titulo }}</b>
+      <span class="tag {% if m.previsto %}tag--baixa{% else %}tag--situacao{% endif %}">
+        {% if m.previsto %}previsto{% else %}entregue{% endif %}
+      </span>
+    </div>
+    <p><i>"{{ m.pergunta }}"</i></p>
+    {% if m.subsecoes %}
+    <div class="achado__pe">
+      {% for s in m.subsecoes %}
+        <a class="btn-sutil" style="margin:2px 4px 2px 0"
+           href="/executivo/{{ m.chave }}/{{ s.chave }}">{{ s.rotulo }}</a>
+      {% endfor %}
+    </div>
+    {% endif %}
+  </div>
+  {% endfor %}
+</div>
+
+{% call p.caixa('nota') %}
+  <b>Por que nesta ordem.</b> Modelo treinado sobre dado sujo aprende a sujeira. Só depois
+  de a base estar conformada, e de a conformação estar prestada conta, faz sentido
+  perguntar o que os dados dizem sobre a operação. E só depois disso faz sentido prever.
+{% endcall %}
+</div>{% endblock %}

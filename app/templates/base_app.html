@@ -1,0 +1,60 @@
+{# O SHELL do sistema: menu lateral + cabeçalho + miolo.
+
+   A altura é fixa em 100vh e o `body` tem `overflow:hidden`. Só o painel rola,
+   e apenas quando o conteúdo exige. Numa apresentação, rolar a página inteira
+   faz o público perder o cabeçalho e o contexto de onde está.
+
+   O **miolo** (barra de abas + painel) é o pedaço trocado por HTMX. A barra
+   entra junto de propósito: se só o painel fosse substituído, o conteúdo mudaria
+   e o grifo da aba ficaria na anterior. #}
+{% extends "base.html" %}
+
+{% block conteudo %}
+<div class="app">
+
+  <aside class="lateral">
+    <a class="lateral__marca" href="/executivo">
+      <img src="{{ url_for('static', path='/img/logo_tfb_negativo.png') }}" alt="{{ cliente }}">
+    </a>
+
+    <nav class="lateral__nav">
+      <a class="item {% if ativo == 'inicio' %}item--on{% endif %}" href="/executivo">Visão geral</a>
+
+      <div class="lateral__lbl">Módulos</div>
+      {% for m in modulos %}
+        <a class="item {% if ativo == m.chave %}item--on{% endif %} {% if m.previsto %}item--fraco{% endif %}"
+           href="/executivo/{{ m.chave }}">
+          {{ m.numero }}. {{ m.titulo }}
+          <span class="item__n {% if not m.previsto %}item__n--ok{% endif %}">
+            {% if m.previsto %}previsto{% else %}ok{% endif %}
+          </span>
+        </a>
+      {% endfor %}
+    </nav>
+
+    <div class="lateral__pe">
+      <div class="lateral__info">
+        Carga de referência<br><b>{{ apuracao.carga.ingerido_em }}</b>
+      </div>
+      <a class="item--sair" href="/">← Sair da sala</a>
+    </div>
+  </aside>
+
+  <main class="area">
+    <header class="cabecalho">
+      <div>
+        <h1>{% block tela_titulo %}{% endblock %}</h1>
+        <p>{% block tela_sub %}{% endblock %}</p>
+      </div>
+      <div class="cabecalho__quem">
+        {{ cliente }}<br>Apresentação Executiva
+      </div>
+    </header>
+
+    <div class="miolo" id="miolo">
+      {% block miolo %}{% endblock %}
+    </div>
+  </main>
+
+</div>
+{% endblock %}

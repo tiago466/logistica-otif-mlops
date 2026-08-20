@@ -1,0 +1,7 @@
+{# O "esqueleto vazio" usado quando o pedido vem do HTMX.
+
+   Devolve exatamente o mesmo miolo que a página inteira teria: barra de abas
+   (para o grifo acompanhar a troca) e painel. Nada de menu nem cabeçalho, que
+   já estão na tela e não mudam. #}
+{% include "_abas.html" %}
+<div class="painel">{% block corpo %}{% endblock %}</div>

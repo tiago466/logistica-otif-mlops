@@ -1,0 +1,110 @@
+{% extends "_parcial.html" if parcial else "_modulo.html" %}
+{% import "_pecas.html" as p %}
+
+{% block corpo %}
+{{ p.topo(subsecao) }}
+
+{% set aj = apuracao.ajustes %}
+<div class="kpis">
+  {{ p.kpi(aj.total | milhar, "Células corrigidas") }}
+  {{ p.kpi(aj.colunas ~ " de " ~ apuracao.carga.colunas, "Campos afetados") }}
+  {{ p.kpi("1 em " ~ ((apuracao.carga.celulas // aj.total) | milhar), "Proporção do dado") }}
+  {{ p.kpi(0, "Valores, datas ou chaves", "Nenhum foi alterado") }}
+</div>
+
+<div class="bloco">
+  <h3>Onde o tratamento tocou</h3>
+  <p class="sub">O mais importante é <b>o que não aparece aqui</b>: peso, volume, valor,
+  data e chave estrangeira passaram intactos.</p>
+  <div class="barras">
+    {% set maior = aj.detalhe[0].celulas %}
+    {% for linha in aj.detalhe %}
+    <div class="barra">
+      <div class="barra__r" title="{{ linha.tabela }}.{{ linha.coluna }}">{{ linha.tabela }}.{{ linha.coluna }}</div>
+      <div class="barra__t">
+        <div class="barra__p" style="width: {{ (linha.celulas / maior * 100) | round(1) }}%"></div>
+      </div>
+      <div class="barra__v">{{ linha.celulas | milhar }}</div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+<div class="bloco">
+  <h3>Cada valor que mudou, e por quê</h3>
+  <p class="sub">Sem esta lista, "conformamos a grafia" é afirmação sem prova. Com ela, dá
+  para discordar de uma decisão específica em vez de aceitar ou recusar o tratamento
+  inteiro.</p>
+
+  {# o formulário troca só o painel: filtrar não recarrega a apresentação #}
+  <form class="filtros"
+        hx-get="/executivo/qualidade/tratamento"
+        hx-target="#resultado" hx-select="#resultado" hx-swap="outerHTML"
+        hx-trigger="change, keyup delay:400ms from:input"
+        hx-push-url="true">
+    <div class="campo">
+      <label for="f-campo">Campo</label>
+      <select id="f-campo" name="campo">
+        <option value="">todos</option>
+        {% for c in campos %}
+        <option value="{{ c }}" {% if filtro.campo == c %}selected{% endif %}>{{ c }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="campo">
+      <label for="f-motivo">Motivo da correção</label>
+      <select id="f-motivo" name="motivo">
+        <option value="">todos</option>
+        {% for m in motivos %}
+        <option value="{{ m }}" {% if filtro.motivo == m %}selected{% endif %}>{{ m }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="campo">
+      <label for="f-busca">Buscar um valor</label>
+      <input id="f-busca" name="busca" value="{{ filtro.busca }}" placeholder="ex.: SAO PAULO"
+             autocomplete="off">
+    </div>
+  </form>
+
+  <div id="resultado">
+  <div class="resumo-filtro">
+    {{ total | milhar }} correções distintas · {{ registros | milhar }} registros afetados
+    {% if total > linhas | length %}· mostrando as {{ linhas | length }} primeiras{% endif %}
+  </div>
+
+  <div class="tabela-wrap">
+    <table>
+      <thead>
+        <tr><th>Campo</th><th>Antes</th><th>Depois</th><th>Motivo</th><th class="num">Registros</th></tr>
+      </thead>
+      <tbody>
+        {% for linha in linhas %}
+        <tr>
+          <td>{{ linha.coluna }}</td>
+          <td>{{ linha.antes }}</td>
+          <td>{{ linha.depois or "(vazio)" }}</td>
+          <td>{{ linha.motivo }}</td>
+          <td class="num">{{ linha.ocorrencias | milhar }}</td>
+        </tr>
+        {% else %}
+        <tr><td colspan="5">Nenhuma correção com esses filtros.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  </div>
+</div>
+
+{% call p.nota() %}
+  <p><b>Observado:</b> {{ aj.total | milhar }} células alteradas, o que é 1 em cada
+  {{ (apuracao.carga.celulas // aj.total) | milhar }} campos da base, todas em colunas de
+  texto de preenchimento manual.</p>
+  <p><b>Por que importa:</b> se qualquer valor numérico, data ou chave aparecesse nesta
+  lista, o indicador que a operação usa teria sido alterado pela limpeza, e a diferença
+  seria impossível de explicar depois. A lista soma exatamente o total do manifesto: se
+  faltasse uma coluna, somar a tela daria número diferente do relatório.</p>
+  <p><b>Ação:</b> nenhuma. O escopo do tratamento é o texto digitado por pessoas, que era
+  exatamente o diagnóstico.</p>
+{% endcall %}
+{% endblock %}
